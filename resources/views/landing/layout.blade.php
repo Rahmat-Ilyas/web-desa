@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <title>Home 01</title>
+    <title>Desa Rante Angin, Luwu Timur</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/icons/favicon.png') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/icons/logo.png') }}" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
     <!--===============================================================================================-->
@@ -207,19 +207,55 @@
                             <i class="fa fa-angle-right" aria-hidden="true"></i>
                         </span>
                     </li>
+
+                    <li>
+                        <a href="{{ url('/') }}">GALERI</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url('/') }}">AGENDA</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url('/') }}">DOWNLOAD</a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:;">INFORMASI</a>
+                        <ul class="sub-menu-m">
+                            <li><a href="#">Potensi Desa</a></li>
+                            <li><a href="#">Program Desa</a></li>
+                            <li><a href="#">Bumdes</a></li>
+                            <li><a href="#">Berita Desa</a></li>
+                            <li><a href="#">Lembaga Desa</a></li>
+                            <li><a href="#">Semua Post</a></li>
+                        </ul>
+
+                        <span class="arrow-main-menu-m">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </span>
+                    </li>
                 </ul>
             </div>
 
             <!--  -->
-            <div class="wrap-logo container">
+            <div class="wrap-logo container pb-3">
                 <!-- Logo desktop -->
                 <div class="logo">
-                    <a href="#"><img src="{{ asset('assets/images/icons/logo-01.png') }}" alt="LOGO"></a>
+                    <a href="#"><img src="{{ asset('assets/images/icons/logo.png') }}" alt="LOGO" height="100" width="95"></a>
+                    {{-- <h2 class="text-dark ml-2 mt-0"><b>SELAMAT DATANG</b></h2> --}}
+                    <div class="ml-2">
+                        <h5 class="text-dark" style="font-size: 18px"><b>DESA RANTE ANGIN</b></h5>
+                        <div class="mt-2">
+                            <span class="text-dark"><a href="#">https://www.desa-ranteangin.com</a></span><br>
+                            <span class="text-muted" style="font-size: 13px">Kecamatan Towuti, Kabupaten Luwu Timur, Sulawesi Selatan Pos 92983</span>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Banner -->
                 <div class="banner-header">
-                    <a href="#"><img src="{{ asset('assets/images/banner-01.jpg') }}" alt="IMG"></a>
+                    {{-- <a href="#"><img src="{{ asset('assets/images/banner-01.jpg') }}" alt="IMG"></a> --}}
                 </div>
             </div>
 
@@ -228,10 +264,6 @@
                 <div class="main-nav">
                     <!-- Menu desktop -->
                     <nav class="menu-desktop">
-                        <a class="logo-stick" href="index.html">
-                            <img src="{{ asset('assets/images/icons/logo-01.png') }}" alt="LOGO">
-                        </a>
-
                         <ul class="main-menu">
                             <li class="main-menu-active">
                                 <a href="{{ url('/') }}">HOME</a>
