@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="{{ asset('assets_/vendor/toastr/css/toastr.min.css') }}">
     <!-- Summernote -->
     <link href="{{ asset('assets_/vendor/summernote/summernote.css') }}" rel="stylesheet">
+    <!-- Datatable -->
+    <link href="{{ asset('assets_/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
 
 </head>
 
@@ -123,7 +125,7 @@
                             <li><a href="{{ url('admin-access/profil/visi-misi') }}">Visi & Misi</a></li>
                             <li><a href="{{ url('admin-access/profil/sejarah') }}">Sejarah Desa</a></li>
                             <li><a href="{{ url('admin-access/profil/kondisi') }}">Kondisi Desa</a></li>
-                            <li><a href="{{ url('xxxxxx') }}">Aparatur</a></li>
+                            <li><a href="{{ url('admin-access/profil/aparatur') }}">Aparatur</a></li>
                             <li><a href="{{ url('xxxxxx') }}">Anggaran Desa</a></li>
                             <li><a href="{{ url('xxxxxx') }}">Agenda</a></li>
                         </ul>
@@ -240,14 +242,10 @@
     {{-- Plugins --}}
     <!-- Summernote -->
     <script src="{{ asset('assets_/vendor/summernote/js/summernote.min.js') }}"></script>
-    <!-- Summernote init -->
-    <script src="{{ asset('assets_/js/plugins-init/summernote-init.js') }}"></script>
-
     <!-- Toastr -->
     <script src="{{ asset('assets_/vendor/toastr/js/toastr.min.js') }}"></script>
-
-    <!-- All init script -->
-    <script src="{{ asset('assets_/js/plugins-init/toastr-init.js') }}"></script>
+    <!-- Datatable -->
+    <script src="{{ asset('assets_/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
 
     {{-- <script src="{{ asset('assets_/js/dashboard/dashboard-1.js') }}"></script> --}}
 
