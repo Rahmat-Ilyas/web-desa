@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 use App\Models\Informasi;
 
@@ -39,20 +41,39 @@ class AdminController extends Controller
 
     public function update(Request $request, $target)
     {
-        if ($target == 'sambutan') {
-            dd($request->all());
-            $akun = Informasi::where('id', $request->id)->first();
-            if ($request->password == '') $except = ['_token', 'id', 'password'];
-            else {
-                $except = ['_token', 'id'];
-                $request['password'] = bcrypt($request->password);
-            }
-            foreach ($request->except($except) as $key => $data) {
-                $akun->$key = $data;
-            }
-            $akun->save();
+        if ($target == 'informasi') {
+            $informasi = Informasi::where('kategori', $request->kategori)->first();
+            if ($informasi) {
+                $content = $request->konten;
+                $dom = new \DomDocument();
+                @$dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                $imageFile = $dom->getElementsByTagName('img');
 
-            return back()->with('success', 'Data akun berhasil diupdate');
+                foreach ($imageFile as $item => $image) {
+                    $data = $image->getAttribute('src');
+                    if (substr($data, 0, 10) == "data:image") {
+                        list($type, $data) = explode(';', $data);
+                        list(, $data)      = explode(',', $data);
+                        $imgeData = base64_decode($data);
+                        $image_name = "/images/informasi/" . time() . $item . '.png';
+                        $path = public_path() . $image_name;
+                        file_put_contents($path, $imgeData);
+                        $image_name = URL::to('/') . $image_name;
+                    } else {
+                        $image_name = $data;
+                    }
+
+                    $image->removeAttribute('src');
+                    $image->setAttribute('src', $image_name);
+                }
+
+                $content = $dom->saveHTML();
+                $informasi->konten = $content;
+                $informasi->admin_id = Auth::user()->id;
+                $informasi->save();
+                return back()->with('success', 'Data berhasil diupdate');
+            }
+            return back()->with('error', 'Terjadi kesalahan');
         }
     }
 }

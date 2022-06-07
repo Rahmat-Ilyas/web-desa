@@ -14,6 +14,8 @@
     <link href="{{ asset('assets_/css/style.css') }}" rel="stylesheet">
 
     {{-- Plugins --}}
+    <!-- Toastr -->
+    <link rel="stylesheet" href="{{ asset('assets_/vendor/toastr/css/toastr.min.css') }}">
     <!-- Summernote -->
     <link href="{{ asset('assets_/vendor/summernote/summernote.css') }}" rel="stylesheet">
 
@@ -118,9 +120,9 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{ url('admin-access/profil/sambutan') }}">Sambutan Kepala Desa</a></li>
-                            <li><a href="{{ url('xxxxxx') }}">Visi & Misi</a></li>
-                            <li><a href="{{ url('xxxxxx') }}">Sejarah Desa</a></li>
-                            <li><a href="{{ url('xxxxxx') }}">Kondisi Desa</a></li>
+                            <li><a href="{{ url('admin-access/profil/visi-misi') }}">Visi & Misi</a></li>
+                            <li><a href="{{ url('admin-access/profil/sejarah') }}">Sejarah Desa</a></li>
+                            <li><a href="{{ url('admin-access/profil/kondisi') }}">Kondisi Desa</a></li>
                             <li><a href="{{ url('xxxxxx') }}">Aparatur</a></li>
                             <li><a href="{{ url('xxxxxx') }}">Anggaran Desa</a></li>
                             <li><a href="{{ url('xxxxxx') }}">Agenda</a></li>
@@ -132,9 +134,9 @@
                             <span class="nav-text">Lembaga Desa</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ url('xxxxxx') }}">BPD</a></li>
-                            <li><a href="{{ url('xxxxxx') }}">Karang Taruna</a></li>
-                            <li><a href="{{ url('xxxxxx') }}">BUMDES</a></li>
+                            <li><a href="{{ url('admin-access/lembaga/bpd') }}">BPD</a></li>
+                            <li><a href="{{ url('admin-access/lembaga/karangtaruna') }}">Karang Taruna</a></li>
+                            <li><a href="{{ url('admin-access/lembaga/bumdes') }}">BUMDES</a></li>
                         </ul>
                     </li>
                     <li>
@@ -216,10 +218,10 @@
 
     <!-- Vectormap -->
     <script src="{{ asset('assets_/vendor/raphael/raphael.min.js') }}"></script>
-    <script src="{{ asset('assets_/vendor/morris/morris.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets_/vendor/morris/morris.min.js') }}"></script> --}}
 
     <script src="{{ asset('assets_/vendor/circle-progress/circle-progress.min.js') }}"></script>
-    <script src="{{ asset('assets_/vendor/chart.js') }}/Chart.bundle.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets_/vendor/chart.js') }}/Chart.bundle.min.js') }}"></script> --}}
 
     <script src="{{ asset('assets_/vendor/gaugeJS/dist/gauge.min.js') }}"></script>
 
@@ -241,9 +243,27 @@
     <!-- Summernote init -->
     <script src="{{ asset('assets_/js/plugins-init/summernote-init.js') }}"></script>
 
-    <script src="{{ asset('assets_/js/dashboard/dashboard-1.js') }}"></script>
+    <!-- Toastr -->
+    <script src="{{ asset('assets_/vendor/toastr/js/toastr.min.js') }}"></script>
+
+    <!-- All init script -->
+    <script src="{{ asset('assets_/js/plugins-init/toastr-init.js') }}"></script>
+
+    {{-- <script src="{{ asset('assets_/js/dashboard/dashboard-1.js') }}"></script> --}}
 
     @yield('javascript')
+
+
+    <script>
+        @if (session('success'))
+            toastr.success('{{ session('success') }}.', "Berhasil");
+        @endif
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                toastr.error('{{ $error }}.', "Gagal");
+            @endforeach
+        @endif
+    </script>
 
 </body>
 

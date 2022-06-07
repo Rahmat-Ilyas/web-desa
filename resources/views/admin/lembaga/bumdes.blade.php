@@ -2,21 +2,21 @@
 @section('content')
 @php
 $data = new App\Models\Informasi();
-$get = $data->where('kategori', 'sambutan')->first();
+$get = $data->where('kategori', 'bumdes')->first();
 @endphp
     <div class="content-body">
         <div class="container-fluid">
             <div class="row page-titles mx-0">
                 <div class="col-sm-6 p-md-0">
                     <div class="welcome-text">
-                        <h4>Sambutan Kepala Desa</h4>
+                        <h4>BUMDES</h4>
                         {{-- <p class="mb-0">Your business dashboard template</p> --}}
                     </div>
                 </div>
                 <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Profil & Iinformasi Desa</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Sambutan Kepala Desa</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Lembaga Desa</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">BUMDES</a></li>
                     </ol>
                 </div>
             </div>
@@ -25,7 +25,7 @@ $get = $data->where('kategori', 'sambutan')->first();
                 <div class="col-xl-12 col-xxl-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Form Sambutan Kepala Desa</h4>
+                            <h4 class="card-title">Profil BUMDES</h4>
                         </div>
                         <hr class="mb-0">
                         <div class="card-body mt-0">
@@ -36,7 +36,7 @@ $get = $data->where('kategori', 'sambutan')->first();
                                 </div>
                                 <div class="row justify-content-end">
                                     <div class="col-sm-2">
-                                        <input type="hidden" name="kategori" value="sambutan">
+                                        <input type="hidden" name="kategori" value="bumdes">
                                         <button type="submit" class="btn btn-primary btn-xl btn-block">Simpan</button>
                                     </div>
                                 </div>
