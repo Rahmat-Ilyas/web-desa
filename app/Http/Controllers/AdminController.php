@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\File;
 
 use App\Models\Informasi;
+use App\Models\Aparatur;
+use App\Models\Apbdes;
 
 class AdminController extends Controller
 {
@@ -32,10 +35,26 @@ class AdminController extends Controller
 
     public function store(Request $request, $target)
     {
-        if ($target == 'universitas-fav') {
+        if ($target == 'dataaparatur') {
+            $request->validate([
+                'foto_upload' => 'required|mimes:png,jpeg,jpg,bmp',
+            ]);
+
+            $file = $request->file('foto_upload');
+            $nama_foto = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path("/images/aparatur"), $nama_foto);
+
+            $data = $request->except(['foto_upload']);
+            $data['foto'] = $nama_foto;
+            $add = Aparatur::create($data);
+            if ($add)
+                return back()->with('success', 'Data Aparatur Desa berhasil ditambahkan');
+            else
+                return back()->with('error', 'Gagal menambahkan data');
+        } else if ($target == 'anggaran') {
             $data = $request->all();
-            Informasi::create($data);
-            return back()->with('success', 'Universitas favorit berhasil ditambahkan');
+            Apbdes::create($data);
+            return back()->with('success', 'Data Anggaran Dana Desa berhasil ditambahkan');
         }
     }
 
@@ -74,6 +93,57 @@ class AdminController extends Controller
                 return back()->with('success', 'Data berhasil diupdate');
             }
             return back()->with('error', 'Terjadi kesalahan');
+        } else if ($target == 'dataaparatur') {
+            $request->validate([
+                'foto_upload' => 'mimes:png,jpeg,jpg,bmp',
+            ]);
+
+            $aparat = Aparatur::where('id', $request->id)->first();
+            $except = ['_token', 'id', 'foto_upload'];
+            if ($request->foto_upload) {
+                File::delete(public_path("/images/aparatur/" . $aparat->foto));
+                $file = $request->file('foto_upload');
+                $nama_foto = time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path("/images/aparatur"), $nama_foto);
+                $request['foto'] = $nama_foto;
+            }
+
+            foreach ($request->except($except) as $key => $data) {
+                $aparat->$key = $data;
+            }
+            $aparat->save();
+
+            return back()->with('success', 'Data Aparatur Desa berhasil diupdate');
+        } else if ($target == 'anggaran') {
+            $anggaran = Apbdes::where('id', $request->id)->first();
+            $except = ['_token', 'id'];
+
+            foreach ($request->except($except) as $key => $data) {
+                $anggaran->$key = $data;
+            }
+            $anggaran->save();
+
+            return back()->with('success', 'Data Anggaran Dana Desa berhasil diupdate');
         }
+    }
+
+    public function delete($target, $id)
+    {
+        if ($target == 'dataaparatur') {
+            $data = Aparatur::where('id', $id)->first();
+            $data->delete();
+            File::delete(public_path("/images/aparatur/" . $data->foto));
+
+            return back()->with('success', 'Data Aparatur Desa berhasil dihapus');
+        } else if ($target == 'anggaran') {
+            $data = Apbdes::where('id', $id)->first();
+            $data->delete();
+
+            return back()->with('success', 'Data Anggaran Dana Desa berhasil dihapus');
+        }
+    }
+
+    public function config(Request $request)
+    {
     }
 }

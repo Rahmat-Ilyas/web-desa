@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Aparatur extends Model
+class Galeri extends Model
 {
     use HasFactory;
 
-    protected $table = 'aparatur';
-    public $timestamps = false;
+    protected $table = 'galeri';
     protected $guarded = [];
 }

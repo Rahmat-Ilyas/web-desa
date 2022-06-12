@@ -20,6 +20,8 @@
     <link href="{{ asset('assets_/vendor/summernote/summernote.css') }}" rel="stylesheet">
     <!-- Datatable -->
     <link href="{{ asset('assets_/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+    <!-- Dropzone -->
+    <link href="{{ asset('assets_/vendor/dropzone/dropzone.min.css') }}" rel="stylesheet">
 
 </head>
 
@@ -126,7 +128,7 @@
                             <li><a href="{{ url('admin-access/profil/sejarah') }}">Sejarah Desa</a></li>
                             <li><a href="{{ url('admin-access/profil/kondisi') }}">Kondisi Desa</a></li>
                             <li><a href="{{ url('admin-access/profil/aparatur') }}">Aparatur</a></li>
-                            <li><a href="{{ url('xxxxxx') }}">Anggaran Desa</a></li>
+                            <li><a href="{{ url('admin-access/profil/anggaran') }}">Anggaran Desa</a></li>
                             <li><a href="{{ url('xxxxxx') }}">Agenda</a></li>
                         </ul>
                     </li>
@@ -152,8 +154,8 @@
                             <li><a href="{{ url('xxxxxx') }}">Kategori Postingan</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a class="" href="javascript:void()" aria-expanded="false">
+                    <li id="galeri">
+                        <a class="" href="{{ url('admin-access/galeri/arsip-galeri') }}" aria-expanded="false">
                             <i class="fa fa-photo"></i>
                             <span class="nav-text">Galeri</span>
                         </a>
@@ -246,6 +248,8 @@
     <script src="{{ asset('assets_/vendor/toastr/js/toastr.min.js') }}"></script>
     <!-- Datatable -->
     <script src="{{ asset('assets_/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+    <!-- Dropzone -->
+    <script src="{{ asset('assets_/vendor/dropzone/dropzone.min.js') }}"></script>
 
     {{-- <script src="{{ asset('assets_/js/dashboard/dashboard-1.js') }}"></script> --}}
 
@@ -253,6 +257,10 @@
 
 
     <script>
+        $(document).tooltip({
+            selector: '[data-toggle1="tooltip"]'
+        });
+
         @if (session('success'))
             toastr.success('{{ session('success') }}.', "Berhasil");
         @endif
