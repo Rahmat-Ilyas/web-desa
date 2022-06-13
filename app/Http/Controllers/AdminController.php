@@ -89,7 +89,46 @@ class AdminController extends Controller
                 $dta->move($path, $nama_foto);
             }
             return response()->json('success', 200); 
+        } else if ($target == 'file') {
+            $data = [];
+            $data['keterangan'] = $request->keterangan;
+            $file = str_replace(' ', '_', $request->file('file_upload')->getClientOriginalName());
+            $data['file'] = $file;
+            $data['ukuran'] = $this->getFileSize($request->file('file_upload')->getSize());
+
+
+            // $data['file'] = $request->file('file')->getClientOriginalName();
+            dd($file);
         }
+    }
+
+    private function getFileSize($bytes) {
+        if ($bytes >= 1073741824)
+        {
+            $bytes = number_format($bytes / 1073741824, 2) . ' GB';
+        }
+        elseif ($bytes >= 1048576)
+        {
+            $bytes = number_format($bytes / 1048576, 2) . ' MB';
+        }
+        elseif ($bytes >= 1024)
+        {
+            $bytes = number_format($bytes / 1024, 2) . ' KB';
+        }
+        elseif ($bytes > 1)
+        {
+            $bytes = $bytes . ' bytes';
+        }
+        elseif ($bytes == 1)
+        {
+            $bytes = $bytes . ' byte';
+        }
+        else
+        {
+            $bytes = '0 bytes';
+        }
+
+        return $bytes;
     }
 
     public function update(Request $request, $target)

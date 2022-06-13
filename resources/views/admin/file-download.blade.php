@@ -1,7 +1,7 @@
 @extends('admin.layout')
 @section('content')
     @php
-    $data = new App\Models\Aparatur();
+    $data = new App\Models\File();
     $get = $data->get();
     @endphp
     <div class="content-body">
@@ -25,9 +25,9 @@
                 <div class="col-xl-12 col-xxl-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Data Aparat Desa</h4>
+                            <h4 class="card-title">Rekap Arsip File</h4>
                             <button class="btn btn-primary" data-toggle="modal" data-target="#modal-add"><i
-                                    class="fa fa-plus"></i> Tambah Data Aparatur Desa</button>
+                                    class="fa fa-plus"></i> Tambah File</button>
                         </div>
                         <hr class="mb-0">
                         <div class="card-body mt-0">
@@ -36,9 +36,10 @@
                                     <thead>
                                         <tr>
                                             <th width="10">No</th>
-                                            <th>Foto</th>
-                                            <th>Nama</th>
-                                            <th>Jabatan</th>
+                                            <th>File</th>
+                                            <th>Keterangan</th>
+                                            <th>Ukuran</th>
+                                            <th>Tggl Upload</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -46,9 +47,10 @@
                                         @foreach ($get as $i => $dta)
                                             <tr>
                                                 <td>{{ $i + 1 }}</td>
-                                                <td width="150">
-                                                    <img src="{{ asset('images/aparatur/'.$dta->foto) }}" width="120"
-                                                        height="150">
+                                                <td>
+                                                    <a href="" class="btn btn-link">
+                                                        <i class="fa fa-file-text fa-lg"></i> file_rab.pdf
+                                                    </a>
                                                 </td>
                                                 <td>{{ $dta->nama }}</td>
                                                 <td>{{ $dta->jabatan }}</td>
@@ -73,35 +75,28 @@
     </div>
 
     <div class="modal fade" id="modal-add" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Aparatur</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah File</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="{{ url('admin-access/store/dataaparatur') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('admin-access/store/file') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body px-5">
                         <div class="form-group row">
-                            <label class="col-form-label col-sm-3">Nama</label>
+                            <label class="col-form-label col-sm-3">File</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="nama" placeholder="Nama..." required=""
+                                <input type="file" class="form-control" name="file_upload" required="" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3">Keterangan</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="keterangan" placeholder="Keterangan..." required=""
                                     autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-sm-3">Jabatan</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="jabatan" placeholder="Jabatan..."
-                                    required="" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label col-sm-3">Foto</label>
-                            <div class="col-sm-9">
-                                <input type="file" class="form-control" name="foto_upload" required="" autocomplete="off">
                             </div>
                         </div>
                     </div>
