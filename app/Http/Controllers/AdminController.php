@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\File;
 use App\Models\Informasi;
 use App\Models\Aparatur;
 use App\Models\Apbdes;
+use App\Models\Galeri;
+use App\Models\KontenGaleri;
 
 class AdminController extends Controller
 {
@@ -31,6 +33,11 @@ class AdminController extends Controller
     public function pagedir($dir = NULL, $page)
     {
         return view('admin/' . $dir . '/' . $page);
+    }
+
+    public function pagedir_id($dir = NULL, $page, $id)
+    {
+        return view('admin/' . $dir . '/' . $page, compact('id'));
     }
 
     public function store(Request $request, $target)
@@ -55,6 +62,33 @@ class AdminController extends Controller
             $data = $request->all();
             Apbdes::create($data);
             return back()->with('success', 'Data Anggaran Dana Desa berhasil ditambahkan');
+        } else if ($target == 'galeri') {
+            $request->validate([
+                'judul' => 'required',
+                'foto' => 'required',
+            ]);
+
+            $data = [];
+            $data['judul'] = $request->judul;
+            $data['keterangan'] = $request->keterangan;
+            $data['admin_id'] = Auth::user()->id;
+            $data['view'] = 0;
+
+            $galeri = Galeri::create($data);
+            $files =  $request->file('foto');
+
+            foreach ($files as $i => $dta) {
+                $nama_foto = 'galeri_' . $i . time() . '.' . $dta->getClientOriginalExtension();
+
+                $foto = [];
+                $foto['galeri_id'] = $galeri->id;
+                $foto['foto'] = $nama_foto;
+                KontenGaleri::create($foto);
+
+                $path = 'images/galeri';
+                $dta->move($path, $nama_foto);
+            }
+            return response()->json('success', 200); 
         }
     }
 
@@ -140,7 +174,17 @@ class AdminController extends Controller
             $data->delete();
 
             return back()->with('success', 'Data Anggaran Dana Desa berhasil dihapus');
-        }
+        } else if ($target == 'galeri') {
+            $galeri = Galeri::where('id', $id)->first();
+            $galeri->delete();
+            $kont_galeri = KontenGaleri::where('galeri_id', $id)->get();
+            foreach ($kont_galeri as $kg) {
+                File::delete(public_path("/images/galeri/" . $kg->foto));
+                $kg->delete();
+            }
+
+            return back()->with('success', 'Data Galeri Kegiatan Desa berhasil dihapus');
+        } 
     }
 
     public function config(Request $request)

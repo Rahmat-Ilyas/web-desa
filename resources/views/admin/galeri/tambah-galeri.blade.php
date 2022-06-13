@@ -32,24 +32,23 @@
                         <div class="card-body mt-0">
                             <div class="row justify-content-center">
                                 <div class="col-sm-8">
-                                    <form method="post" action="{{ url('admin-access/store/dataaparatur') }}"
-                                        enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="form-group">
-                                            <label class="text-dark">Judul Galeri</label>
-                                            <input type="text" class="form-control" name="judul"
-                                                placeholder="Judul Galeri..." required="" autocomplete="off" id="judul">
-                                        </div>
-                                    </form>
+                                    <div class="form-group">
+                                        <label class="text-dark">Judul Galeri</label>
+                                        <input type="text" class="form-control" name="judul" placeholder="Judul Galeri..." autocomplete="off" id="judul">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="text-dark">Keterangan Galeri</label>
+                                        <textarea type="text" class="form-control" name="keterangan" placeholder="Keterangan Galeri..." rows="6" id="keterangan"></textarea>
+                                    </div>
                                     <h4 class="text-center">Upload Foto</h4>
                                     <form action="{{ url('admin-access/config') }}" class="dropzone mb-4"
                                         id="my-dropzone"
                                         style="border-style: dashed; border-radius: 10px; min-height: 300px;">
                                         @csrf
                                     </form>
-                                    <button class="btn btn-primary" id="simpan-data">Simpan Data</button>
+                                    <button class="btn btn-primary btn-act" id="simpan-data">Simpan Data</button>
                                     <a href="{{ url('admin-access/galeri/arsip-galeri') }}"
-                                        class="btn btn-light">Kembali</a>
+                                        class="btn btn-dark btn-act">Kembali</a>
                                 </div>
                             </div>
                         </div>
@@ -63,63 +62,87 @@
 @section('javascript')
     <script>
         var formData = new FormData();
+        var glob_dropzone;
 
         Dropzone.options.myDropzone = {
             timeout: 60000 * 120,
             acceptedFiles: 'image/*',
+            maxFilesize: 2,
             dictDefaultMessage: '<div class="pt-5"><h5><i class="text-muted">Klik untuk memilih foto</i></h5></div>',
             init: function() {
                 this.on("addedfile", function(file) {
-                    formData.append('file[]', file);
+                    formData.append('foto[]', file);
                 });
+                glob_dropzone = this;
             },
             error: function(file, error) {
                 toastr.error(error, "Terjadi Kesalahan");
                 this.removeFile(file);
             }
         };
+
         $(document).ready(function() {
             $(document).find('#galeri').addClass('mm-active');
+
+            var headers = {
+                "Accept": "application/json",
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')
+            }
 
             $('#simpan-data').click(function(e) {
                 e.preventDefault();
 
-                $('#preloader').fadeOut(500);
-                $('#main-wrapper').removeClass('show');
-                $(document.body).css({'cursor' : 'wait'});
-
                 var judul = $('#judul').val()
+                var keterangan = $('#keterangan').val()
                 formData.append('judul', judul);
+                formData.append('keterangan', keterangan);
 
-                // $.ajax({
-                //     url: "{{ url('/createlaporan') }}",
-                //     enctype: "multipart/form-data",
-                //     method: "POST",
-                //     headers: headers,
-                //     data: formData,
-                //     xhr: function() {
-                //         var xhr = new window.XMLHttpRequest();
-                //         xhr.upload.addEventListener('progress', function(evt) {
-                //             if (evt.lengthComputable) {
-                //                 $("#loading, .loader").removeAttr('hidden');
-                //             }
-                //         }, false);
-                //         return xhr;
-                //     },
-                //     success: function(data) {
-                //         $("#loading, .loader").attr('hidden', '');
-                //         Swal.fire({
-                //             title: 'Berhasil Diproses',
-                //             text: 'Laporan berhasil dibuat',
-                //             type: 'success',
-                //             onClose: () => {
-                //                 location.href = "{{ url('/laporan') }}";
-                //             }
-                //         });
-                //     },
-                //     contentType: false,
-                //     processData: false,
-                // });
+                $.ajax({
+                    url: "{{ url('admin-access/store/galeri') }}",
+                    enctype: "multipart/form-data",
+                    method: "POST",
+                    headers: headers,
+                    data: formData,
+                    xhr: function() {
+                        var xhr = new window.XMLHttpRequest();
+                        xhr.upload.addEventListener('progress', function(evt) {
+                            if (evt.lengthComputable) {
+                                $(document.body).css({
+                                    'pointer-events': 'none'
+                                });
+                                $('#preloader').fadeIn(500);
+                                $('#main-wrapper').removeClass('show');
+                            }
+                        }, false);
+                        return xhr;
+                    },
+                    success: function(data) {
+                        formData = new FormData();
+                        Dropzone.forElement("form#my-dropzone").removeAllFiles(true);
+                        toastr.success("Data Galeri berhasil ditambah", "Berhasil Diproses", {
+                            timeOut: 800,
+                            onHidden: function() {
+                                window.location.href =
+                                    "{{ url('admin-access/galeri/arsip-galeri') }}";
+                            }
+                        });
+                    },
+                    error: function(data) {
+                        $(document.body).css({
+                            'pointer-events': 'auto'
+                        });
+                        $('#preloader').fadeIn(500);
+                        $('#main-wrapper').addClass('show');
+                        var errors = data.responseJSON;
+
+                        $.each(errors.errors, function(key, value) {
+                            toastr.error(value, "Gagal");
+                        });
+                    },
+
+                    contentType: false,
+                    processData: false,
+                });
             });
         });
     </script>

@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin - Desa Rante Angin, Luwu Timur </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/icons/logo.png') }}">
@@ -161,13 +162,13 @@
                         </a>
                     </li>
                     <li>
-                        <a class="" href="javascript:void()" aria-expanded="false">
+                        <a class="" href="{{ url('admin-access/file-download') }}" aria-expanded="false">
                             <i class="icon icon-single-04"></i>
                             <span class="nav-text">Data Penduduk</span>
                         </a>
                     </li>
                     <li>
-                        <a class="" href="javascript:void()" aria-expanded="false">
+                        <a class="" href="{{ url('admin-access/file-download') }}" aria-expanded="false">
                             <i class="fa fa-file-text-o"></i>
                             <span class="nav-text">File Download</span>
                         </a>

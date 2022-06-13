@@ -11,4 +11,14 @@ class Galeri extends Model
 
     protected $table = 'galeri';
     protected $guarded = [];
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'admin_id');
+    }
+
+    public function konten_galeri()
+    {
+        return $this->hasMany(KontenGaleri::class, 'galeri_id');
+    }
 }

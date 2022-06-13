@@ -45,4 +45,5 @@ Route::group(['prefix' => 'admin-access'], function () {
 
     Route::get('/{page}', [AdminController::class, 'page']);
     Route::get('/{dir}/{page}', [AdminController::class, 'pagedir']);
+    Route::get('/{dir}/{page}/{id}', [AdminController::class, 'pagedir_id']);
 });

@@ -26,44 +26,47 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Arsip Galeri Kegiatan Desa</h4>
-                            <a href="{{ url('admin-access/galeri/tambah-galeri') }}" class="btn btn-primary" ><i
+                            <a href="{{ url('admin-access/galeri/tambah-galeri') }}" class="btn btn-primary"><i
                                     class="fa fa-plus"></i> Tambah Galeri Baru</a>
                         </div>
                         <hr class="mb-0">
                         <div class="card-body mt-0">
                             <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="card mb-3">
-                                        <img class="card-img-top img-fluid"
-                                            src="{{ asset('assets_/images/card/2.png') }}">
-                                        <div class="card-header p-2">
-                                            <h5 class="card-title">Kegiatan Pendataan SDGs Oleh Relawan Di Desa Plosok
-                                            </h5>
-                                        </div>
-                                        <div class="card-body pt-0 px-2">
-                                            <i class="fa fa-user"></i>
-                                            <span>Rahmat Ilyas</span>
-                                            &nbsp;&nbsp;|&nbsp;&nbsp;
-                                            <i class="fa fa-photo"></i>
-                                            <span>10 Gambar</span>
-                                            &nbsp;&nbsp;|&nbsp;&nbsp; 
-                                            <i class="fa fa-eye"></i>
-                                            <span>100 View</span>
-                                            <div class="row pt-0">
-                                                <div class="col-sm-4">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <div class="">
+                                @foreach ($get as $dta)
+                                    <div class="col-sm-4">
+                                        <div class="card mb-3">
+                                            <img class="card-img-top img-fluid" src="{{ asset('/images/galeri/'.$dta->konten_galeri[0]->foto) }}" style="height: 250px">
+                                            <div class="card-header p-2" style="min-height: 60px;">
+                                                <h5 class="card-title">{{ $dta->judul }}</h5>
+                                            </div>
+                                            <div class="card-body pt-0 px-2">
+                                                <i class="fa fa-user"></i>
+                                                <span>{{ $dta->admin->nama }}</span>
+                                                &nbsp;&nbsp;|&nbsp;&nbsp;
+                                                <i class="fa fa-photo"></i>
+                                                <span>{{ count($dta->konten_galeri) }} Gambar</span>
+                                                &nbsp;&nbsp;|&nbsp;&nbsp;
+                                                <i class="fa fa-eye"></i>
+                                                <span>{{ $dta->view }} View</span>
+                                                <div class="row pt-0">
+                                                    <div class="col-sm-4">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="card-footer p-2 text-center">
-                                            <a href="" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus Galeri</a>
-                                            <a href="" class="btn btn-primary"><i class="fa fa-eye"></i> Lihat Galeri</a>
+                                            <div class="card-footer p-2 text-center">
+                                                <a href="#" class="btn btn-danger" data-toggle="modal"
+                                                        data-target="#modal-del{{ $dta->id }}"><i class="fa fa-trash"></i> Hapus
+                                                    Galeri</a>
+                                                <a href="{{ url('admin-access/galeri/detail-galeri/' . $dta->id) }}" class="btn btn-primary"><i class="fa fa-eye"></i> Lihat
+                                                    Galeri</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -87,7 +90,7 @@
                         <p>Yakin ingin menghapus data ini?</p>
                     </div>
                     <div class="modal-footer">
-                        <a href="{{ url('admin-access/delete/dataaparatur/' . $dta->id) }}" role="button"
+                        <a href="{{ url('admin-access/delete/galeri/' . $dta->id) }}" role="button"
                             class="btn btn-danger">Hapus</a>
                         <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
                     </div>
