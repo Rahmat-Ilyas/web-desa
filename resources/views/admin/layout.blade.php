@@ -130,7 +130,7 @@
                             <li><a href="{{ url('admin-access/profil/kondisi') }}">Kondisi Desa</a></li>
                             <li><a href="{{ url('admin-access/profil/aparatur') }}">Aparatur</a></li>
                             <li><a href="{{ url('admin-access/profil/anggaran') }}">Anggaran Desa</a></li>
-                            <li><a href="{{ url('xxxxxx') }}">Agenda</a></li>
+                            <li><a href="{{ url('admin-access/profil/agenda') }}">Agenda</a></li>
                         </ul>
                     </li>
                     <li>
@@ -150,9 +150,9 @@
                             <span class="nav-text">Kelola Postingan</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ url('xxxxxx') }}">Buat Postingan Baru</a></li>
-                            <li><a href="{{ url('xxxxxx') }}">Lihat Postingan</a></li>
-                            <li><a href="{{ url('xxxxxx') }}">Kategori Postingan</a></li>
+                            <li><a href="{{ url('admin-access/postingan/buat-postingan') }}">Buat Postingan Baru</a></li>
+                            <li><a href="{{ url('admin-access/postingan/postingan') }}">Lihat Postingan</a></li>
+                            <li><a href="{{ url('admin-access/postingan/kategori') }}">Kategori Postingan</a></li>
                         </ul>
                     </li>
                     <li id="galeri">

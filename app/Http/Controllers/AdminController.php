@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agenda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
@@ -12,6 +13,7 @@ use App\Models\Aparatur;
 use App\Models\Apbdes;
 use App\Models\Galeri;
 use App\Models\KontenGaleri;
+use App\Models\Files;
 
 class AdminController extends Controller
 {
@@ -92,43 +94,20 @@ class AdminController extends Controller
         } else if ($target == 'file') {
             $data = [];
             $data['keterangan'] = $request->keterangan;
-            $file = str_replace(' ', '_', $request->file('file_upload')->getClientOriginalName());
-            $data['file'] = $file;
+            $file = time().'_'.str_replace(' ', '_', $request->file('file_upload')->getClientOriginalName());
+            $data['nama_file'] = $file;
+            $data['download'] = 0;
             $data['ukuran'] = $this->getFileSize($request->file('file_upload')->getSize());
+            Files::create($data);
+            $request->file('file_upload')->move('file', $file);
 
+            return back()->with('success', 'File baru berhasil ditambahkan');
+        } else if ($target == 'agenda') {
+            $data = $request->all();
+            Agenda::create($data);
 
-            // $data['file'] = $request->file('file')->getClientOriginalName();
-            dd($file);
+            return back()->with('success', 'Agenda baru berhasil ditambahkan');
         }
-    }
-
-    private function getFileSize($bytes) {
-        if ($bytes >= 1073741824)
-        {
-            $bytes = number_format($bytes / 1073741824, 2) . ' GB';
-        }
-        elseif ($bytes >= 1048576)
-        {
-            $bytes = number_format($bytes / 1048576, 2) . ' MB';
-        }
-        elseif ($bytes >= 1024)
-        {
-            $bytes = number_format($bytes / 1024, 2) . ' KB';
-        }
-        elseif ($bytes > 1)
-        {
-            $bytes = $bytes . ' bytes';
-        }
-        elseif ($bytes == 1)
-        {
-            $bytes = $bytes . ' byte';
-        }
-        else
-        {
-            $bytes = '0 bytes';
-        }
-
-        return $bytes;
     }
 
     public function update(Request $request, $target)
@@ -197,6 +176,16 @@ class AdminController extends Controller
             $anggaran->save();
 
             return back()->with('success', 'Data Anggaran Dana Desa berhasil diupdate');
+        } else if ($target == 'agenda') {
+            $agenda = Agenda::where('id', $request->id)->first();
+            $except = ['_token', 'id'];
+
+            foreach ($request->except($except) as $key => $data) {
+                $agenda->$key = $data;
+            }
+            $agenda->save();
+
+            return back()->with('success', 'Agenda berhasil diupdate');
         }
     }
 
@@ -223,10 +212,50 @@ class AdminController extends Controller
             }
 
             return back()->with('success', 'Data Galeri Kegiatan Desa berhasil dihapus');
-        } 
+        } else if ($target == 'file') {
+            $data = Files::where('id', $id)->first();
+            $data->delete();
+            File::delete(public_path("file/" . $data->nama_file));
+
+            return back()->with('success', 'Data File berhasil dihapus');
+        } else if ($target == 'agenda') {
+            $data = Agenda::where('id', $id)->first();
+            $data->delete();
+
+            return back()->with('success', 'Agenda berhasil dihapus');
+        }
     }
 
     public function config(Request $request)
     {
+    }
+
+    private function getFileSize($bytes) {
+        if ($bytes >= 1073741824)
+        {
+            $bytes = number_format($bytes / 1073741824, 2) . ' GB';
+        }
+        elseif ($bytes >= 1048576)
+        {
+            $bytes = number_format($bytes / 1048576, 2) . ' MB';
+        }
+        elseif ($bytes >= 1024)
+        {
+            $bytes = number_format($bytes / 1024, 2) . ' KB';
+        }
+        elseif ($bytes > 1)
+        {
+            $bytes = $bytes . ' bytes';
+        }
+        elseif ($bytes == 1)
+        {
+            $bytes = $bytes . ' byte';
+        }
+        else
+        {
+            $bytes = '0 bytes';
+        }
+
+        return $bytes;
     }
 }

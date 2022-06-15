@@ -1,7 +1,7 @@
 @extends('admin.layout')
 @section('content')
     @php
-    $data = new App\Models\File();
+    $data = new App\Models\Files();
     $get = $data->get();
     @endphp
     <div class="content-body">
@@ -36,7 +36,7 @@
                                     <thead>
                                         <tr>
                                             <th width="10">No</th>
-                                            <th>File</th>
+                                            <th>Nama File</th>
                                             <th>Keterangan</th>
                                             <th>Ukuran</th>
                                             <th>Tggl Upload</th>
@@ -45,19 +45,20 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($get as $i => $dta)
-                                            <tr>
+                                            <tr class="text-dark">
                                                 <td>{{ $i + 1 }}</td>
                                                 <td>
-                                                    <a href="" class="btn btn-link">
-                                                        <i class="fa fa-file-text fa-lg"></i> file_rab.pdf
+                                                    <a href="{{ asset('file/'.$dta->nama_file) }}" class="btn btn-link" download="">
+                                                        <i class="fa fa-file-text"></i>&nbsp; {{ $dta->nama_file }}
                                                     </a>
                                                 </td>
-                                                <td>{{ $dta->nama }}</td>
-                                                <td>{{ $dta->jabatan }}</td>
-                                                <td width="180" class="text-center">
-                                                    <button class="btn btn-sm btn-success text-white" data-toggle="modal"
+                                                <td>{{ $dta->keterangan }}</td>
+                                                <td>{{ $dta->ukuran }}</td>
+                                                <td>{{ date('d/m/Y', strtotime($dta->created_at)) }}</td>
+                                                <td width="80" class="text-center">
+                                                    {{-- <button class="btn btn-sm btn-success text-white" data-toggle="modal"
                                                         data-target="#modal-edit{{ $dta->id }}"><i
-                                                            class="fa fa-edit"></i> Edit Data</button>
+                                                            class="fa fa-edit"></i> Edit</button> --}}
                                                     <button class="btn btn-sm btn-danger" data-toggle="modal"
                                                         data-target="#modal-del{{ $dta->id }}"><i
                                                             class="fa fa-trash"></i> Hapus</button>
@@ -110,38 +111,24 @@
     </div>
 
     @foreach ($get as $dta)
-        <div class="modal fade" id="modal-edit{{ $dta->id }}" role="dialog" aria-labelledby="exampleModalLabel"
+        {{-- <div class="modal fade" id="modal-edit{{ $dta->id }}" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit Data Aparatur</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Data Keterangan File</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form method="post" action="{{ url('admin-access/update/dataaparatur') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ url('admin-access/update/file') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body px-5">
                             <div class="form-group row">
-                                <label class="col-form-label col-sm-3">Nama</label>
+                                <label class="col-form-label col-sm-3">Keterangan</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="nama" placeholder="Nama..." required=""
-                                        autocomplete="off" value="{{ $dta->nama }}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-form-label col-sm-3">Jabatan</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="Jabatan" placeholder="Jabatan..."
-                                        required="" autocomplete="off" value="{{ $dta->jabatan }}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-form-label col-sm-3">Foto</label>
-                                <div class="col-sm-9">
-                                    <input type="file" class="form-control" name="foto_upload" autocomplete="off">
-                                    <span class="text-info">Note: Kosongkan jika tidak diganti</span>
+                                    <input type="text" class="form-control" name="keterangan" placeholder="Keterangan..." required=""
+                                        autocomplete="off" value="{{ $dta->keterangan }}">
                                 </div>
                             </div>
                         </div>
@@ -153,7 +140,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="modal fade" id="modal-del{{ $dta->id }}" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -169,7 +156,7 @@
                         <p>Yakin ingin menghapus data ini?</p>
                     </div>
                     <div class="modal-footer">
-                        <a href="{{ url('admin-access/delete/dataaparatur/' . $dta->id) }}" role="button"
+                        <a href="{{ url('admin-access/delete/file/' . $dta->id) }}" role="button"
                             class="btn btn-danger">Hapus</a>
                         <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
                     </div>
