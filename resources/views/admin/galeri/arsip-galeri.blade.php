@@ -59,7 +59,7 @@
                                             </div>
                                             <div class="card-footer p-2 text-center">
                                                 <a href="#" class="btn btn-danger" data-toggle="modal"
-                                                        data-target="#modal-del{{ $dta->id }}"><i class="fa fa-trash"></i> Hapus
+                                                data-target="#modal-del{{ $dta->id }}"><i class="fa fa-trash"></i> Hapus
                                                     Galeri</a>
                                                 <a href="{{ url('admin-access/galeri/detail-galeri/' . $dta->id) }}" class="btn btn-primary"><i class="fa fa-eye"></i> Lihat
                                                     Galeri</a>
