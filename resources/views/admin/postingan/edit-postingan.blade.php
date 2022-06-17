@@ -30,7 +30,7 @@
                         </div>
                         <hr class="mb-0">
                         <div class="card-body mt-0">
-                            <form action="{{ url('admin-access/store/postingan') }}" method="post"
+                            <form action="{{ url('admin-access/update/postingan') }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
@@ -43,8 +43,13 @@
                                         <div class="form-group">
                                             <label class="text-dark font-weight-bold">Kategori Postingan</label>
                                             <select name="kategori" id="kategori_edt" class="form-control" required="" id="">
-                                                <option value="artikel">Artikel</option>
-                                                <option value="berita">Berita</option>
+                                                <option value="Berita">Berita</option>
+                                                <option value="Artikel">Artikel</option>
+                                                <option value="Bumdes">Bumdes</option>
+                                                <option value="Produk Hukum">Produk Hukum</option>
+                                                <option value="Potensi Desa">Potensi Desa</option>
+                                                <option value="Lembaga Desa">Lembaga Desa</option>
+                                                <option value="Program Desa">Program Desa</option>
                                             </select>
                                         </div>
                                         <script>
@@ -65,14 +70,15 @@
                                             <label class="text-dark font-weight-bold">Foto Sampul Postingan</label>
                                             <div class="input-group">
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" name="foto_sampul" required="">
+                                                    <input type="file" class="custom-file-input" name="foto_sampul">
                                                     <label class="custom-file-label">Upload foto sampul</label>
                                                 </div>
                                                 <div class="input-group-append">
-                                                    <a href="#"  class="input-group-text">Lihat Foto</a>
+                                                    <a href="#"  class="btn btn-info text-white" data-toggle="modal"
+                                                data-target="#modal-sampul"><i class="fa fa-photo"></i> Lihat Sampul</a>
                                                 </div>
                                             </div>
-                                            <span class="text-info">Note: biarkan kosong jika tidak diganti</span>
+                                            <span class="text-info">Note: Biarkan kosong jika tidak diganti</span>
                                         </div>
                                     </div>
                                     <div class="col-sm-7">
@@ -98,13 +104,31 @@
                                     <textarea name="konten" required="" class="summernote">{{ $dta->konten }}</textarea>
                                 </div>
                                 <div class="row justify-content-end">
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-2 p-1">
+                                        <a href="{{ url('admin-access/postingan/detail-postingan/'.$id) }}" class="btn btn-dark btn-xl btn-block">Batal</a>
+                                    </div> 
+                                    <div class="col-sm-2 p-1">
+                                        <input type="hidden" name="id" value="{{ $dta->id }}">
                                         <button type="submit" class="btn btn-primary btn-xl btn-block">Simpan</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-sampul" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="{{ asset('/images/postingan/sampul/' . $dta->foto_sampul) }}" style="width: 100%" alt="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Tutup</button>
                 </div>
             </div>
         </div>
@@ -117,5 +141,8 @@
             tabsize: 6,
             height: 800
         });
+
+        $(document).find('#postingan').addClass('mm-active').find('.mm-collapse').addClass('mm-show').find(
+                '#view-post').addClass('mm-active').find('a').addClass('mm-active');
     </script>
 @endsection

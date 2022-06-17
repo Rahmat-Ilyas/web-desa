@@ -43,7 +43,13 @@
                                         <div class="form-group">
                                             <label class="text-dark font-weight-bold">Kategori Postingan</label>
                                             <select name="kategori" class="form-control" required="" id="">
-                                                <option value="1">Berita</option>
+                                                <option value="Berita">Berita</option>
+                                                <option value="Artikel">Artikel</option>
+                                                <option value="Bumdes">Bumdes</option>
+                                                <option value="Produk Hukum">Produk Hukum</option>
+                                                <option value="Potensi Desa">Potensi Desa</option>
+                                                <option value="Lembaga Desa">Lembaga Desa</option>
+                                                <option value="Program Desa">Program Desa</option>
                                             </select>
                                         </div>
                                     </div>

@@ -109,6 +109,10 @@ class AdminController extends Controller
 
             return back()->with('success', 'Agenda baru berhasil ditambahkan');
         } else if ($target == 'postingan') {
+            $request->validate([
+                'foto_sampul' => 'mimes:png,jpeg,jpg,bmp',
+            ]);
+
             $content = $request->konten;
             $dom = new \DomDocument();
             @$dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
@@ -225,6 +229,56 @@ class AdminController extends Controller
             $agenda->save();
 
             return back()->with('success', 'Agenda berhasil diupdate');
+        } else if ($target == 'postingan') {
+            $request->validate([
+                'foto_sampul' => 'mimes:png,jpeg,jpg,bmp',
+            ]);
+
+            $postingan = Postingan::where('id', $request->id)->first();
+
+            $content = $request->konten;
+            $dom = new \DomDocument();
+            @$dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $imageFile = $dom->getElementsByTagName('img');
+
+            foreach ($imageFile as $item => $image) {
+                $data = $image->getAttribute('src');
+                if (substr($data, 0, 10) == "data:image") {
+                    list($type, $data) = explode(';', $data);
+                    list(, $data)      = explode(',', $data);
+                    $imgeData = base64_decode($data);
+                    $image_name = "/images/postingan/" . time() . $item . '.png';
+                    $path = public_path() . $image_name;
+                    file_put_contents($path, $imgeData);
+                    $image_name = URL::to('/') . $image_name;
+                } else {
+                    $image_name = $data;
+                }
+
+                $image->removeAttribute('src');
+                $image->setAttribute('src', $image_name);
+            }
+
+            $content = $dom->saveHTML();
+
+            $except = ['_token', 'id', 'foto_sampul', 'konten', 'utama', 'files'];
+            $slug = strtolower(str_replace(' ', '-', $request->judul)) . "-" . time();
+            if ($request->foto_sampul) {
+                $nama_foto = $slug . '.' . $request->file('foto_sampul')->getClientOriginalExtension();;
+                File::delete(public_path("/images/aparatur/" . $postingan->foto_sampul));
+                $postingan->foto_sampul = $nama_foto;
+                $file = $request->file('foto_sampul');
+                $file->move(public_path("/images/postingan/sampul"), $nama_foto);
+            }
+            $postingan->konten = $content;
+            $postingan->slug = $slug;
+            $postingan->utama = isset($request->utama) ? true : false;
+            foreach ($request->except($except) as $key => $data) {
+                $postingan->$key = $data;
+            }
+
+            $postingan->save();
+            return redirect('admin-access/postingan/edit-postingan/' . $slug)->with('success', 'Data Postingan berhasil diupdate');
         }
     }
 
