@@ -23,6 +23,8 @@
     <link href="{{ asset('assets_/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <!-- Dropzone -->
     <link href="{{ asset('assets_/vendor/dropzone/dropzone.min.css') }}" rel="stylesheet">
+    <!-- Tag Input -->
+    <link href="{{ asset('assets_/vendor/bootstrap-tagsinput/css/bootstrap-tagsinput.css') }}" rel="stylesheet">
 
 </head>
 
@@ -144,15 +146,14 @@
                             <li><a href="{{ url('admin-access/lembaga/bumdes') }}">BUMDES</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li id="postingan">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-wpforms"></i>
                             <span class="nav-text">Kelola Postingan</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{ url('admin-access/postingan/buat-postingan') }}">Buat Postingan Baru</a></li>
-                            <li><a href="{{ url('admin-access/postingan/postingan') }}">Lihat Postingan</a></li>
-                            <li><a href="{{ url('admin-access/postingan/kategori') }}">Kategori Postingan</a></li>
+                            <li id="view-post"><a href="{{ url('admin-access/postingan/postingan') }}">Semua Postingan</a></li>
                         </ul>
                     </li>
                     <li id="galeri">
@@ -251,6 +252,8 @@
     <script src="{{ asset('assets_/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <!-- Dropzone -->
     <script src="{{ asset('assets_/vendor/dropzone/dropzone.min.js') }}"></script>
+    <!-- Tag Input -->
+    <script src="{{ asset('assets_/vendor/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js') }}"></script>
 
     {{-- <script src="{{ asset('assets_/js/dashboard/dashboard-1.js') }}"></script> --}}
 

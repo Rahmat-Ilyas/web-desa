@@ -14,6 +14,7 @@ use App\Models\Apbdes;
 use App\Models\Galeri;
 use App\Models\KontenGaleri;
 use App\Models\Files;
+use App\Models\Postingan;
 
 class AdminController extends Controller
 {
@@ -90,11 +91,11 @@ class AdminController extends Controller
                 $path = 'images/galeri';
                 $dta->move($path, $nama_foto);
             }
-            return response()->json('success', 200); 
+            return response()->json('success', 200);
         } else if ($target == 'file') {
             $data = [];
             $data['keterangan'] = $request->keterangan;
-            $file = time().'_'.str_replace(' ', '_', $request->file('file_upload')->getClientOriginalName());
+            $file = time() . '_' . str_replace(' ', '_', $request->file('file_upload')->getClientOriginalName());
             $data['nama_file'] = $file;
             $data['download'] = 0;
             $data['ukuran'] = $this->getFileSize($request->file('file_upload')->getSize());
@@ -107,6 +108,44 @@ class AdminController extends Controller
             Agenda::create($data);
 
             return back()->with('success', 'Agenda baru berhasil ditambahkan');
+        } else if ($target == 'postingan') {
+            $content = $request->konten;
+            $dom = new \DomDocument();
+            @$dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $imageFile = $dom->getElementsByTagName('img');
+
+            foreach ($imageFile as $item => $image) {
+                $data = $image->getAttribute('src');
+                if (substr($data, 0, 10) == "data:image") {
+                    list($type, $data) = explode(';', $data);
+                    list(, $data)      = explode(',', $data);
+                    $imgeData = base64_decode($data);
+                    $image_name = "/images/postingan/" . time() . $item . '.png';
+                    $path = public_path() . $image_name;
+                    file_put_contents($path, $imgeData);
+                    $image_name = URL::to('/') . $image_name;
+                } else {
+                    $image_name = $data;
+                }
+
+                $image->removeAttribute('src');
+                $image->setAttribute('src', $image_name);
+            }
+
+            $content = $dom->saveHTML();
+            $slug = strtolower(str_replace(' ', '-', $request->judul)) . "-" . time();
+            $foto_sampul = $slug . '.' . $request->file('foto_sampul')->getClientOriginalExtension();
+            $request->file('foto_sampul')->move('images/postingan/sampul', $foto_sampul);
+            $data = $request->except(['files']);
+            $data['admin_id'] = Auth::user()->id;
+            $data['konten'] = $content;
+            $data['foto_sampul'] = $foto_sampul;
+            $data['utama'] = isset($request->utama) ? true : false;
+            $data['view'] = 0;
+            $data['slug'] = $slug;
+
+            Postingan::create($data);
+            return redirect('admin-access/postingan/postingan')->with('success', 'Postingan baru berhasil ditambahkan');
         }
     }
 
@@ -223,6 +262,12 @@ class AdminController extends Controller
             $data->delete();
 
             return back()->with('success', 'Agenda berhasil dihapus');
+        } else if ($target == 'postingan') {
+            $data = Postingan::where('id', $id)->first();
+            $data->delete();
+            File::delete(public_path("/images/postingan/sampul/" . $data->foto_sampul));
+
+            return redirect('admin-access/postingan/postingan')->with('success', 'Postingan berhasil dihapus');
         }
     }
 
@@ -230,29 +275,19 @@ class AdminController extends Controller
     {
     }
 
-    private function getFileSize($bytes) {
-        if ($bytes >= 1073741824)
-        {
+    private function getFileSize($bytes)
+    {
+        if ($bytes >= 1073741824) {
             $bytes = number_format($bytes / 1073741824, 2) . ' GB';
-        }
-        elseif ($bytes >= 1048576)
-        {
+        } elseif ($bytes >= 1048576) {
             $bytes = number_format($bytes / 1048576, 2) . ' MB';
-        }
-        elseif ($bytes >= 1024)
-        {
+        } elseif ($bytes >= 1024) {
             $bytes = number_format($bytes / 1024, 2) . ' KB';
-        }
-        elseif ($bytes > 1)
-        {
+        } elseif ($bytes > 1) {
             $bytes = $bytes . ' bytes';
-        }
-        elseif ($bytes == 1)
-        {
+        } elseif ($bytes == 1) {
             $bytes = $bytes . ' byte';
-        }
-        else
-        {
+        } else {
             $bytes = '0 bytes';
         }
 

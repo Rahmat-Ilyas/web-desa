@@ -36,14 +36,14 @@
                                 <div class="form-group">
                                     <label class="text-dark font-weight-bold">Judul Postingan</label>
                                     <input type="text" class="form-control" name="judul" placeholder="Judul Postingan..."
-                                        autocomplete="off" id="judul">
+                                        autocomplete="off" id="judul" required="">
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-5">
                                         <div class="form-group">
                                             <label class="text-dark font-weight-bold">Kategori Postingan</label>
-                                            <select name="kategori_id" class="form-control" required="" id="">
-                                                <option value="berita">Berita</option>
+                                            <select name="kategori" class="form-control" required="" id="">
+                                                <option value="1">Berita</option>
                                             </select>
                                         </div>
                                     </div>
@@ -51,7 +51,7 @@
                                         <div class="form-group">
                                             <label class="text-dark font-weight-bold">Topik</label>
                                             <input type="text" class="form-control" name="topik" placeholder="Topik..."
-                                                autocomplete="off" id="">
+                                                autocomplete="off" id="" required="">
                                         </div>
                                     </div>
                                 </div>
@@ -59,22 +59,26 @@
                                     <div class="col-sm-5">
                                         <div class="form-group">
                                             <label class="text-dark font-weight-bold">Foto Sampul Postingan</label>
-                                            <input type="file" class="form-control" name="foto" placeholder="Topik..."
-                                                autocomplete="off" id="">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="foto_sampul" required="">
+                                                <label class="custom-file-label">Upload foto sampul</label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-7">
                                         <div class="form-group">
                                             <label class="text-dark font-weight-bold">Tags</label>
-                                            <input type="text" class="form-control" name="tags" placeholder="Tambah Tags"
-                                                autocomplete="off" id="tags">
+                                            <div class="tags-default">
+                                                <input type="text" class="form-control" name="tags" style="width: 100%"
+                                                    placeholder="Tambah Tags" autocomplete="off" data-role="tagsinput" required="">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="css-control css-control-primary css-checkbox text-dark" for="val-terms">
                                         <input type="checkbox" class="css-control-input mr-2" id="val-terms"
-                                            name="val-terms" value="1">
+                                            name="utama" value="1">
                                         <span class="css-control-indicator"></span>Atur sebagai post utama?
                                     </label>
                                 </div>
@@ -85,7 +89,6 @@
                                 </div>
                                 <div class="row justify-content-end">
                                     <div class="col-sm-2">
-                                        <input type="hidden" name="kategori" value="sambutan">
                                         <button type="submit" class="btn btn-primary btn-xl btn-block">Simpan</button>
                                     </div>
                                 </div>
