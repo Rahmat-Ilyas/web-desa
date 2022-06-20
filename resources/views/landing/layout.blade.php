@@ -10,11 +10,10 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('assets/fonts/fontawesome-5.0.8/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/fontawesome-5.0.8/css/fontawesome-all.min.css') }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('assets/fonts/iconic/css/material-design-iconic-font.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/iconic/css/material-design-iconic-font.min.css') }}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/animate/animate.css') }}">
     <!--===============================================================================================-->
@@ -160,7 +159,7 @@
                     <li>
                         <a href="javascript:;">PROFIL</a>
                         <ul class="sub-menu-m">
-                            <li><a href="#">Sambutan Kepala Desa</a></li>
+                            <li><a href="{{ url('profil/informasi/sambutan') }}">Sambutan Kepala Desa</a></li>
                             <li><a href="#">Visi & Misi</a></li>
                             <li><a href="#">Sejarah Desa</a></li>
                             <li><a href="#">Peta Kantor</a></li>
@@ -265,33 +264,33 @@
                     <!-- Menu desktop -->
                     <nav class="menu-desktop">
                         <ul class="main-menu">
-                            <li class="main-menu-active">
-                                <a href="{{ url('/') }}">HOME</a>
+                            <li>
+                                <a href="{{ url('/') }}" id="nav-home">HOME</a>
                             </li>
 
-                            <li class="drop-menu">
+                            <li class="drop-menu" id="nav-profil">
                                 <a href="#">PROFIL</a>
                                 <ul class="sub-menu">
-                                    <li><a href="#">Sambutan Kepala Desa</a></li>
-                                    <li><a href="#">Visi & Misi</a></li>
-                                    <li><a href="#">Sejarah Desa</a></li>
-                                    <li><a href="#">Peta Kantor</a></li>
-                                    <li><a href="#">Peta Lokasi Desa</a></li>
-                                    <li><a href="#">Kondisi Desa</a></li>
+                                    <li><a href="{{ url('profil/sambutan-kepala-desa') }}">Sambutan Kepala Desa</a></li>
+                                    <li><a href="{{ url('profil/visi-misi') }}">Visi & Misi</a></li>
+                                    <li><a href="{{ url('profil/sejarah-desa') }}">Sejarah Desa</a></li>
+                                    <li><a href="{{ url('profil/kondisi-desa') }}">Kondisi Desa</a></li>
+                                    <li><a href="{{ url('profil/lokasi-kantor-desa') }}">Lokasi Kantor Desa</a></li>
+                                    <li><a href="{{ url('profil/peta-lokasi-desa') }}">Peta Lokasi Desa</a></li>
                                 </ul>
                             </li>
 
-                            <li class="drop-menu">
+                            <li class="drop-menu" id="nav-lembaga">
                                 <a href="#">LEMBAGA</a>
                                 <ul class="sub-menu">
-                                    <li><a href="#">BPD</a></li>
-                                    <li><a href="#">Karang Taaruna</a></li>
-                                    <li><a href="#">BUMDES</a></li>
+                                    <li><a href="{{ url('profil/bpd') }}">BPD</a></li>
+                                    <li><a href="{{ url('profil/karang-taruna') }}">Karang Taaruna</a></li>
+                                    <li><a href="{{ url('profil/bumdes') }}">BUMDES</a></li>
                                 </ul>
                             </li>
 
-                            <li>
-                                <a href="{{ url('/') }}">APARATUR</a>
+                            <li id="nav-aparatur">
+                                <a href="{{ url('aparatur') }}">APARATUR</a>
                             </li>
 
                             <li>
@@ -548,6 +547,8 @@
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <!--===============================================================================================-->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    @yield('javascript')
 
 </body>
 

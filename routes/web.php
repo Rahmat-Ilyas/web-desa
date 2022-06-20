@@ -17,6 +17,9 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 Route::get('/', [LandingController::class, 'home']);
+Route::get('/profil/{target}', [LandingController::class, 'profil']);
+Route::get('/{page}', [LandingController::class, 'page']);
+
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [LandingController::class, 'home'])->name('admin.home');
 
@@ -26,8 +29,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/update/{target}', [LandingController::class, 'update']);
     Route::get('/delete/{target}/{id}', [LandingController::class, 'delete']);
 
-    Route::get('/{page}', [LandingController::class, 'page']);
-    Route::get('/{dir}/{page}', [LandingController::class, 'pagedir']);
 });
 
 Route::get('admin-access/', [AdminController::class, 'home']);

@@ -40,6 +40,11 @@
                                             <th>Foto</th>
                                             <th>Nama</th>
                                             <th>Jabatan</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Tempat Lahir</th>
+                                            <th>Tanggal Lahir</th>
+                                            <th>Alamat</th>
+                                            <th>Telepon</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -47,19 +52,26 @@
                                         @foreach ($get as $i => $dta)
                                             <tr class="text-dark">
                                                 <td>{{ $i + 1 }}</td>
-                                                <td width="150">
-                                                    <img src="{{ asset('images/aparatur/'.$dta->foto) }}" width="120"
-                                                        height="150">
+                                                <td width="100">
+                                                    <img src="{{ asset('images/aparatur/' . $dta->foto) }}" width="100"
+                                                        height="120">
                                                 </td>
                                                 <td>{{ $dta->nama }}</td>
                                                 <td>{{ $dta->jabatan }}</td>
-                                                <td width="180" class="text-center">
+                                                <td>{{ $dta->jenis_kelamin }}</td>
+                                                <td>{{ $dta->tempat_lahir }}</td>
+                                                <td>{{ $dta->tanggal_lahir }}</td>
+                                                <td>{{ $dta->alamat }}</td>
+                                                <td>{{ $dta->telepon }}</td>
+                                                <td width="80" class="text-center">
                                                     <button class="btn btn-sm btn-success text-white" data-toggle="modal"
+                                                        data-toggle1="tooltip" title="Edit Data"
                                                         data-target="#modal-edit{{ $dta->id }}"><i
-                                                            class="fa fa-edit"></i> Edit Data</button>
+                                                            class="fa fa-edit"></i></button>
                                                     <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                                        data-toggle1="tooltip" title="Hapus"
                                                         data-target="#modal-del{{ $dta->id }}"><i
-                                                            class="fa fa-trash"></i> Hapus</button>
+                                                            class="fa fa-trash"></i></button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -84,12 +96,12 @@
                 </div>
                 <form method="post" action="{{ url('admin-access/store/dataaparatur') }}" enctype="multipart/form-data">
                     @csrf
-                    <div class="modal-body px-5">
+                    <div class="modal-body px-3">
                         <div class="form-group row">
                             <label class="col-form-label col-sm-3">Nama</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="nama" placeholder="Nama..." required=""
-                                    autocomplete="off">
+                                <input type="text" class="form-control" name="nama" placeholder="Nama..."
+                                    required="" autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -100,9 +112,46 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-form-label col-sm-3">Jenis Kelamin</label>
+                            <div class="col-sm-9">
+                                <select name="jenis_kelamin" class="form-control" required="">
+                                    <option value="Laki-laki">Laki-laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3">Tempat Lahir</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="tempat_lahir" placeholder="Tempat Lahir..."
+                                    required="" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3">Tanggal Lahir</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" name="tanggal_lahir"
+                                    placeholder="Tanggal Lahir..." required="" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3">Alamat</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="alamat" placeholder="Alamat..." required=""></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3">Telepon</label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control" name="telepon" placeholder="Telepon..."
+                                    required="" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-form-label col-sm-3">Foto</label>
                             <div class="col-sm-9">
-                                <input type="file" class="form-control" name="foto_upload" required="" autocomplete="off">
+                                <input type="file" class="form-control" name="foto_upload" required=""
+                                    autocomplete="off">
                             </div>
                         </div>
                     </div>
@@ -126,14 +175,15 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form method="post" action="{{ url('admin-access/update/dataaparatur') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ url('admin-access/update/dataaparatur') }}"
+                        enctype="multipart/form-data">
                         @csrf
-                        <div class="modal-body px-5">
+                        <div class="modal-body px-4">
                             <div class="form-group row">
                                 <label class="col-form-label col-sm-3">Nama</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="nama" placeholder="Nama..." required=""
-                                        autocomplete="off" value="{{ $dta->nama }}">
+                                    <input type="text" class="form-control" name="nama" placeholder="Nama..."
+                                        required="" autocomplete="off" value="{{ $dta->nama }}">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -141,6 +191,45 @@
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="jabatan" placeholder="Jabatan..."
                                         required="" autocomplete="off" value="{{ $dta->jabatan }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-3">Jenis Kelamin</label>
+                                <div class="col-sm-9">
+                                    <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
+                                        <option value="Laki-laki">Laki-laki</option>
+                                        <option value="Perempuan">Perempuan</option>
+                                    </select>
+                                </div>
+                                <script>
+                                    document.getElementById('jenis_kelamin').value = "{{ $dta->jenis_kelamin }}";
+                                </script>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-3">Tempat Lahir</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="tempat_lahir"
+                                        placeholder="Tempat Lahir..." required="" autocomplete="off" value="{{ $dta->tempat_lahir }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-3">Tanggal Lahir</label>
+                                <div class="col-sm-9">
+                                    <input type="date" class="form-control" name="tanggal_lahir"
+                                        placeholder="Tanggal Lahir..." required="" autocomplete="off" value="{{ $dta->tanggal_lahir }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-3">Alamat</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" name="alamat" placeholder="Alamat..." required="">{{ $dta->alamat }}</textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-3">Telepon</label>
+                                <div class="col-sm-9">
+                                    <input type="number" class="form-control" name="telepon" placeholder="Telepon..."
+                                        required="" autocomplete="off" value="{{ $dta->telepon }}">
                                 </div>
                             </div>
                             <div class="form-group row">
