@@ -35,19 +35,28 @@
                             Transparansi Anggaran
                         </a>
                         <h3 class="f1-l-3 cl2 p-t-20 respon2">
-                            Transparansi Anggaran Desa Rante Angin
+                            Transparansi Anggaran Desa Rante Angin Tahun {{ date('Y') }}
                         </h3>
 
                         <hr>
 
                         <div class="row">
+                            <div class="col-sm-12 m-b-20 m-t-10">
+                                <div class="tab01-head how2 how2-cl2 bocl12 flex-s-c">
+                                    <!-- Brand tab -->
+                                    <h3 class="f1-m-2 cl13 tab01-title">
+                                        Anggaran Pendapatan Desa
+                                    </h3>
+                                </div>
+                            </div>
                             <div class="col-sm-8">
+                                {{-- <h4 class="f1-l-2 cl2 p-tb-20 respon2">Anggaran Pendapatan Desa</h4> --}}
                                 <table class="table">
                                     <thead class="thead-dark bg-dark text-white">
-                                        <tr>
+                                        {{-- <tr>
                                             <th colspan="2" class="text-center">Anggaran Pendapatan Tahun
                                                 {{ date('Y') }}</th>
-                                        </tr>
+                                        </tr> --}}
                                         <tr>
                                             <th>Pendapatan</th>
                                             <th class="text-center">Nilai (Rp)</th>
@@ -77,18 +86,27 @@
                                 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
                             </div>
                         </div>
-                        <hr class="m-tb-50">
-                        <div class="row">
+                        {{-- <hr class="m-tb-20"> --}}
+                        <div class="row m-tb-50">
+                            <div class="col-sm-12 m-b-20">
+                                <div class="tab01-head how2 how2-cl1 bocl12 flex-s-c">
+                                    <!-- Brand tab -->
+                                    <h3 class="f1-m-2 cl12 tab01-title">
+                                        Anggaran Belanja Desa
+                                    </h3>
+                                </div>
+                            </div>
                             <div class="col-sm-4">
                                 <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
                             </div>
                             <div class="col-sm-8">
+                                {{-- <h4 class="f1-l-2 cl2 p-tb-20 respon2 text-right">Anggaran Belanja Desa</h4> --}}
                                 <table class="table">
                                     <thead class="thead-dark bg-dark text-white">
-                                        <tr>
+                                        {{-- <tr>
                                             <th colspan="2" class="text-center">Anggaran Belanja Tahun
                                                 {{ date('Y') }}</th>
-                                        </tr>
+                                        </tr> --}}
                                         <tr>
                                             <th>Belanja</th>
                                             <th class="text-center">Nilai (Rp)</th>
@@ -154,13 +172,20 @@
 
 @section('javascript')
     @php
-        $pendapatan = $apbdes->where('jenis', 'pendapatan')->get();
-        $color = '';
-        for ($i=0; $i < count($pendapatan); $i++) { 
-            $rand = str_pad(dechex(rand(0x000000, 0xffffff)), 6, 0, STR_PAD_LEFT);
-            $color .= '"#' . $rand.'", ';
-        }
-        
+    $pendapatan = $apbdes->where('jenis', 'pendapatan')->get();
+    $belanja = $apbdes->where('jenis', 'belanja')->get();
+    $color = '';
+    $color2 = '';
+    for ($i = 0; $i < count($pendapatan); $i++) {
+        $rand = str_pad(dechex(rand(0x000000, 0xffffff)), 6, 0, STR_PAD_LEFT);
+        $color .= '"#' . $rand . '", ';
+    }
+
+    for ($i = 0; $i < count($belanja); $i++) {
+        $rand = str_pad(dechex(rand(0x000000, 0xffffff)), 6, 0, STR_PAD_LEFT);
+        $color2 .= '"#' . $rand . '", ';
+    }
+
     @endphp
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
@@ -188,7 +213,7 @@
         new Morris.Donut({
             element: 'chartContainer2',
             data: [
-                @foreach ($pendapatan as $dta)
+                @foreach ($belanja as $dta)
                     {
                         label: '{{ $dta->keterangan }}',
                         value: {{ $dta->nilai }}
@@ -196,7 +221,7 @@
                 @endforeach
             ],
             resize: true,
-            colors: [{!! $color !!}]
+            colors: [{!! $color2 !!}]
         });
     </script>
 @endsection
