@@ -59,6 +59,24 @@ class LandingController extends Controller
         return view('landing/informasi/profil', compact('data', 'title', 'lembaga'));
     }
 
+    public function aparatur()
+    {
+        return view('landing/aparatur/aparatur');
+    }
+
+    public function aparatur_detail($uid)
+    {
+        $get_aparatur = Aparatur::all();
+        foreach ($get_aparatur as $dta) {
+            if ($uid == strtolower(str_replace(' ', '-', $dta->nama) . '-uid0' . $dta->id)) {
+                $aprt = $dta;
+                $aparatur = Aparatur::where('id', '!=', $dta->id)->limit(5)->get();
+                return view('landing/aparatur/aparatur-detail', compact('aprt', 'aparatur'));
+            }
+        }
+        abort('404');
+    }
+
     public function page($page)
     {
         return view('landing/' . $page);

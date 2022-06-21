@@ -32,7 +32,7 @@ $data = $aparat
             @foreach ($data as $i => $dta)
                 @if ($i == 0)
                     <li class="flex-wr-sb-s p-b-10">
-                        <a href="" class="hov1 trans-03" style="width: 100%">
+                        <a href="{{ url('aparatur/'.strtolower(str_replace(' ', '-', $dta->nama).'-uid0'.$dta->id)) }}" class="hov1 trans-03" style="width: 100%">
                             <div class="bg-img1 size-a-5 how1 pos-relative"
                                 style="background-image: url({{ asset('images/aparatur/' . $dta->foto) }}); height: 400px;">
                                 <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
@@ -52,7 +52,7 @@ $data = $aparat
                         {{-- <a href="#" class="size-w-10 wrap-pic-w hov1 trans-03">
                             <img src="{{ asset('images/aparatur/' . $dta->foto) }}" alt="IMG" height="110">
                         </a> --}}
-                        <a href="" class="size-w-10 wrap-pic-w hov1 trans-03">
+                        <a href="{{ url('aparatur/'.strtolower(str_replace(' ', '-', $dta->nama).'-uid0'.$dta->id)) }}" class="size-w-10 wrap-pic-w hov1 trans-03">
                             <div class="bg-img1 size-a-5 how1 pos-relative"
                                 style="background-image: url({{ asset('images/aparatur/' . $dta->foto) }}); height: 110px;">
                             </div>
@@ -60,7 +60,7 @@ $data = $aparat
 
                         <div class="size-w-11">
                             <h6 class="p-b-4">
-                                <a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+                                <a href="{{ url('aparatur/'.strtolower(str_replace(' ', '-', $dta->nama).'-uid0'.$dta->id)) }}" class="f1-s-5 cl3 hov-cl10 trans-03">
                                     <b>{{ strtoupper($dta->nama) }}</b>
                                 </a>
                             </h6>
@@ -75,10 +75,16 @@ $data = $aparat
                 @endif
             @endforeach
         </ul>
+        <div class="text-right">
+            <a href="{{ url('aparatur') }}" class="f1-s-1 cl9 hov-cl10 trans-03">
+                Lihat Semua
+                <i class="m-l-2 fa fa-long-arrow-alt-right"></i>
+            </a>
+        </div>
     </div>
 
     <!--  -->
-    <div class="m-t-30">
+    <div class="m-t-40">
         <div class="how2 how2-cl4 flex-s-c">
             <h3 class="f1-m-2 cl3 tab01-title">
                 Berita Terkini

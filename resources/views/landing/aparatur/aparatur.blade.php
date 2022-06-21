@@ -46,7 +46,7 @@
                                 <div class="col-sm-3 mb-4">
                                     <div class="card shadow shadow-lg">
                                         <div class="card-body p-0">
-                                            <a href="{{ url('aparatur/'.strtolower(str_replace(' ', '-', $dta->nama).'-un0'.$dta->id)) }}" class="hov1 trans-03" style="width: 100%">
+                                            <a href="{{ url('aparatur/'.strtolower(str_replace(' ', '-', $dta->nama).'-uid0'.$dta->id)) }}" class="hov1 trans-03" style="width: 100%">
                                                 <div class="bg-img1 size-a-5 how1 pos-relative"
                                                     style="background-image: url({{ asset('images/aparatur/' . $dta->foto) }}); height: 300px;">
                                                     <div class="flex-col-e-s s-full p-rl-25 p-tb-20">

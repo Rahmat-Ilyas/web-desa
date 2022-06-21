@@ -293,8 +293,8 @@
                                 <a href="{{ url('aparatur') }}">APARATUR</a>
                             </li>
 
-                            <li>
-                                <a href="{{ url('/') }}">ANGGARAN DESA</a>
+                            <li id="nav-anggaran">
+                                <a href="{{ url('anggaran') }}">ANGGARAN DESA</a>
                             </li>
 
                             <li class="drop-menu">
@@ -523,19 +523,6 @@
         <span class="symbol-btn-back-to-top">
             <span class="fas fa-angle-up"></span>
         </span>
-    </div>
-
-    <!-- Modal Video 01-->
-    <div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document" data-dismiss="modal">
-            <div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
-
-            <div class="wrap-video-mo-01">
-                <div class="video-mo-01">
-                    <iframe src="https://www.youtube.com/embed/wJnBTPUQS5A?rel=0" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!--===============================================================================================-->

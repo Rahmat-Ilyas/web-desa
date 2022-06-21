@@ -43,6 +43,7 @@
                                             <th>Jenis Kelamin</th>
                                             <th>Tempat Lahir</th>
                                             <th>Tanggal Lahir</th>
+                                            <th>Pendidikan Terakhir</th>
                                             <th>Alamat</th>
                                             <th>Telepon</th>
                                             <th>Aksi</th>
@@ -60,7 +61,8 @@
                                                 <td>{{ $dta->jabatan }}</td>
                                                 <td>{{ $dta->jenis_kelamin }}</td>
                                                 <td>{{ $dta->tempat_lahir }}</td>
-                                                <td>{{ $dta->tanggal_lahir }}</td>
+                                                <td>{{ date('d/m/Y', strtotime($dta->tanggal_lahir)) }}</td>
+                                                <td>{{ $dta->pendidikan }}</td>
                                                 <td>{{ $dta->alamat }}</td>
                                                 <td>{{ $dta->telepon }}</td>
                                                 <td width="80" class="text-center">
@@ -132,6 +134,13 @@
                             <div class="col-sm-9">
                                 <input type="date" class="form-control" name="tanggal_lahir"
                                     placeholder="Tanggal Lahir..." required="" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3">Pendidikan Terakhir</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="pendidikan"
+                                    placeholder="Pendidikan Terakhir..." required="" autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -217,6 +226,13 @@
                                 <div class="col-sm-9">
                                     <input type="date" class="form-control" name="tanggal_lahir"
                                         placeholder="Tanggal Lahir..." required="" autocomplete="off" value="{{ $dta->tanggal_lahir }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-3">Pendidikan Terakhir</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="pendidikan"
+                                        placeholder="Pendidikan Terakhir..." required="" autocomplete="off" value="{{ $dta->pendidikan }}">
                                 </div>
                             </div>
                             <div class="form-group row">
