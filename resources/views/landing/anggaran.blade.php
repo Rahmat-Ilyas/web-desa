@@ -193,7 +193,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
     <script>
         $('#nav-anggaran').addClass('main-menu-active');
-        $(document).find('title').text('Aparatur Desa - Desa Rante Angin');
+        $(document).find('title').text('Transparansi Anggaran Desa - Desa Rante Angin');
 
 
         new Morris.Donut({

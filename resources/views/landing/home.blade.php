@@ -591,7 +591,7 @@
                 <div class="col-md-6 p-rl-1 p-b-2">
                     <div class="bg-img1 size-a-3 how1 pos-relative"
                         style="background-image: url({{ asset('images/galeri/' . $galeri_first->konten_galeri[0]->foto) }});">
-                        <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
+                        <a href="{{ url('galeri/' . strtolower(str_replace(' ', '-', $galeri_first->judul) . '-uid0' . $galeri_first->id)) }}" class="dis-block how1-child1 trans-03"></a>
 
                         <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
                             <span class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
@@ -599,12 +599,12 @@
                             </span>
 
                             <h3 class="how1-child2 m-t-14 m-b-10">
-                                <a href="blog-detail-01.html" class="how-txt1 size-a-6 f1-l-1 cl0 hov-cl10 trans-03">
+                                <a href="{{ url('galeri/' . strtolower(str_replace(' ', '-', $galeri_first->judul) . '-uid0' . $galeri_first->id)) }}" class="how-txt1 size-a-6 f1-l-1 cl0 hov-cl10 trans-03">
                                     {{ $galeri_first->judul }}
                                 </a>
                             </h3>
 
-                            <span class="how1-child2">
+                            {{-- <span class="how1-child2">
                                 <span class="f1-s-4 cl11">
                                     {{ $galeri_first->view }} Dilihat
                                 </span>
@@ -616,7 +616,7 @@
                                 <span class="f1-s-3 cl11">
                                     {{ date('d M', strtotime($galeri_first->created_at)) }}
                                 </span>
-                            </span>
+                            </span> --}}
                         </div>
                     </div>
                 </div>
@@ -628,7 +628,8 @@
                                 <div class="col-sm-6 p-rl-1 p-b-2">
                                     <div class="bg-img1 size-a-14 how1 pos-relative"
                                         style="background-image: url({{ asset('images/galeri/' . $dta->konten_galeri[0]->foto) }});">
-                                        <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
+                                        <a href="{{ url('galeri/' . strtolower(str_replace(' ', '-', $dta->judul) . '-uid0' . $dta->id)) }}"
+                                            class="dis-block how1-child1 trans-03"></a>
 
                                         <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
                                             <span
@@ -637,13 +638,13 @@
                                             </span>
 
                                             <h3 class="how1-child2 m-t-14">
-                                                <a href="blog-detail-01.html"
-                                                    class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
+                                                <a href="{{ url('galeri/' . strtolower(str_replace(' ', '-', $dta->judul) . '-uid0' . $dta->id)) }}"
+                                                    class="how-txt2 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
                                                     {{ $dta->judul }}
                                                 </a>
                                             </h3>
 
-                                            <span class="how1-child2">
+                                            {{-- <span class="how1-child2">
                                                 <span class="f1-s-4 cl11">
                                                     {{ $galeri_first->view }} Dilihat
                                                 </span>
@@ -655,7 +656,7 @@
                                                 <span class="f1-s-3 cl11">
                                                     {{ date('d M', strtotime($dta->created_at)) }}
                                                 </span>
-                                            </span>
+                                            </span> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -663,6 +664,12 @@
                         @endforeach
                     </div>
                 </div>
+            </div>
+            <div class="text-right mt-3">
+                <a href="{{ url('galeri') }}" class="f1-s-1 cl9 hov-cl10 trans-03">
+                    Lihat Semua
+                    <i class="m-l-2 fa fa-long-arrow-alt-right"></i>
+                </a>
             </div>
         </div>
     </section>

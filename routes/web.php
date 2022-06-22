@@ -20,6 +20,8 @@ Route::get('/', [LandingController::class, 'home']);
 Route::get('/profil/{target}', [LandingController::class, 'profil']);
 Route::get('/aparatur', [LandingController::class, 'aparatur']);
 Route::get('/aparatur/{uid}', [LandingController::class, 'aparatur_detail']);
+Route::get('/galeri', [LandingController::class, 'galeri']);
+Route::get('/galeri/{uid}', [LandingController::class, 'galeri_detail']);
 Route::get('/{page}', [LandingController::class, 'page']);
 
 Route::group(['prefix' => 'admin'], function () {

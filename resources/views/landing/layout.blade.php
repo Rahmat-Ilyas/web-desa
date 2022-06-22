@@ -42,21 +42,21 @@
                             </span>
                         </span>
 
-                        <a href="#" class="left-topbar-item">
+                        {{-- <a href="#" class="left-topbar-item">
                             Forum Aspirasi Rakyat
-                        </a>
+                        </a> --}}
 
                         <a href="#" class="left-topbar-item">
                             Hubungi Kami
                         </a>
 
-                        <a href="#" class="left-topbar-item">
+                        {{-- <a href="#" class="left-topbar-item">
                             Sing up
                         </a>
 
                         <a href="#" class="left-topbar-item">
                             Log in
-                        </a>
+                        </a> --}}
                     </div>
 
                     <div class="right-topbar">
@@ -69,11 +69,7 @@
                         </a>
 
                         <a href="#">
-                            <span class="fab fa-pinterest-p"></span>
-                        </a>
-
-                        <a href="#">
-                            <span class="fab fa-vimeo-v"></span>
+                            <span class="fab fa-instagram"></span>
                         </a>
 
                         <a href="#">
@@ -311,8 +307,8 @@
                                 </ul>
                             </li>
 
-                            <li>
-                                <a href="{{ url('/') }}">GALERI</a>
+                            <li id="nav-galeri">
+                                <a href="{{ url('galeri') }}">GALERI</a>
                             </li>
 
                             <li>

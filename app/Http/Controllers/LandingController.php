@@ -77,6 +77,24 @@ class LandingController extends Controller
         abort('404');
     }
 
+    public function galeri()
+    {
+        return view('landing/galeri/galeri');
+    }
+
+    public function galeri_detail($uid)
+    {
+        $get_galeri = Galeri::all();
+        foreach ($get_galeri as $dta) {
+            if ($uid == strtolower(str_replace(' ', '-', $dta->judul) . '-uid0' . $dta->id)) {
+                $gal = $dta;
+                $galeri = Galeri::where('id', '!=', $dta->id)->limit(5)->get();
+                return view('landing/galeri/detail-galeri', compact('gal', 'galeri'));
+            }
+        }
+        abort('404');
+    }
+
     public function page($page)
     {
         return view('landing/' . $page);

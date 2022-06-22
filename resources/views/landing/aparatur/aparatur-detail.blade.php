@@ -1,9 +1,5 @@
 @extends('landing.layout')
 @section('content')
-    @php
-    $aparat = new App\Models\Aparatur();
-    $data = $aparat->orderByRaw("FIELD(jabatan, 'Kepala Desa', 'Sekretaris Desa', 'Kaur Umum', 'Kaur Keuangan', 'Kaur Perencanaan', 'Kasi Kesejahteraan') ASC")->get();
-    @endphp
     <!-- Breadcrumb -->
     <div class="container">
         <div class="headline bg0 flex-wr-sb-c p-tb-8">

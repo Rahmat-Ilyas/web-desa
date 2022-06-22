@@ -67,7 +67,7 @@
         Dropzone.options.myDropzone = {
             timeout: 60000 * 120,
             acceptedFiles: 'image/*',
-            maxFilesize: 2,
+            maxFilesize: 3,
             dictDefaultMessage: '<div class="pt-5"><h5><i class="text-muted">Klik untuk memilih foto</i></h5></div>',
             init: function() {
                 this.on("addedfile", function(file) {
