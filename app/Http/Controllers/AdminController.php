@@ -73,7 +73,7 @@ class AdminController extends Controller
 
             $data = [];
             $data['judul'] = $request->judul;
-            $data['keterangan'] = $request->keterangan;
+            $data['keterangan'] = $request->keterangan ? $request->keterangan : '';
             $data['admin_id'] = Auth::user()->id;
             $data['view'] = 0;
 

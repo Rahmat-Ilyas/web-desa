@@ -1,5 +1,13 @@
 @extends('landing.layout')
 @section('content')
+    @php
+    $get_galeri = new App\Models\Galeri();
+    $galeri = $get_galeri
+        ->orderBy('id', 'desc')
+        ->limit(5)
+        ->get();
+    $galeri_first = $get_galeri->orderBy('id', 'desc')->first();
+    @endphp
     <!-- Headline -->
     <div class="container">
         <div class="bg0 flex-wr-sb-c p-rl-20 p-tb-8">
@@ -16,7 +24,8 @@
                     </span>
 
                     <span class="dis-inline-block slide100-txt-item animated visible-false">
-                        <a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">Designer fashion show kicks off Variety Week</a>
+                        <a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">Designer fashion show kicks off Variety
+                            Week</a>
                     </span>
 
                     <span class="dis-inline-block slide100-txt-item animated visible-false">
@@ -581,24 +590,23 @@
             <div class="row m-rl--1">
                 <div class="col-md-6 p-rl-1 p-b-2">
                     <div class="bg-img1 size-a-3 how1 pos-relative"
-                        style="background-image: url({{ asset('assets/images/entertaiment-01.jpg') }});">
+                        style="background-image: url({{ asset('images/galeri/' . $galeri_first->konten_galeri[0]->foto) }});">
                         <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
 
                         <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-                            <a href="#"
-                                class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-                                Celebrity
-                            </a>
+                            <span class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
+                                {{ count($galeri_first->konten_galeri) }} Gambar
+                            </span>
 
                             <h3 class="how1-child2 m-t-14 m-b-10">
                                 <a href="blog-detail-01.html" class="how-txt1 size-a-6 f1-l-1 cl0 hov-cl10 trans-03">
-                                    Music quisque at ipsum vel orci eleifend ultrices
+                                    {{ $galeri_first->judul }}
                                 </a>
                             </h3>
 
                             <span class="how1-child2">
                                 <span class="f1-s-4 cl11">
-                                    Jack Sims
+                                    {{ $galeri_first->view }} Dilihat
                                 </span>
 
                                 <span class="f1-s-3 cl11 m-rl-3">
@@ -606,7 +614,7 @@
                                 </span>
 
                                 <span class="f1-s-3 cl11">
-                                    Feb 16
+                                    {{ date('d M', strtotime($galeri_first->created_at)) }}
                                 </span>
                             </span>
                         </div>
@@ -615,89 +623,44 @@
 
                 <div class="col-md-6 p-rl-1">
                     <div class="row m-rl--1">
-                        <div class="col-sm-6 p-rl-1 p-b-2">
-                            <div class="bg-img1 size-a-14 how1 pos-relative"
-                                style="background-image: url({{ asset('assets/images/entertaiment-02.jpg') }});">
-                                <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
+                        @foreach ($galeri as $i => $dta)
+                            @if ($i != 0)
+                                <div class="col-sm-6 p-rl-1 p-b-2">
+                                    <div class="bg-img1 size-a-14 how1 pos-relative"
+                                        style="background-image: url({{ asset('images/galeri/' . $dta->konten_galeri[0]->foto) }});">
+                                        <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
 
-                                <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-                                    <a href="#"
-                                        class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-                                        Game
-                                    </a>
+                                        <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
+                                            <span
+                                                class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
+                                                {{ count($dta->konten_galeri) }} Gambar
+                                            </span>
 
-                                    <h3 class="how1-child2 m-t-14">
-                                        <a href="blog-detail-01.html"
-                                            class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
-                                            Pellentesque dui nibh, pellen-tesque ut dapibus ut
-                                        </a>
-                                    </h3>
+                                            <h3 class="how1-child2 m-t-14">
+                                                <a href="blog-detail-01.html"
+                                                    class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
+                                                    {{ $dta->judul }}
+                                                </a>
+                                            </h3>
+
+                                            <span class="how1-child2">
+                                                <span class="f1-s-4 cl11">
+                                                    {{ $galeri_first->view }} Dilihat
+                                                </span>
+
+                                                <span class="f1-s-3 cl11 m-rl-3">
+                                                    -
+                                                </span>
+
+                                                <span class="f1-s-3 cl11">
+                                                    {{ date('d M', strtotime($dta->created_at)) }}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 p-rl-1 p-b-2">
-                            <div class="bg-img1 size-a-14 how1 pos-relative"
-                                style="background-image: url({{ asset('assets/images/entertaiment-03.jpg') }});">
-                                <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
-
-                                <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-                                    <a href="#"
-                                        class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-                                        Music
-                                    </a>
-
-                                    <h3 class="how1-child2 m-t-14">
-                                        <a href="blog-detail-01.html"
-                                            class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
-                                            Motobike Vestibulum vene-natis purus nec nibh volutpat
-                                        </a>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 p-rl-1 p-b-2">
-                            <div class="bg-img1 size-a-14 how1 pos-relative"
-                                style="background-image: url({{ asset('assets/images/entertaiment-04.jpg') }});">
-                                <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
-
-                                <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-                                    <a href="#"
-                                        class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-                                        Game
-                                    </a>
-
-                                    <h3 class="how1-child2 m-t-14">
-                                        <a href="blog-detail-01.html"
-                                            class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
-                                            Pellentesque dui nibh, pellen-tesque ut dapibus ut
-                                        </a>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 p-rl-1 p-b-2">
-                            <div class="bg-img1 size-a-14 how1 pos-relative"
-                                style="background-image: url({{ asset('assets/images/entertaiment-05.jpg') }});">
-                                <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
-
-                                <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-                                    <a href="#"
-                                        class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-                                        Music
-                                    </a>
-
-                                    <h3 class="how1-child2 m-t-14">
-                                        <a href="blog-detail-01.html"
-                                            class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
-                                            Motobike Vestibulum vene-natis purus nec nibh volutpat
-                                        </a>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -1026,7 +989,7 @@
 @endsection
 
 @section('javascript')
-<script>
-    $('#nav-home').parents('li').addClass('main-menu-active');
-</script>
+    <script>
+        $('#nav-home').parents('li').addClass('main-menu-active');
+    </script>
 @endsection

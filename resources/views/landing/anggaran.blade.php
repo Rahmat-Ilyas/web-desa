@@ -52,7 +52,7 @@
                             <div class="col-sm-8">
                                 {{-- <h4 class="f1-l-2 cl2 p-tb-20 respon2">Anggaran Pendapatan Desa</h4> --}}
                                 <table class="table">
-                                    <thead class="thead-dark bg-dark text-white">
+                                    <thead class="thead-dark bg-success text-white">
                                         {{-- <tr>
                                             <th colspan="2" class="text-center">Anggaran Pendapatan Tahun
                                                 {{ date('Y') }}</th>
@@ -102,7 +102,7 @@
                             <div class="col-sm-8">
                                 {{-- <h4 class="f1-l-2 cl2 p-tb-20 respon2 text-right">Anggaran Belanja Desa</h4> --}}
                                 <table class="table">
-                                    <thead class="thead-dark bg-dark text-white">
+                                    <thead class="thead-dark bg-danger text-white">
                                         {{-- <tr>
                                             <th colspan="2" class="text-center">Anggaran Belanja Tahun
                                                 {{ date('Y') }}</th>
