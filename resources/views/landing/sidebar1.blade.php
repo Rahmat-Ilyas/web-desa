@@ -4,6 +4,7 @@ $data = $aparat
     ->orderByRaw("FIELD(jabatan, 'Kepala Desa', 'Sekretaris Desa', 'Kaur Umum', 'Kaur Keuangan', 'Kaur Perencanaan', 'Kasi Kesejahteraan') ASC")
     ->limit(5)
     ->get();
+$agenda = new App\Models\Agenda();
 @endphp
 <div class="p-l-10 p-rl-0-sr991 p-b-20">
     <!-- Subscribe -->
@@ -32,7 +33,8 @@ $data = $aparat
             @foreach ($data as $i => $dta)
                 @if ($i == 0)
                     <li class="flex-wr-sb-s p-b-10">
-                        <a href="{{ url('aparatur/'.strtolower(str_replace(' ', '-', $dta->nama).'-uid0'.$dta->id)) }}" class="hov1 trans-03" style="width: 100%">
+                        <a href="{{ url('aparatur/' . strtolower(str_replace(' ', '-', $dta->nama) . '-uid0' . $dta->id)) }}"
+                            class="hov1 trans-03" style="width: 100%">
                             <div class="bg-img1 size-a-5 how1 pos-relative"
                                 style="background-image: url({{ asset('images/aparatur/' . $dta->foto) }}); height: 400px;">
                                 <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
@@ -52,7 +54,8 @@ $data = $aparat
                         {{-- <a href="#" class="size-w-10 wrap-pic-w hov1 trans-03">
                             <img src="{{ asset('images/aparatur/' . $dta->foto) }}" alt="IMG" height="110">
                         </a> --}}
-                        <a href="{{ url('aparatur/'.strtolower(str_replace(' ', '-', $dta->nama).'-uid0'.$dta->id)) }}" class="size-w-10 wrap-pic-w hov1 trans-03">
+                        <a href="{{ url('aparatur/' . strtolower(str_replace(' ', '-', $dta->nama) . '-uid0' . $dta->id)) }}"
+                            class="size-w-10 wrap-pic-w hov1 trans-03">
                             <div class="bg-img1 size-a-5 how1 pos-relative"
                                 style="background-image: url({{ asset('images/aparatur/' . $dta->foto) }}); height: 110px;">
                             </div>
@@ -60,7 +63,8 @@ $data = $aparat
 
                         <div class="size-w-11">
                             <h6 class="p-b-4">
-                                <a href="{{ url('aparatur/'.strtolower(str_replace(' ', '-', $dta->nama).'-uid0'.$dta->id)) }}" class="f1-s-5 cl3 hov-cl10 trans-03">
+                                <a href="{{ url('aparatur/' . strtolower(str_replace(' ', '-', $dta->nama) . '-uid0' . $dta->id)) }}"
+                                    class="f1-s-5 cl3 hov-cl10 trans-03">
                                     <b>{{ strtoupper($dta->nama) }}</b>
                                 </a>
                             </h6>
@@ -92,54 +96,116 @@ $data = $aparat
         </div>
 
         <ul class="p-t-35">
-            <li class="flex-wr-sb-s p-b-22">
-                <div class="size-a-8 flex-c-c borad-3 size-a-8 bg9 f1-m-4 cl0 m-b-6">
-                    1
-                </div>
-
-                <a href="#" class="size-w-3 f1-s-7 cl3 hov-cl10 trans-03">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+            <li class="flex-wr-sb-s p-b-30">
+                <a href="#" class="size-w-10 wrap-pic-w hov1 trans-03">
+                    <img src="{{ asset('assets/images/popular-post-04.jpg') }}" alt="IMG">
                 </a>
+
+                <div class="size-w-11">
+                    <h6 class="p-b-4">
+                        <a href="blog-detail-02.html" class="f1-s-5 cl3 hov-cl10 trans-03">
+                            Donec metus orci, malesuada et lectus vitae
+                        </a>
+                    </h6>
+
+                    <span class="cl8 txt-center p-b-24">
+                        <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+                            Music
+                        </a>
+
+                        <span class="f1-s-3 m-rl-3">
+                            -
+                        </span>
+
+                        <span class="f1-s-3">
+                            Feb 18
+                        </span>
+                    </span>
+                </div>
             </li>
 
-            <li class="flex-wr-sb-s p-b-22">
-                <div class="size-a-8 flex-c-c borad-3 size-a-8 bg9 f1-m-4 cl0 m-b-6">
-                    2
-                </div>
-
-                <a href="#" class="size-w-3 f1-s-7 cl3 hov-cl10 trans-03">
-                    Proin velit consectetur non neque
+            <li class="flex-wr-sb-s p-b-30">
+                <a href="#" class="size-w-10 wrap-pic-w hov1 trans-03">
+                    <img src="{{ asset('assets/images/popular-post-05.jpg') }}" alt="IMG">
                 </a>
+
+                <div class="size-w-11">
+                    <h6 class="p-b-4">
+                        <a href="blog-detail-02.html" class="f1-s-5 cl3 hov-cl10 trans-03">
+                            Donec metus orci, malesuada et lectus vitae
+                        </a>
+                    </h6>
+
+                    <span class="cl8 txt-center p-b-24">
+                        <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+                            Game
+                        </a>
+
+                        <span class="f1-s-3 m-rl-3">
+                            -
+                        </span>
+
+                        <span class="f1-s-3">
+                            Feb 16
+                        </span>
+                    </span>
+                </div>
             </li>
 
-            <li class="flex-wr-sb-s p-b-22">
-                <div class="size-a-8 flex-c-c borad-3 size-a-8 bg9 f1-m-4 cl0 m-b-6">
-                    3
-                </div>
-
-                <a href="#" class="size-w-3 f1-s-7 cl3 hov-cl10 trans-03">
-                    Nunc vestibulum, enim vitae condimentum volutpat lobortis ante
+            <li class="flex-wr-sb-s p-b-30">
+                <a href="#" class="size-w-10 wrap-pic-w hov1 trans-03">
+                    <img src="{{ asset('assets/images/popular-post-06.jpg') }}" alt="IMG">
                 </a>
+
+                <div class="size-w-11">
+                    <h6 class="p-b-4">
+                        <a href="blog-detail-02.html" class="f1-s-5 cl3 hov-cl10 trans-03">
+                            Donec metus orci, malesuada et lectus vitae
+                        </a>
+                    </h6>
+
+                    <span class="cl8 txt-center p-b-24">
+                        <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+                            Celebrity
+                        </a>
+
+                        <span class="f1-s-3 m-rl-3">
+                            -
+                        </span>
+
+                        <span class="f1-s-3">
+                            Feb 12
+                        </span>
+                    </span>
+                </div>
             </li>
 
-            <li class="flex-wr-sb-s p-b-22">
-                <div class="size-a-8 flex-c-c borad-3 size-a-8 bg9 f1-m-4 cl0 m-b-6">
-                    4
-                </div>
-
-                <a href="#" class="size-w-3 f1-s-7 cl3 hov-cl10 trans-03">
-                    Proin velit justo consectetur non neque elementum
+            <li class="flex-wr-sb-s p-b-30">
+                <a href="#" class="size-w-10 wrap-pic-w hov1 trans-03">
+                    <img src="{{ asset('assets/images/popular-post-05.jpg') }}" alt="IMG">
                 </a>
-            </li>
 
-            <li class="flex-wr-sb-s p-b-22">
-                <div class="size-a-8 flex-c-c borad-3 size-a-8 bg9 f1-m-4 cl0">
-                    5
+                <div class="size-w-11">
+                    <h6 class="p-b-4">
+                        <a href="blog-detail-02.html" class="f1-s-5 cl3 hov-cl10 trans-03">
+                            Donec metus orci, malesuada et lectus vitae
+                        </a>
+                    </h6>
+
+                    <span class="cl8 txt-center p-b-24">
+                        <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+                            Game
+                        </a>
+
+                        <span class="f1-s-3 m-rl-3">
+                            -
+                        </span>
+
+                        <span class="f1-s-3">
+                            Feb 16
+                        </span>
+                    </span>
                 </div>
-
-                <a href="#" class="size-w-3 f1-s-7 cl3 hov-cl10 trans-03">
-                    Proin velit consectetur non neque
-                </a>
             </li>
         </ul>
     </div>
@@ -148,58 +214,42 @@ $data = $aparat
     <div class="p-t-50">
         <div class="how2 how2-cl4 flex-s-c">
             <h3 class="f1-m-2 cl3 tab01-title">
-                Sosial Media
+                Agenda Desa
             </h3>
         </div>
 
-        <ul class="p-t-35">
-            <li class="flex-wr-sb-c p-b-20">
-                <a href="#" class="size-a-8 flex-c-c borad-3 size-a-8 bg-facebook fs-16 cl0 hov-cl0">
-                    <span class="fab fa-facebook-f"></span>
-                </a>
-
-                <div class="size-w-3 flex-wr-sb-c">
-                    <span class="f1-s-8 cl3 p-r-20">
-                        6879 Fans
-                    </span>
-
-                    <a href="#" class="f1-s-9 text-uppercase cl3 hov-cl10 trans-03">
-                        Like
-                    </a>
-                </div>
-            </li>
-
-            <li class="flex-wr-sb-c p-b-20">
-                <a href="#" class="size-a-8 flex-c-c borad-3 size-a-8 bg-twitter fs-16 cl0 hov-cl0">
-                    <span class="fab fa-twitter"></span>
-                </a>
-
-                <div class="size-w-3 flex-wr-sb-c">
-                    <span class="f1-s-8 cl3 p-r-20">
-                        568 Followers
-                    </span>
-
-                    <a href="#" class="f1-s-9 text-uppercase cl3 hov-cl10 trans-03">
-                        Follow
-                    </a>
-                </div>
-            </li>
-
-            <li class="flex-wr-sb-c p-b-20">
-                <a href="#" class="size-a-8 flex-c-c borad-3 size-a-8 bg-youtube fs-16 cl0 hov-cl0">
-                    <span class="fab fa-youtube"></span>
-                </a>
-
-                <div class="size-w-3 flex-wr-sb-c">
-                    <span class="f1-s-8 cl3 p-r-20">
-                        5039 Subscribers
-                    </span>
-
-                    <a href="#" class="f1-s-9 text-uppercase cl3 hov-cl10 trans-03">
-                        Subscribe
-                    </a>
-                </div>
-            </li>
-        </ul>
+        <div class="p-t-20">
+            <div id="container-cal" class="calendar-container"></div>
+        </div>
     </div>
 </div>
+
+@section('javascript-side')
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('assets/vendor/animated-event-calendar/dist/simple-calendar.css') }}">
+    <script src="{{ asset('assets/vendor/animated-event-calendar/dist/jquery.simple-calendar.js') }}"></script>
+    <script>
+        var $calendar;
+        $(document).ready(function() {
+            let container = $("#container-cal").simpleCalendar({
+                months: ['januari', 'februari', 'maret', 'april', 'mei', 'juni', 'juli', 'augustus',
+                    'september', 'oktober', 'november', 'desember'
+                ],
+                days: ['minggu', 'senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu'],
+                fixedStartDay: true,
+                disableEmptyDetails: true,
+                events: [
+                    // generate new event after tomorrow for one hour
+                    @foreach ($agenda->get() as $dta)
+                        {
+                            startDate: "{{ $dta->tanggal }}",
+                            endDate: "{{ $dta->tanggal }}",
+                            summary: "{{ $dta->nama_agenda }}. Tempat: {{ $dta->tempat }}"
+                        },
+                    @endforeach
+                ],
+            });
+            $calendar = container.data('plugin_simpleCalendar');
+        });
+    </script>
+@endsection

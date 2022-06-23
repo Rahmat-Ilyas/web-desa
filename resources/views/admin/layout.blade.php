@@ -163,7 +163,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="" href="{{ url('admin-access/data-penduduk') }}" aria-expanded="false">
+                        <a class="" href="{{ url('admin-access') }}" aria-expanded="false">
                             <i class="icon icon-single-04"></i>
                             <span class="nav-text">Data Penduduk</span>
                         </a>

@@ -46,8 +46,12 @@
                             Forum Aspirasi Rakyat
                         </a> --}}
 
-                        <a href="#" class="left-topbar-item">
+                        <a href="{{ url('kontak') }}" class="left-topbar-item">
                             Hubungi Kami
+                        </a>
+
+                        <a href="{{ url('profil/peta-lokasi-desa') }}" class="left-topbar-item">
+                            Peta Lokasi Desa
                         </a>
 
                         {{-- <a href="#" class="left-topbar-item">
@@ -260,8 +264,8 @@
                     <!-- Menu desktop -->
                     <nav class="menu-desktop">
                         <ul class="main-menu">
-                            <li>
-                                <a href="{{ url('/') }}" id="nav-home">HOME</a>
+                            <li id="nav-home">
+                                <a href="{{ url('/') }}">HOME</a>
                             </li>
 
                             <li class="drop-menu" id="nav-profil">
@@ -311,12 +315,12 @@
                                 <a href="{{ url('galeri') }}">GALERI</a>
                             </li>
 
-                            <li>
-                                <a href="{{ url('/') }}">AGENDA</a>
+                            <li id="nav-agenda">
+                                <a href="{{ url('agenda') }}">AGENDA</a>
                             </li>
 
-                            <li>
-                                <a href="{{ url('/') }}">DOWNLOAD</a>
+                            <li id="nav-file">
+                                <a href="{{ url('file-download') }}">DOWNLOAD</a>
                             </li>
 
                             <li class="drop-menu">
@@ -532,6 +536,7 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
     @yield('javascript')
+    @yield('javascript-side')
 
 </body>
 

@@ -17,23 +17,16 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 Route::get('/', [LandingController::class, 'home']);
+Route::get('/kontak', [LandingController::class, 'kontak']);
 Route::get('/profil/{target}', [LandingController::class, 'profil']);
 Route::get('/aparatur', [LandingController::class, 'aparatur']);
 Route::get('/aparatur/{uid}', [LandingController::class, 'aparatur_detail']);
+Route::get('/anggaran', [LandingController::class, 'anggaran']);
 Route::get('/galeri', [LandingController::class, 'galeri']);
 Route::get('/galeri/{uid}', [LandingController::class, 'galeri_detail']);
-Route::get('/{page}', [LandingController::class, 'page']);
-
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', [LandingController::class, 'home'])->name('admin.home');
-
-    Route::post('/config', [LandingController::class, 'config']);
-    Route::get('/config/datatable', [LandingController::class, 'datatable']);
-    Route::post('/store/{target}', [LandingController::class, 'store']);
-    Route::post('/update/{target}', [LandingController::class, 'update']);
-    Route::get('/delete/{target}/{id}', [LandingController::class, 'delete']);
-
-});
+Route::get('/agenda', [LandingController::class, 'agenda']);
+Route::get('/file-download', [LandingController::class, 'file']);
+Route::get('/file-download/{file}', [LandingController::class, 'file_download']);
 
 Route::get('admin-access/', [AdminController::class, 'home']);
 Route::group(['prefix' => 'admin-access'], function () {

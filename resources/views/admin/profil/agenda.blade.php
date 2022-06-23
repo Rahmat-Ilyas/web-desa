@@ -2,7 +2,7 @@
 @section('content')
     @php
     $data = new App\Models\Agenda();
-    $get = $data->get();
+    $get = $data->orderBy('id', 'desc')->get();
     @endphp
     <div class="content-body">
         <div class="container-fluid">
@@ -27,8 +27,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">List Agenda Desa</h4>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#modal-add"><i
-                                    class="fa fa-plus"></i> Tambah Data Aparatur Desa</button>
                         </div>
                         <hr class="mb-0">
                         <div class="card-body mt-0">
@@ -46,16 +44,16 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class="text-dark">Nama Agenda</label>
+                                            <label class="text-dark">Nama Acara</label>
                                             <input type="text" class="form-control" name="nama_agenda"
-                                                placeholder="Nama Agenda..." required="" autocomplete="off">
+                                                placeholder="Nama Acara..." required="" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class="text-dark">Keterangan</label>
-                                            <input type="text" class="form-control" name="keterangan"
-                                                placeholder="Keterangan..." required="" autocomplete="off">
+                                            <label class="text-dark">Tempat</label>
+                                            <input type="text" class="form-control" name="tempat"
+                                                placeholder="Tempat..." required="" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
@@ -76,8 +74,8 @@
                                     <thead>
                                         <tr>
                                             <th width="10">No</th>
-                                            <th>Nama Agenda</th>
-                                            <th>Keterangan</th>
+                                            <th>Nama Acara</th>
+                                            <th>Tempat</th>
                                             <th>Tanggal & Waktu</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
@@ -88,7 +86,7 @@
                                             <tr class="text-dark">
                                                 <td>{{ $i + 1 }}</td>
                                                 <td>{{ $dta->nama_agenda }}</td>
-                                                <td>{{ $dta->keterangan }}</td>
+                                                <td>{{ $dta->tempat }}</td>
                                                 <td>{{ date('d F Y  H:i', strtotime($dta->tanggal)) }}</td>
                                                 @php
                                                     if (strtotime($dta->tanggal) <= strtotime(date('Y-m-d H:i:s'))) {
@@ -141,17 +139,17 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-sm-3">Nama Agenda</label>
+                                <label class="col-form-label col-sm-3">Nama Acara</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="nama_agenda" placeholder="Nama Agenda..."
+                                    <input type="text" class="form-control" name="nama_agenda" placeholder="Nama Acara..."
                                         required="" autocomplete="off" value="{{ $dta->nama_agenda }}">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-sm-3">Keterangan</label>
+                                <label class="col-form-label col-sm-3">Tempat</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="keterangan" placeholder="Keterangan..."
-                                        required="" autocomplete="off" value="{{ $dta->keterangan }}">
+                                    <input type="text" class="form-control" name="tempat" placeholder="Tempat..."
+                                        required="" autocomplete="off" value="{{ $dta->tempat }}">
                                 </div>
                             </div>
                         </div>

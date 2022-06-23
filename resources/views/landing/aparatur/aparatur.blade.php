@@ -3,6 +3,8 @@
     @php
     $aparat = new App\Models\Aparatur();
     $data = $aparat->orderByRaw("FIELD(jabatan, 'Kepala Desa', 'Sekretaris Desa', 'Kaur Umum', 'Kaur Keuangan', 'Kaur Perencanaan', 'Kasi Kesejahteraan') ASC")->get();
+    $foto_info = new App\Models\FotoInformasi();
+    $foto_struktur = $foto_info->where('jenis', 'struktur_pemdes')->first();
     @endphp
     <!-- Breadcrumb -->
     <div class="container">
@@ -66,6 +68,33 @@
                                 </div>
                             @endforeach
                         </div>
+                        @if ($foto_struktur->foto)
+                            <div class="row">
+                                <div class="col-sm-12 m-b-20 m-t-40">
+                                    <div class="tab01 p-b-20">
+                                        <div class="tab01-head how2 how2-cl4 bocl12 flex-s-c m-r-10 m-r-0-sr991">
+                                            <!-- Brand tab -->
+                                            <h3 class="f1-m-2 cl3 tab01-title">
+                                                Struktur Pemerintah Desa Rante Angin
+                                            </h3>
+                                        </div>
+                                        <!-- Tab panes -->
+                                        <div class="tab-content p-t-10">
+                                            <div class="row">
+                                                <a href="{{ asset('images/foto_informasi/' . $foto_struktur->foto) }}" class="col-sm-12 p-r-25 p-r-15-sr991" target="_blank">
+                                                    <div class="m-b-30">
+                                                        <div class="wrap-pic-w hov1 trans-03">
+                                                            <img src="{{ asset('images/foto_informasi/' . $foto_struktur->foto) }}"
+                                                                alt="IMG">
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                         <hr>
 
                         <!-- Tag -->

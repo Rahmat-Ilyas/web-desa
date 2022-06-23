@@ -27,8 +27,19 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Data Aparat Desa</h4>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#modal-add"><i
-                                    class="fa fa-plus"></i> Tambah Data Aparatur Desa</button>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-info btn-rounded text-white dropdown-toggle mr-1"
+                                    data-toggle="dropdown" aria-expanded="false"><i class="fa fa-file-photo-o"></i> Desain
+                                    Struktur Pemdes</button>
+                                <div class="dropdown-menu" x-placement="top-start">
+                                    <a class="dropdown-item" href="#" data-toggle="modal"
+                                        data-target="#modal-add-desain">Update Struktur Pemdes</a>
+                                    <a class="dropdown-item" href="#" data-toggle="modal"
+                                        data-target="#modal-lihat-desain">Lihat Struktur Pemdes</a>
+                                </div>
+                                <button class="btn btn-primary btn-rounded ml-1" data-toggle="modal"
+                                    data-target="#modal-add"><i class="fa fa-plus"></i> Tambah Data Aparatur Desa</button>
+                            </div>
                         </div>
                         <hr class="mb-0">
                         <div class="card-body mt-0">
@@ -125,8 +136,8 @@
                         <div class="form-group row">
                             <label class="col-form-label col-sm-3">Tempat Lahir</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="tempat_lahir" placeholder="Tempat Lahir..."
-                                    required="" autocomplete="off">
+                                <input type="text" class="form-control" name="tempat_lahir"
+                                    placeholder="Tempat Lahir..." required="" autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -218,21 +229,24 @@
                                 <label class="col-form-label col-sm-3">Tempat Lahir</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="tempat_lahir"
-                                        placeholder="Tempat Lahir..." required="" autocomplete="off" value="{{ $dta->tempat_lahir }}">
+                                        placeholder="Tempat Lahir..." required="" autocomplete="off"
+                                        value="{{ $dta->tempat_lahir }}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-form-label col-sm-3">Tanggal Lahir</label>
                                 <div class="col-sm-9">
                                     <input type="date" class="form-control" name="tanggal_lahir"
-                                        placeholder="Tanggal Lahir..." required="" autocomplete="off" value="{{ $dta->tanggal_lahir }}">
+                                        placeholder="Tanggal Lahir..." required="" autocomplete="off"
+                                        value="{{ $dta->tanggal_lahir }}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-form-label col-sm-3">Pendidikan Terakhir</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="pendidikan"
-                                        placeholder="Pendidikan Terakhir..." required="" autocomplete="off" value="{{ $dta->pendidikan }}">
+                                        placeholder="Pendidikan Terakhir..." required="" autocomplete="off"
+                                        value="{{ $dta->pendidikan }}">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -288,6 +302,67 @@
             </div>
         </div>
     @endforeach
+
+    <div class="modal fade" id="modal-add-desain" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Foto Struktur Pemdes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="{{ url('admin-access/update/foto_informasi') }}"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body px-4">
+                        <div class="form-group">
+                            <label class="col-form-label text-dark">Upload Foto</label>
+                            <input type="hidden" name="jenis" value="struktur_pemdes">
+                            <input type="file" class="form-control" name="foto" required=""
+                                autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-lihat-desain" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Foto Struktur Pemdes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-0">
+                    @php
+                        $foto_info = new App\Models\FotoInformasi();
+                        $get_foto = $foto_info->where('jenis', 'struktur_pemdes')->first();
+                    @endphp
+                    @if ($get_foto->foto)
+                        <img src="{{ asset('images/foto_informasi/' . $get_foto->foto) }}" style="width: 100%;"
+                            alt="">
+                    @else
+                        <h4 class="text-center my-5"><i>Belum ada foto</i></h4>
+                    @endif
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ url('admin-access/delete/foto_informasi/struktur_pemdes') }}" class="btn btn-danger">Hapus
+                        Foto</a>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('javascript')

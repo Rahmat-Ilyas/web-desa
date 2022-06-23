@@ -14,6 +14,7 @@ use App\Models\Apbdes;
 use App\Models\Galeri;
 use App\Models\KontenGaleri;
 use App\Models\Files;
+use App\Models\FotoInformasi;
 use App\Models\Postingan;
 
 class AdminController extends Controller
@@ -279,6 +280,30 @@ class AdminController extends Controller
 
             $postingan->save();
             return redirect('admin-access/postingan/edit-postingan/' . $slug)->with('success', 'Data Postingan berhasil diupdate');
+        } else if ($target == 'foto_informasi') {
+            $request->validate([
+                'foto' => 'mimes:png,jpeg,jpg,bmp',
+            ]);
+
+            $foto_info = FotoInformasi::where('jenis', $request->jenis)->first();
+            if ($foto_info) {
+                # code...
+                $foto = $request->file('foto');
+                $nama_foto = $request->jenis . '_' . time() . '.' . $foto->getClientOriginalExtension();
+                File::delete(public_path("/images/foto_informasi/" . $foto_info->foto));
+                $foto->move(public_path("/images/foto_informasi"), $nama_foto);
+                $foto_info->foto = $nama_foto;
+                $foto_info->save();
+
+                if ($request->jenis == 'anggaran') {
+                    $message = 'Desain Apdes berhasil di upload';
+                } else if ($request->jenis == 'struktur_pemdes') {
+                    $message = 'Desain Struktur Desa berhasil di upload';
+                }
+                return back()->with('success', $message);
+            } else {
+                return back()->with('error', 'Terjadi kesalahan');
+            }
         }
     }
 
@@ -322,6 +347,13 @@ class AdminController extends Controller
             File::delete(public_path("/images/postingan/sampul/" . $data->foto_sampul));
 
             return redirect('admin-access/postingan/postingan')->with('success', 'Postingan berhasil dihapus');
+        } else if ($target == 'foto_informasi') {
+            $data = FotoInformasi::where('jenis', $id)->first();
+            $data->foto = '';
+            $data->save();
+            File::delete(public_path("/images/foto_informasi/" . $data->foto));
+
+            return back()->with('success', 'Desain ' . $id . ' berhasil dihapus');
         }
     }
 

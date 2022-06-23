@@ -59,6 +59,11 @@ class LandingController extends Controller
         return view('landing/informasi/profil', compact('data', 'title', 'lembaga'));
     }
 
+    public function anggaran()
+    {
+        return view('landing/anggaran');
+    }
+
     public function aparatur()
     {
         return view('landing/aparatur/aparatur');
@@ -93,6 +98,30 @@ class LandingController extends Controller
             }
         }
         abort('404');
+    }
+
+    public function agenda()
+    {
+        return view('landing/agenda');
+    }
+
+    public function file()
+    {
+        return view('landing/file');
+    }
+
+    public function file_download($file)
+    {
+        $db_file = Files::where('nama_file', $file)->first();
+        $db_file->download = $db_file->download + 1;
+        $db_file->save();
+        $myFile = public_path("file/" . $file);
+        return response()->download($myFile);
+    }
+
+    public function kontak()
+    {
+        return view('landing/kontak');
     }
 
     public function page($page)

@@ -28,6 +28,16 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Data Transparansi Anggaran Desa Tahun {{ date('Y') }}</h4>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-info text-white dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false"><i class="fa fa-file-photo-o"></i> Desain Poster Apbdes</button>
+                                <div class="dropdown-menu" x-placement="top-start">
+                                    <a class="dropdown-item" href="#" data-toggle="modal"
+                                        data-target="#modal-add-desain">Update Desain Apbdes</a>
+                                    <a class="dropdown-item" href="#" data-toggle="modal"
+                                        data-target="#modal-lihat-desain">Lihat Foto Desain Apbdes</a>
+                                </div>
+                            </div>
                         </div>
                         <hr class="mb-0">
                         <div class="card-body mt-0">
@@ -142,12 +152,6 @@
                                                 </div>
                                             </div>
                                         </form>
-                                        {{-- <div class="form-group row">
-                                            <div class="col-lg-12">
-                                                <a href="javascript:;" class="btn btn-sm font-weight-bolder btn-primary">
-                                                    <i class="la la-plus"></i>Tambah Item</a>
-                                            </div>
-                                        </div> --}}
                                     </div>
                                 </div>
                                 <div class="col-sm-12 mb-2">
@@ -266,6 +270,67 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-add-desain" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Foto Desain Apbdes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="{{ url('admin-access/update/foto_informasi') }}"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body px-4">
+                        <div class="form-group">
+                            <label class="col-form-label text-dark">Upload Foto</label>
+                            <input type="hidden" name="jenis" value="anggaran">
+                            <input type="file" class="form-control" name="foto" required=""
+                                autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-lihat-desain" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Foto Desain Apbdes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-0">
+                    @php
+                        $foto_info = new App\Models\FotoInformasi();
+                        $get_foto = $foto_info->where('jenis', 'anggaran')->first();
+                    @endphp
+                    @if ($get_foto->foto)
+                        <img src="{{ asset('images/foto_informasi/' . $get_foto->foto) }}" style="width: 100%;"
+                            alt="">
+                    @else
+                        <h4 class="text-center my-5"><i>Belum ada foto</i></h4>
+                    @endif
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ url('admin-access/delete/foto_informasi/anggaran') }}" class="btn btn-danger">Hapus
+                        Foto</a>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Tutup</button>
                 </div>
             </div>
         </div>
