@@ -10,10 +10,13 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/fontawesome-5.0.8/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('assets/fonts/fontawesome-5.0.8/css/fontawesome-all.min.css') }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/iconic/css/material-design-iconic-font.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('assets/fonts/iconic/css/material-design-iconic-font.min.css') }}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/animate/animate.css') }}">
     <!--===============================================================================================-->
@@ -87,8 +90,12 @@
             <div class="wrap-header-mobile">
                 <!-- Logo moblie -->
                 <div class="logo-mobile">
-                    <a href="index.html"><img src="{{ asset('assets/images/icons/logo-01.png') }}"
-                            alt="IMG-LOGO"></a>
+                    <a href="{{ url('/') }}"><img src="{{ asset('assets/images/icons/logo.png') }}"
+                            style="min-height: 50px;" alt="IMG-LOGO"></a>
+                    <h5 class="text-dark ml-5 mt-1" style="font-size: 18px; margin-bottom: -10px;">&nbsp;DESA RANTE ANGIN</h5>
+                    <div>
+                        <small class="text-muted ml-5">&nbsp;&nbsp;Kecamatan Towuti, Kabupaten Luwu Timur</small>
+                    </div>
                 </div>
 
                 <!-- Button show menu -->
@@ -111,21 +118,25 @@
                     </li>
 
                     <li class="left-topbar">
-                        <a href="#" class="left-topbar-item">
+                        {{-- <a href="#" class="left-topbar-item">
                             Forum Aspirasi Rakyat
-                        </a>
+                        </a> --}}
 
-                        <a href="#" class="left-topbar-item">
+                        <a href="{{ url('kontak') }}" class="left-topbar-item">
                             Hubungi Kami
                         </a>
 
-                        <a href="#" class="left-topbar-item">
+                        <a href="{{ url('profil/peta-lokasi-desa') }}" class="left-topbar-item">
+                            Peta Lokasi Desa
+                        </a>
+
+                        {{-- <a href="#" class="left-topbar-item">
                             Sing up
                         </a>
 
                         <a href="#" class="left-topbar-item">
                             Log in
-                        </a>
+                        </a> --}}
                     </li>
 
                     <li class="right-topbar">
@@ -138,11 +149,7 @@
                         </a>
 
                         <a href="#">
-                            <span class="fab fa-pinterest-p"></span>
-                        </a>
-
-                        <a href="#">
-                            <span class="fab fa-vimeo-v"></span>
+                            <span class="fab fa-instagram"></span>
                         </a>
 
                         <a href="#">
@@ -152,20 +159,20 @@
                 </ul>
 
                 <ul class="main-menu-m">
-                    <li>
-                        <a href="#">HOME</a>
+                    <li id="nav-home">
+                        <a href="{{ url('/') }}">HOME</a>
                     </li>
 
-                    <li>
-                        <a href="javascript:;">PROFIL</a>
+                    <li id="nav-profil">
+                        <a href="#">PROFIL</a>
                         <ul class="sub-menu-m">
-                            <li><a href="{{ url('profil/informasi/sambutan') }}">Sambutan Kepala Desa</a></li>
-                            <li><a href="#">Visi & Misi</a></li>
-                            <li><a href="#">Sejarah Desa</a></li>
-                            <li><a href="#">Peta Kantor</a></li>
-                            <li><a href="#">Peta Lokasi Desa</a></li>
-                            <li><a href="#">Kondisi Desa</a></li>
-                            <li><a href="#">Potensi Desa</a></li>
+                            <li><a href="{{ url('profil/sambutan-kepala-desa') }}">Sambutan Kepala Desa</a>
+                            </li>
+                            <li><a href="{{ url('profil/visi-misi') }}">Visi & Misi</a></li>
+                            <li><a href="{{ url('profil/sejarah-desa') }}">Sejarah Desa</a></li>
+                            <li><a href="{{ url('profil/kondisi-desa') }}">Kondisi Desa</a></li>
+                            <li><a href="{{ url('profil/lokasi-kantor-desa') }}">Lokasi Kantor Desa</a></li>
+                            <li><a href="{{ url('profil/peta-lokasi-desa') }}">Peta Lokasi Desa</a></li>
                         </ul>
 
                         <span class="arrow-main-menu-m">
@@ -238,16 +245,18 @@
             </div>
 
             <!--  -->
-            <div class="wrap-logo container pb-3">
+            <div class="wrap-logo container p-0">
                 <!-- Logo desktop -->
                 <div class="logo">
-                    <a href="#"><img src="{{ asset('assets/images/icons/logo.png') }}" alt="LOGO" height="100" width="95"></a>
+                    <a href="#"><img src="{{ asset('assets/images/icons/logo.png') }}" alt="LOGO"
+                            height="100" width="95"></a>
                     {{-- <h2 class="text-dark ml-2 mt-0"><b>SELAMAT DATANG</b></h2> --}}
                     <div class="ml-2">
                         <h5 class="text-dark" style="font-size: 18px"><b>DESA RANTE ANGIN</b></h5>
                         <div class="mt-2">
                             <span class="text-dark"><a href="#">https://www.desa-ranteangin.com</a></span><br>
-                            <span class="text-muted" style="font-size: 13px">Kecamatan Towuti, Kabupaten Luwu Timur, Sulawesi Selatan Pos 92983</span>
+                            <span class="text-muted" style="font-size: 13px">Kecamatan Towuti, Kabupaten Luwu Timur,
+                                Sulawesi Selatan Pos 92983</span>
                         </div>
                     </div>
                 </div>
@@ -271,7 +280,8 @@
                             <li class="drop-menu" id="nav-profil">
                                 <a href="#">PROFIL</a>
                                 <ul class="sub-menu">
-                                    <li><a href="{{ url('profil/sambutan-kepala-desa') }}">Sambutan Kepala Desa</a></li>
+                                    <li><a href="{{ url('profil/sambutan-kepala-desa') }}">Sambutan Kepala Desa</a>
+                                    </li>
                                     <li><a href="{{ url('profil/visi-misi') }}">Visi & Misi</a></li>
                                     <li><a href="{{ url('profil/sejarah-desa') }}">Sejarah Desa</a></li>
                                     <li><a href="{{ url('profil/kondisi-desa') }}">Kondisi Desa</a></li>
@@ -326,10 +336,12 @@
                             <li class="drop-menu">
                                 <a href="#">INFORMASI</a>
                                 <ul class="sub-menu">
+                                    <li><a href="#">Berita Desa</a></li>
+                                    <li><a href="#">Artikel</a></li>
                                     <li><a href="#">Potensi Desa</a></li>
                                     <li><a href="#">Program Desa</a></li>
                                     <li><a href="#">Bumdes</a></li>
-                                    <li><a href="#">Berita Desa</a></li>
+                                    <li><a href="#">Produk Hukum</a></li>
                                     <li><a href="#">Lembaga Desa</a></li>
                                     <li><a href="#">Semua Post</a></li>
                                 </ul>
