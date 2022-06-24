@@ -124,18 +124,24 @@ class LandingController extends Controller
         return view('landing/kontak');
     }
 
-    public function page($page)
+    public function postingan($kategori)
     {
-        return view('landing/' . $page);
+        $kat_permission = ['berita-desa', 'artikel', 'potensi-desa', 'program-desa', 'bumdes', 'produk-hukum', 'lembaga-desa', 'semua-post'];
+        if (!in_array($kategori, $kat_permission)) abort('404');
+
+        $kat = ucwords(str_replace('-', ' ', $kategori));
+        $title = $kat;
+        $kategori = $kat;
+        if ($kategori == 'Berita Desa') $kategori = 'Berita';
+        return view('landing/postingan/postingan', compact('title', 'kategori'));
     }
 
-    public function pagedir($dir = NULL, $page)
+    public function postingan_detail($slug)
     {
-        return view('landing/' . $dir . '/' . $page);
-    }
-
-    public function pagedir_id($dir = NULL, $page, $id)
-    {
-        return view('landing/' . $dir . '/' . $page, compact('id'));
+        $post = Postingan::where('slug', $slug)->first();
+        if ($post) {
+            return view('landing/postingan/detail-postingan', compact('post'));
+        }
+        abort('404');
     }
 }

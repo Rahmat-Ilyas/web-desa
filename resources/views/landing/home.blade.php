@@ -1,6 +1,35 @@
 @extends('landing.layout')
 @section('content')
     @php
+    $postingan = new App\Models\Postingan();
+    // Berita Terkini
+    $berita_terkini = $postingan
+        ->where('kategori', 'Berita')
+        ->orderBy('id', 'desc')
+        ->limit(3)
+        ->get();
+
+    // Post Utama
+    $post_utama = $postingan
+        ->orderBy('utama', 'desc')
+        ->orderBy('id', 'desc')
+        ->limit(4)
+        ->get();
+
+    // Post Terkini
+    $post_terkini = $postingan
+        ->orderBy('id', 'desc')
+        ->limit(4)
+        ->get();
+
+    // Post Populer
+    $post_populer = $postingan
+        ->orderBy('view', 'desc')
+        ->orderBy('id', 'desc')
+        ->limit(6)
+        ->get();
+
+    // Galeri
     $get_galeri = new App\Models\Galeri();
     $galeri = $get_galeri
         ->orderBy('id', 'desc')
@@ -21,25 +50,17 @@
                 &nbsp;&nbsp;
                 <span class="dis-inline-block cl6 slide100-txt pos-relative size-w-0" data-in="fadeInDown"
                     data-out="fadeOutDown">
-                    <span class="dis-inline-block slide100-txt-item animated visible-false">
-                        <a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">Interest rate angst trips up US equity bull
-                            market</a>
-                    </span>
-
-                    <span class="dis-inline-block slide100-txt-item animated visible-false">
-                        <a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">Designer fashion show kicks off Variety
-                            Week</a>
-                    </span>
-
-                    <span class="dis-inline-block slide100-txt-item animated visible-false">
-                        <a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">Microsoft quisque at ipsum vel orci eleifend
-                            ultrices</a>
-                    </span>
+                    @foreach ($berita_terkini as $brt)
+                        <span class="dis-inline-block slide100-txt-item animated visible-false">
+                            <a href="{{ url('post/' . $brt->slug) }}"
+                                class="f1-s-5 cl3 hov-cl10 trans-03">{{ $brt->judul }}</a>
+                        </span>
+                    @endforeach
                 </span>
             </div>
 
             @include('landing.search')
-            
+
         </div>
     </div>
 
@@ -48,103 +69,78 @@
         <div class="container">
             <div class="row m-rl--1">
                 <div class="col-md-6 p-rl-1 p-b-2">
-                    <div class="bg-img1 size-a-3 how1 pos-relative"
-                        style="background-image: url({{ asset('assets/images/post-01.jpg') }});">
-                        <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
+                    @if ($post_utama)
+                        @php
+                            $kat_first = strtolower(str_replace(' ', '-', $post_utama[0]->kategori));
+                            $kat_first = $kat_first == 'berita' ? 'berita-desa' : $kat_first;
+                        @endphp
+                        <div class="bg-img1 size-a-3 how1 pos-relative"
+                            style="background-image: url({{ asset('/images/postingan/sampul/' . $post_utama[0]->foto_sampul) }});">
+                            <a href="{{ url('post/' . $post_utama[0]->slug) }}"
+                                class="dis-block how1-child1 trans-03"></a>
 
-                        <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-                            <a href="#"
-                                class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-                                Business
-                            </a>
-
-                            <h3 class="how1-child2 m-t-14 m-b-10">
-                                <a href="blog-detail-01.html" class="how-txt1 size-a-6 f1-l-1 cl0 hov-cl10 trans-03">
-                                    Microsoft quisque at ipsum vel orci eleifend ultrices
+                            <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
+                                <a href="{{ url('postingan/' . $kat_first) }}"
+                                    class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
+                                    {{ $post_utama[0]->kategori }}
                                 </a>
-                            </h3>
 
-                            <span class="how1-child2">
-                                <span class="f1-s-4 cl11">
-                                    Jack Sims
-                                </span>
+                                <h3 class="how1-child2 m-t-14 m-b-10">
+                                    <a href="{{ url('post/' . $post_utama[0]->slug) }}"
+                                        class="how-txt1 size-a-6 f1-l-1 cl0 hov-cl10 trans-03">
+                                        {{ $post_utama[0]->judul }}
+                                    </a>
+                                </h3>
 
-                                <span class="f1-s-3 cl11 m-rl-3">
-                                    -
-                                </span>
+                                <span class="how1-child2">
+                                    <span class="f1-s-4 cl11">
+                                        {{ $post_utama[0]->admin->nama }}
+                                    </span>
 
-                                <span class="f1-s-3 cl11">
-                                    Feb 16
+                                    <span class="f1-s-3 cl11 m-rl-3">
+                                        -
+                                    </span>
+
+                                    <span class="f1-s-3 cl11">
+                                        {{ date('d M', strtotime($post_utama[0]->created_at)) }}
+                                    </span>
                                 </span>
-                            </span>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
 
                 <div class="col-md-6 p-rl-1">
                     <div class="row m-rl--1">
-                        <div class="col-12 p-rl-1 p-b-2">
-                            <div class="bg-img1 size-a-4 how1 pos-relative"
-                                style="background-image: url({{ asset('assets/images/post-02.jpg') }});">
-                                <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
+                        @foreach ($post_utama as $i => $dta)
+                            @php
+                                $this_kat = strtolower(str_replace(' ', '-', $post_utama[0]->kategori));
+                                $this_kat = $this_kat == 'berita' ? 'berita-desa' : $this_kat;
+                            @endphp
+                            @if ($i != 0)
+                                <div class="{{ $i == 1 ? 'col-12' : 'col-6' }} p-rl-1 p-b-2">
+                                    <div class="bg-img1 {{ $i == 1 ? 'size-a-4' : 'size-a-5' }} how1 pos-relative"
+                                        style="background-image: url({{ asset('/images/postingan/sampul/' . $dta->foto_sampul) }});">
+                                        <a href="{{ url('post/' . $dta->slug) }}"
+                                            class="dis-block how1-child1 trans-03"></a>
 
-                                <div class="flex-col-e-s s-full p-rl-25 p-tb-24">
-                                    <a href="#"
-                                        class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-                                        Culture
-                                    </a>
+                                        <div class="flex-col-e-s s-full p-rl-25 p-tb-24">
+                                            <a href="{{ url('postingan/' . $this_kat) }}"
+                                                class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
+                                                {{ $dta->kategori }}
+                                            </a>
 
-                                    <h3 class="how1-child2 m-t-14">
-                                        <a href="blog-detail-01.html"
-                                            class="how-txt1 size-a-7 f1-l-2 cl0 hov-cl10 trans-03">
-                                            London ipsum dolor sit amet, consectetur adipiscing elit.
-                                        </a>
-                                    </h3>
+                                            <h3 class="how1-child2 m-t-14">
+                                                <a href="{{ url('post/' . $dta->slug) }}"
+                                                    class="how-txt1 size-a-7 f1-l-2 cl0 hov-cl10 trans-03">
+                                                    {{ $dta->judul }}
+                                                </a>
+                                            </h3>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 p-rl-1 p-b-2">
-                            <div class="bg-img1 size-a-5 how1 pos-relative"
-                                style="background-image: url({{ asset('assets/images/post-03.jpg') }});">
-                                <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
-
-                                <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-                                    <a href="#"
-                                        class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-                                        Life Style
-                                    </a>
-
-                                    <h3 class="how1-child2 m-t-14">
-                                        <a href="blog-detail-01.html"
-                                            class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
-                                            Pellentesque dui nibh, pellen-tesque ut dapibus ut
-                                        </a>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 p-rl-1 p-b-2">
-                            <div class="bg-img1 size-a-5 how1 pos-relative"
-                                style="background-image: url({{ asset('assets/images/post-04.jpg') }});">
-                                <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
-
-                                <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-                                    <a href="#"
-                                        class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-                                        Sport
-                                    </a>
-
-                                    <h3 class="how1-child2 m-t-14">
-                                        <a href="blog-detail-01.html"
-                                            class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
-                                            Motobike Vestibulum vene-natis purus nec nibh volutpat
-                                        </a>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -171,123 +167,87 @@
                             <div class="tab-content p-t-35">
                                 <div class="row">
                                     <div class="col-sm-6 p-r-25 p-r-15-sr991">
-                                        <!-- Item post -->
-                                        <div class="m-b-30">
-                                            <a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">
-                                                <img src="{{ asset('assets/images/post-05.jpg') }}" alt="IMG">
-                                            </a>
+                                        @if ($post_terkini)
+                                            @php
+                                                $kat_first = strtolower(str_replace(' ', '-', $post_terkini[0]->kategori));
+                                                $kat_first = $kat_first == 'berita' ? 'berita-desa' : $kat_first;
+                                            @endphp
+                                            <!-- Item post -->
+                                            <div class="m-b-30">
+                                                <a href="{{ url('post/' . $post_terkini[0]->slug) }}"
+                                                    class="wrap-pic-w hov1 trans-03">
+                                                    <img src="{{ asset('/images/postingan/sampul/' . $post_terkini[0]->foto_sampul) }}"
+                                                        alt="IMG">
+                                                </a>
 
-                                            <div class="p-t-20">
-                                                <h5 class="p-b-5">
-                                                    <a href="blog-detail-01.html" class="f1-m-3 cl2 hov-cl10 trans-03">
-                                                        American live music lorem ipsum dolor sit amet consectetur
-                                                    </a>
-                                                </h5>
+                                                <div class="p-t-20">
+                                                    <h5 class="p-b-5">
+                                                        <a href="{{ url('post/' . $post_terkini[0]->slug) }}"
+                                                            class="f1-m-3 cl2 hov-cl10 trans-03">
+                                                            {{ $post_terkini[0]->judul }}
+                                                        </a>
+                                                    </h5>
 
-                                                <span class="cl8">
-                                                    <a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-                                                        Music
-                                                    </a>
+                                                    <span class="cl8">
+                                                        <a href="{{ url('postingan/' . $kat_first) }}"
+                                                            class="f1-s-4 cl8 hov-cl10 trans-03">
+                                                            {{ $post_terkini[0]->kategori }}
+                                                        </a>
 
-                                                    <span class="f1-s-3 m-rl-3">
-                                                        -
+                                                        <span class="f1-s-3 m-rl-3">
+                                                            -
+                                                        </span>
+
+                                                        <span class="f1-s-3">
+                                                            {{ date('d M', strtotime($post_terkini[0]->created_at)) }}
+                                                        </span>
                                                     </span>
-
-                                                    <span class="f1-s-3">
-                                                        Feb 18
-                                                    </span>
-                                                </span>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     </div>
 
                                     <div class="col-sm-6 p-r-25 p-r-15-sr991">
-                                        <!-- Item post -->
-                                        <div class="flex-wr-sb-s m-b-30">
-                                            <a href="blog-detail-01.html" class="size-w-1 wrap-pic-w hov1 trans-03">
-                                                <img src="{{ asset('assets/images/post-06.jpg') }}" alt="IMG">
-                                            </a>
-
-                                            <div class="size-w-2">
-                                                <h5 class="p-b-5">
-                                                    <a href="blog-detail-01.html" class="f1-s-5 cl3 hov-cl10 trans-03">
-                                                        Donec metus orci, malesuada et lectus vitae
-                                                    </a>
-                                                </h5>
-
-                                                <span class="cl8">
-                                                    <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-                                                        Music
+                                        @foreach ($post_terkini as $i => $dta)
+                                            @php
+                                                $this_kat = strtolower(str_replace(' ', '-', $post_terkini[0]->kategori));
+                                                $this_kat = $this_kat == 'berita' ? 'berita-desa' : $this_kat;
+                                            @endphp
+                                            @if ($i != 0)
+                                                <!-- Item post -->
+                                                <div class="flex-wr-sb-s m-b-30">
+                                                    <a href="{{ url('post/' . $dta->slug) }}"
+                                                        class="size-w-1 wrap-pic-w hov1 trans-03">
+                                                        <img src="{{ asset('/images/postingan/sampul/' . $dta->foto_sampul) }}"
+                                                            alt="{{ $dta->judul }}">
                                                     </a>
 
-                                                    <span class="f1-s-3 m-rl-3">
-                                                        -
-                                                    </span>
+                                                    <div class="size-w-2">
+                                                        <h5 class="p-b-5">
+                                                            <a href="{{ url('post/' . $dta->slug) }}"
+                                                                class="f1-s-5 cl3 hov-cl10 trans-03">
+                                                                {{ $dta->judul }}
+                                                            </a>
+                                                        </h5>
 
-                                                    <span class="f1-s-3">
-                                                        Feb 17
-                                                    </span>
-                                                </span>
-                                            </div>
-                                        </div>
+                                                        <span class="cl8">
+                                                            <a href="{{ url('postingan/' . $this_kat) }}"
+                                                                class="f1-s-6 cl8 hov-cl10 trans-03">
+                                                                {{ $dta->kategori }}
+                                                            </a>
 
-                                        <!-- Item post -->
-                                        <div class="flex-wr-sb-s m-b-30">
-                                            <a href="blog-detail-01.html" class="size-w-1 wrap-pic-w hov1 trans-03">
-                                                <img src="{{ asset('assets/images/post-07.jpg') }}" alt="IMG">
-                                            </a>
+                                                            <span class="f1-s-3 m-rl-3">
+                                                                -
+                                                            </span>
 
-                                            <div class="size-w-2">
-                                                <h5 class="p-b-5">
-                                                    <a href="blog-detail-01.html" class="f1-s-5 cl3 hov-cl10 trans-03">
-                                                        Donec metus orci, malesuada et lectus vitae
-                                                    </a>
-                                                </h5>
-
-                                                <span class="cl8">
-                                                    <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-                                                        Game
-                                                    </a>
-
-                                                    <span class="f1-s-3 m-rl-3">
-                                                        -
-                                                    </span>
-
-                                                    <span class="f1-s-3">
-                                                        Feb 16
-                                                    </span>
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <!-- Item post -->
-                                        <div class="flex-wr-sb-s m-b-30">
-                                            <a href="blog-detail-01.html" class="size-w-1 wrap-pic-w hov1 trans-03">
-                                                <img src="{{ asset('assets/images/post-08.jpg') }}" alt="IMG">
-                                            </a>
-
-                                            <div class="size-w-2">
-                                                <h5 class="p-b-5">
-                                                    <a href="blog-detail-01.html" class="f1-s-5 cl3 hov-cl10 trans-03">
-                                                        Donec metus orci, malesuada et lectus vitae
-                                                    </a>
-                                                </h5>
-
-                                                <span class="cl8">
-                                                    <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-                                                        Celebrity
-                                                    </a>
-
-                                                    <span class="f1-s-3 m-rl-3">
-                                                        -
-                                                    </span>
-
-                                                    <span class="f1-s-3">
-                                                        Feb 12
-                                                    </span>
-                                                </span>
-                                            </div>
-                                        </div>
+                                                            <span class="f1-s-3">
+                                                                {{ date('d M', strtotime($dta->created_at)) }}
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -307,123 +267,87 @@
                             <div class="tab-content p-t-35">
                                 <div class="row">
                                     <div class="col-sm-6 p-r-25 p-r-15-sr991">
-                                        <!-- Item post -->
-                                        <div class="m-b-30">
-                                            <a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">
-                                                <img src="{{ asset('assets/images/post-10.jpg') }}" alt="IMG">
-                                            </a>
+                                        @if ($post_utama)
+                                            @php
+                                                $kat_first = strtolower(str_replace(' ', '-', $post_utama[0]->kategori));
+                                                $kat_first = $kat_first == 'berita' ? 'berita-desa' : $kat_first;
+                                            @endphp
+                                            <!-- Item post -->
+                                            <div class="m-b-30">
+                                                <a href="{{ url('post/' . $post_utama[0]->slug) }}"
+                                                    class="wrap-pic-w hov1 trans-03">
+                                                    <img src="{{ asset('/images/postingan/sampul/' . $post_utama[0]->foto_sampul) }}"
+                                                        alt="IMG">
+                                                </a>
 
-                                            <div class="p-t-20">
-                                                <h5 class="p-b-5">
-                                                    <a href="blog-detail-01.html" class="f1-m-3 cl2 hov-cl10 trans-03">
-                                                        Bitcoin lorem ipsum dolor sit amet consectetur
-                                                    </a>
-                                                </h5>
+                                                <div class="p-t-20">
+                                                    <h5 class="p-b-5">
+                                                        <a href="{{ url('post/' . $post_utama[0]->slug) }}"
+                                                            class="f1-m-3 cl2 hov-cl10 trans-03">
+                                                            {{ $post_utama[0]->judul }}
+                                                        </a>
+                                                    </h5>
 
-                                                <span class="cl8">
-                                                    <a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-                                                        Finance
-                                                    </a>
+                                                    <span class="cl8">
+                                                        <a href="{{ url('postingan/' . $kat_first) }}"
+                                                            class="f1-s-4 cl8 hov-cl10 trans-03">
+                                                            {{ $post_utama[0]->kategori }}
+                                                        </a>
 
-                                                    <span class="f1-s-3 m-rl-3">
-                                                        -
+                                                        <span class="f1-s-3 m-rl-3">
+                                                            -
+                                                        </span>
+
+                                                        <span class="f1-s-3">
+                                                            {{ date('d M', strtotime($post_utama[0]->created_at)) }}
+                                                        </span>
                                                     </span>
-
-                                                    <span class="f1-s-3">
-                                                        Feb 18
-                                                    </span>
-                                                </span>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     </div>
 
                                     <div class="col-sm-6 p-r-25 p-r-15-sr991">
-                                        <!-- Item post -->
-                                        <div class="flex-wr-sb-s m-b-30">
-                                            <a href="blog-detail-01.html" class="size-w-1 wrap-pic-w hov1 trans-03">
-                                                <img src="{{ asset('assets/images/post-11.jpg') }}" alt="IMG">
-                                            </a>
-
-                                            <div class="size-w-2">
-                                                <h5 class="p-b-5">
-                                                    <a href="blog-detail-01.html" class="f1-s-5 cl3 hov-cl10 trans-03">
-                                                        Donec metus orci, malesuada et lectus vitae
-                                                    </a>
-                                                </h5>
-
-                                                <span class="cl8">
-                                                    <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-                                                        Small Business
+                                        @foreach ($post_utama as $i => $dta)
+                                            @php
+                                                $this_kat = strtolower(str_replace(' ', '-', $post_utama[0]->kategori));
+                                                $this_kat = $this_kat == 'berita' ? 'berita-desa' : $this_kat;
+                                            @endphp
+                                            @if ($i != 0)
+                                                <!-- Item post -->
+                                                <div class="flex-wr-sb-s m-b-30">
+                                                    <a href="{{ url('post/' . $dta->slug) }}"
+                                                        class="size-w-1 wrap-pic-w hov1 trans-03">
+                                                        <img src="{{ asset('/images/postingan/sampul/' . $dta->foto_sampul) }}"
+                                                            alt="{{ $dta->judul }}">
                                                     </a>
 
-                                                    <span class="f1-s-3 m-rl-3">
-                                                        -
-                                                    </span>
+                                                    <div class="size-w-2">
+                                                        <h5 class="p-b-5">
+                                                            <a href="{{ url('post/' . $dta->slug) }}"
+                                                                class="f1-s-5 cl3 hov-cl10 trans-03">
+                                                                {{ $dta->judul }}
+                                                            </a>
+                                                        </h5>
 
-                                                    <span class="f1-s-3">
-                                                        Feb 17
-                                                    </span>
-                                                </span>
-                                            </div>
-                                        </div>
+                                                        <span class="cl8">
+                                                            <a href="{{ url('postingan/' . $this_kat) }}"
+                                                                class="f1-s-6 cl8 hov-cl10 trans-03">
+                                                                {{ $dta->kategori }}
+                                                            </a>
 
-                                        <!-- Item post -->
-                                        <div class="flex-wr-sb-s m-b-30">
-                                            <a href="blog-detail-01.html" class="size-w-1 wrap-pic-w hov1 trans-03">
-                                                <img src="{{ asset('assets/images/post-12.jpg') }}" alt="IMG">
-                                            </a>
+                                                            <span class="f1-s-3 m-rl-3">
+                                                                -
+                                                            </span>
 
-                                            <div class="size-w-2">
-                                                <h5 class="p-b-5">
-                                                    <a href="blog-detail-01.html" class="f1-s-5 cl3 hov-cl10 trans-03">
-                                                        Donec metus orci, malesuada et lectus vitae
-                                                    </a>
-                                                </h5>
-
-                                                <span class="cl8">
-                                                    <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-                                                        Economy
-                                                    </a>
-
-                                                    <span class="f1-s-3 m-rl-3">
-                                                        -
-                                                    </span>
-
-                                                    <span class="f1-s-3">
-                                                        Feb 16
-                                                    </span>
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <!-- Item post -->
-                                        <div class="flex-wr-sb-s m-b-30">
-                                            <a href="blog-detail-01.html" class="size-w-1 wrap-pic-w hov1 trans-03">
-                                                <img src="{{ asset('assets/images/post-13.jpg') }}" alt="IMG">
-                                            </a>
-
-                                            <div class="size-w-2">
-                                                <h5 class="p-b-5">
-                                                    <a href="blog-detail-01.html" class="f1-s-5 cl3 hov-cl10 trans-03">
-                                                        Donec metus orci, malesuada et lectus vitae
-                                                    </a>
-                                                </h5>
-
-                                                <span class="cl8">
-                                                    <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-                                                        Money & Markets
-                                                    </a>
-
-                                                    <span class="f1-s-3 m-rl-3">
-                                                        -
-                                                    </span>
-
-                                                    <span class="f1-s-3">
-                                                        Feb 12
-                                                    </span>
-                                                </span>
-                                            </div>
-                                        </div>
+                                                            <span class="f1-s-3">
+                                                                {{ date('d M', strtotime($dta->created_at)) }}
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -443,123 +367,99 @@
                             <div class="tab-content p-t-35">
                                 <div class="row">
                                     <div class="col-sm-6 p-r-25 p-r-15-sr991">
-                                        <!-- Item post -->
-                                        <div class="m-b-30">
-                                            <a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">
-                                                <img src="{{ asset('assets/images/post-14.jpg') }}" alt="IMG">
-                                            </a>
+                                        @if ($post_populer)
+                                            @php
+                                                $kat_first = strtolower(str_replace(' ', '-', $post_populer[0]->kategori));
+                                                $kat_first = $kat_first == 'berita' ? 'berita-desa' : $kat_first;
+                                            @endphp
+                                            <!-- Item post -->
+                                            <div class="m-b-30">
+                                                <a href="{{ url('post/' . $post_populer[0]->slug) }}"
+                                                    class="wrap-pic-w hov1 trans-03">
+                                                    <img src="{{ asset('/images/postingan/sampul/' . $post_populer[0]->foto_sampul) }}"
+                                                        alt="IMG">
+                                                </a>
 
-                                            <div class="p-t-20">
-                                                <h5 class="p-b-5">
-                                                    <a href="blog-detail-01.html" class="f1-m-3 cl2 hov-cl10 trans-03">
-                                                        You wish lorem ipsum dolor sit amet consectetur
-                                                    </a>
-                                                </h5>
+                                                <div class="p-t-20">
+                                                    <h5 class="p-b-5">
+                                                        <a href="{{ url('post/' . $post_populer[0]->slug) }}"
+                                                            class="f1-m-3 cl2 hov-cl10 trans-03">
+                                                            {{ $post_populer[0]->judul }}
+                                                        </a>
+                                                    </h5>
 
-                                                <span class="cl8">
-                                                    <a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-                                                        Hotels
-                                                    </a>
+                                                    <span class="cl8">
+                                                        <a href="{{ url('postingan/' . $kat_first) }}"
+                                                            class="f1-s-4 cl8 hov-cl10 trans-03">
+                                                            {{ $post_populer[0]->kategori }}
+                                                        </a>
 
-                                                    <span class="f1-s-3 m-rl-3">
-                                                        -
+                                                        <span class="f1-s-3 m-rl-3">
+                                                            -
+                                                        </span>
+
+                                                        <span class="f1-s-3">
+                                                            {{ date('d M', strtotime($post_populer[0]->created_at)) }}
+                                                        </span>
+
+                                                        <span class="m-rl-3">|</span>
+
+                                                        <span class="f1-s-3 cl8 m-r-15">
+                                                            {{ $post_populer[0]->view }} Views
+                                                        </span>
                                                     </span>
-
-                                                    <span class="f1-s-3">
-                                                        Feb 18
-                                                    </span>
-                                                </span>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     </div>
 
                                     <div class="col-sm-6 p-r-25 p-r-15-sr991">
-                                        <!-- Item post -->
-                                        <div class="flex-wr-sb-s m-b-30">
-                                            <a href="blog-detail-01.html" class="size-w-1 wrap-pic-w hov1 trans-03">
-                                                <img src="{{ asset('assets/images/post-15.jpg') }}" alt="IMG">
-                                            </a>
-
-                                            <div class="size-w-2">
-                                                <h5 class="p-b-5">
-                                                    <a href="blog-detail-01.html" class="f1-s-5 cl3 hov-cl10 trans-03">
-                                                        Donec metus orci, malesuada et lectus vitae
-                                                    </a>
-                                                </h5>
-
-                                                <span class="cl8">
-                                                    <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-                                                        Beachs
+                                        @foreach ($post_populer as $i => $dta)
+                                            @php
+                                                $this_kat = strtolower(str_replace(' ', '-', $post_populer[0]->kategori));
+                                                $this_kat = $this_kat == 'berita' ? 'berita-desa' : $this_kat;
+                                            @endphp
+                                            @if ($i != 0)
+                                                <!-- Item post -->
+                                                <div class="flex-wr-sb-s m-b-30">
+                                                    <a href="{{ url('post/' . $dta->slug) }}"
+                                                        class="size-w-1 wrap-pic-w hov1 trans-03">
+                                                        <img src="{{ asset('/images/postingan/sampul/' . $dta->foto_sampul) }}"
+                                                            alt="{{ $dta->judul }}">
                                                     </a>
 
-                                                    <span class="f1-s-3 m-rl-3">
-                                                        -
-                                                    </span>
+                                                    <div class="size-w-2">
+                                                        <h5 class="p-b-5">
+                                                            <a href="{{ url('post/' . $dta->slug) }}"
+                                                                class="f1-s-5 cl3 hov-cl10 trans-03">
+                                                                {{ $dta->judul }}
+                                                            </a>
+                                                        </h5>
 
-                                                    <span class="f1-s-3">
-                                                        Feb 17
-                                                    </span>
-                                                </span>
-                                            </div>
-                                        </div>
+                                                        <span class="cl8">
+                                                            <a href="{{ url('postingan/' . $this_kat) }}"
+                                                                class="f1-s-6 cl8 hov-cl10 trans-03">
+                                                                {{ $dta->kategori }}
+                                                            </a>
 
-                                        <!-- Item post -->
-                                        <div class="flex-wr-sb-s m-b-30">
-                                            <a href="blog-detail-01.html" class="size-w-1 wrap-pic-w hov1 trans-03">
-                                                <img src="{{ asset('assets/images/post-16.jpg') }}" alt="IMG">
-                                            </a>
+                                                            <span class="f1-s-3 m-rl-3">
+                                                                -
+                                                            </span>
 
-                                            <div class="size-w-2">
-                                                <h5 class="p-b-5">
-                                                    <a href="blog-detail-01.html" class="f1-s-5 cl3 hov-cl10 trans-03">
-                                                        Donec metus orci, malesuada et lectus vitae
-                                                    </a>
-                                                </h5>
+                                                            <span class="f1-s-3">
+                                                                {{ date('d M', strtotime($dta->created_at)) }}
+                                                            </span>
 
-                                                <span class="cl8">
-                                                    <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-                                                        Flight
-                                                    </a>
+                                                            <span class="m-rl-3">|</span>
 
-                                                    <span class="f1-s-3 m-rl-3">
-                                                        -
-                                                    </span>
-
-                                                    <span class="f1-s-3">
-                                                        Feb 16
-                                                    </span>
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <!-- Item post -->
-                                        <div class="flex-wr-sb-s m-b-30">
-                                            <a href="blog-detail-01.html" class="size-w-1 wrap-pic-w hov1 trans-03">
-                                                <img src="{{ asset('assets/images/post-17.jpg') }}" alt="IMG">
-                                            </a>
-
-                                            <div class="size-w-2">
-                                                <h5 class="p-b-5">
-                                                    <a href="blog-detail-01.html" class="f1-s-5 cl3 hov-cl10 trans-03">
-                                                        Donec metus orci, malesuada et lectus vitae
-                                                    </a>
-                                                </h5>
-
-                                                <span class="cl8">
-                                                    <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-                                                        Culture
-                                                    </a>
-
-                                                    <span class="f1-s-3 m-rl-3">
-                                                        -
-                                                    </span>
-
-                                                    <span class="f1-s-3">
-                                                        Feb 12
-                                                    </span>
-                                                </span>
-                                            </div>
-                                        </div>
+                                                            <span class="f1-s-3">
+                                                                {{ $dta->view }} Views
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

@@ -333,17 +333,17 @@
                                 <a href="{{ url('file-download') }}">DOWNLOAD</a>
                             </li>
 
-                            <li class="drop-menu">
+                            <li class="drop-menu" id="nav-postingan">
                                 <a href="#">INFORMASI</a>
                                 <ul class="sub-menu">
-                                    <li><a href="#">Berita Desa</a></li>
-                                    <li><a href="#">Artikel</a></li>
-                                    <li><a href="#">Potensi Desa</a></li>
-                                    <li><a href="#">Program Desa</a></li>
-                                    <li><a href="#">Bumdes</a></li>
-                                    <li><a href="#">Produk Hukum</a></li>
-                                    <li><a href="#">Lembaga Desa</a></li>
-                                    <li><a href="#">Semua Post</a></li>
+                                    <li><a href="{{ url('postingan/berita-desa') }}">Berita Desa</a></li>
+                                    <li><a href="{{ url('postingan/artikel') }}">Artikel</a></li>
+                                    <li><a href="{{ url('postingan/potensi-desa') }}">Potensi Desa</a></li>
+                                    <li><a href="{{ url('postingan/program-desa') }}">Program Desa</a></li>
+                                    <li><a href="{{ url('postingan/bumdes') }}">Bumdes</a></li>
+                                    <li><a href="{{ url('postingan/produk-hukum') }}">Produk Hukum</a></li>
+                                    <li><a href="{{ url('postingan/lembaga-desa') }}">Lembaga Desa</a></li>
+                                    <li><a href="{{ url('postingan/semua-post') }}">Semua Post</a></li>
                                 </ul>
                             </li>
                         </ul>

@@ -27,6 +27,8 @@ Route::get('/galeri/{uid}', [LandingController::class, 'galeri_detail']);
 Route::get('/agenda', [LandingController::class, 'agenda']);
 Route::get('/file-download', [LandingController::class, 'file']);
 Route::get('/file-download/{file}', [LandingController::class, 'file_download']);
+Route::get('/postingan/{kategori}', [LandingController::class, 'postingan']);
+Route::get('/post/{slug}', [LandingController::class, 'postingan_detail']);
 
 Route::get('admin-access/', [AdminController::class, 'home']);
 Route::group(['prefix' => 'admin-access'], function () {

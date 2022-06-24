@@ -80,7 +80,7 @@
                                                     </h4>
                                                 </a>
                                             </div>
-                                            <div class="card-body pt-0 px-2">
+                                            <div class="card-body pt-0 px-2 text-muted">
                                                 <h5>{{ $dta->topik }}</h5>
                                                 <i class="fa fa-user"></i>
                                                 <span>{{ $dta->admin->nama }}</span>
@@ -101,13 +101,15 @@
                                             </div>
                                             <div class="card-footer">
                                                 <span class="card-text d-inline text-dark">
-                                                    Kategori Postingan: <span
-                                                        style="text-transform: capitalize;"><b>{{ $dta->kategori }}</b></span>
+                                                    <span class="badge badge-info badge-rounded">{{ $dta->kategori }}</span>
+                                                    @if ($dta->utama)
+                                                    <span class="badge badge-success badge-rounded">Utama</span>
+                                                    @endif
                                                 </span>
-                                                <div class="pull-right">
+                                                {{-- <div class="pull-right">
                                                     <a href="{{ url('admin-access/postingan/detail-postingan/' . $dta->slug) }}"
                                                         class="btn btn-primary">Lihat artikel</a>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>
