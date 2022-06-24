@@ -162,15 +162,14 @@
                                 </h3>
                             </div>
 
-
                             <!-- Tab panes -->
                             <div class="tab-content p-t-35">
                                 <div class="row">
                                     <div class="col-sm-6 p-r-25 p-r-15-sr991">
                                         @if ($post_terkini)
                                             @php
-                                                $kat_first = strtolower(str_replace(' ', '-', $post_terkini[0]->kategori));
-                                                $kat_first = $kat_first == 'berita' ? 'berita-desa' : $kat_first;
+                                                $kat_first1 = strtolower(str_replace(' ', '-', $post_terkini[0]->kategori));
+                                                $kat_first1 = $kat_first1 == 'berita' ? 'berita-desa' : $kat_first1;
                                             @endphp
                                             <!-- Item post -->
                                             <div class="m-b-30">
@@ -189,7 +188,7 @@
                                                     </h5>
 
                                                     <span class="cl8">
-                                                        <a href="{{ url('postingan/' . $kat_first) }}"
+                                                        <a href="{{ url('postingan/' . $kat_first1) }}"
                                                             class="f1-s-4 cl8 hov-cl10 trans-03">
                                                             {{ $post_terkini[0]->kategori }}
                                                         </a>
@@ -210,8 +209,8 @@
                                     <div class="col-sm-6 p-r-25 p-r-15-sr991">
                                         @foreach ($post_terkini as $i => $dta)
                                             @php
-                                                $this_kat = strtolower(str_replace(' ', '-', $post_terkini[0]->kategori));
-                                                $this_kat = $this_kat == 'berita' ? 'berita-desa' : $this_kat;
+                                                $this_kat1 = strtolower(str_replace(' ', '-', $dta->kategori));
+                                                $this_kat1 = $this_kat1 == 'berita' ? 'berita-desa' : $this_kat1;
                                             @endphp
                                             @if ($i != 0)
                                                 <!-- Item post -->
@@ -231,7 +230,7 @@
                                                         </h5>
 
                                                         <span class="cl8">
-                                                            <a href="{{ url('postingan/' . $this_kat) }}"
+                                                            <a href="{{ url('postingan/' . $this_kat1) }}"
                                                                 class="f1-s-6 cl8 hov-cl10 trans-03">
                                                                 {{ $dta->kategori }}
                                                             </a>
@@ -269,8 +268,8 @@
                                     <div class="col-sm-6 p-r-25 p-r-15-sr991">
                                         @if ($post_utama)
                                             @php
-                                                $kat_first = strtolower(str_replace(' ', '-', $post_utama[0]->kategori));
-                                                $kat_first = $kat_first == 'berita' ? 'berita-desa' : $kat_first;
+                                                $kat_first2 = strtolower(str_replace(' ', '-', $post_utama[0]->kategori));
+                                                $kat_first2 = $kat_first2 == 'berita' ? 'berita-desa' : $kat_first2;
                                             @endphp
                                             <!-- Item post -->
                                             <div class="m-b-30">
@@ -289,7 +288,7 @@
                                                     </h5>
 
                                                     <span class="cl8">
-                                                        <a href="{{ url('postingan/' . $kat_first) }}"
+                                                        <a href="{{ url('postingan/' . $kat_first2) }}"
                                                             class="f1-s-4 cl8 hov-cl10 trans-03">
                                                             {{ $post_utama[0]->kategori }}
                                                         </a>
@@ -310,8 +309,8 @@
                                     <div class="col-sm-6 p-r-25 p-r-15-sr991">
                                         @foreach ($post_utama as $i => $dta)
                                             @php
-                                                $this_kat = strtolower(str_replace(' ', '-', $post_utama[0]->kategori));
-                                                $this_kat = $this_kat == 'berita' ? 'berita-desa' : $this_kat;
+                                                $this_kat2 = strtolower(str_replace(' ', '-', $dta->kategori));
+                                                $this_kat2 = $this_kat2 == 'berita' ? 'berita-desa' : $this_kat2;
                                             @endphp
                                             @if ($i != 0)
                                                 <!-- Item post -->
@@ -331,7 +330,7 @@
                                                         </h5>
 
                                                         <span class="cl8">
-                                                            <a href="{{ url('postingan/' . $this_kat) }}"
+                                                            <a href="{{ url('postingan/' . $this_kat2) }}"
                                                                 class="f1-s-6 cl8 hov-cl10 trans-03">
                                                                 {{ $dta->kategori }}
                                                             </a>
@@ -416,7 +415,7 @@
                                     <div class="col-sm-6 p-r-25 p-r-15-sr991">
                                         @foreach ($post_populer as $i => $dta)
                                             @php
-                                                $this_kat = strtolower(str_replace(' ', '-', $post_populer[0]->kategori));
+                                                $this_kat = strtolower(str_replace(' ', '-', $dta->kategori));
                                                 $this_kat = $this_kat == 'berita' ? 'berita-desa' : $this_kat;
                                             @endphp
                                             @if ($i != 0)

@@ -1,14 +1,25 @@
 @php
+// Aparatur
 $aparat = new App\Models\Aparatur();
 $data = $aparat
     ->orderByRaw("FIELD(jabatan, 'Kepala Desa', 'Sekretaris Desa', 'Kaur Umum', 'Kaur Keuangan', 'Kaur Perencanaan', 'Kasi Kesejahteraan') ASC")
     ->limit(5)
     ->get();
+
+// Agenda
 $agenda = new App\Models\Agenda();
+
+// Berita Terkini
+$postingan = new App\Models\Postingan();
+$berita_terkini = $postingan
+    ->where('kategori', 'Berita')
+    ->orderBy('id', 'desc')
+    ->limit(4)
+    ->get();
 @endphp
 <div class="p-l-10 p-rl-0-sr991 p-b-20">
     <!-- Subscribe -->
-    <div class="bg-secondary p-rl-35 p-t-28 p-b-35 m-b-35">
+    <div class="bg-info p-rl-35 p-t-28 p-b-35 m-b-35">
         <h5 class="f1-m-5 cl0 p-b-20">
             Selamat Datang
         </h5>
@@ -96,117 +107,39 @@ $agenda = new App\Models\Agenda();
         </div>
 
         <ul class="p-t-35">
-            <li class="flex-wr-sb-s p-b-30">
-                <a href="#" class="size-w-10 wrap-pic-w hov1 trans-03">
-                    <img src="{{ asset('assets/images/popular-post-04.jpg') }}" alt="IMG">
-                </a>
+            @foreach ($berita_terkini as $dta)
+                @php
+                    $this_kat = strtolower(str_replace(' ', '-', $dta->kategori));
+                    $this_kat = $this_kat == 'berita' ? 'berita-desa' : $this_kat;
+                @endphp
+                <li class="flex-wr-sb-s p-b-30">
+                    <a href="{{ url('post/' . $dta->slug) }}" class="size-w-10 wrap-pic-w hov1 trans-03">
+                        <img src="{{ asset('/images/postingan/sampul/' . $dta->foto_sampul) }}" alt="{{ $dta->judul }}">
+                    </a>
 
-                <div class="size-w-11">
-                    <h6 class="p-b-4">
-                        <a href="blog-detail-02.html" class="f1-s-5 cl3 hov-cl10 trans-03">
-                            Donec metus orci, malesuada et lectus vitae
-                        </a>
-                    </h6>
+                    <div class="size-w-11">
+                        <h6 class="p-b-4">
+                            <a href="{{ url('post/' . $dta->slug) }}" class="f1-s-5 cl3 hov-cl10 trans-03 how-txt1">
+                                {{ $dta->judul }}
+                            </a>
+                        </h6>
 
-                    <span class="cl8 txt-center p-b-24">
-                        <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-                            Music
-                        </a>
+                        <span class="cl8 txt-center p-b-24">
+                            <a href="{{ url('postingan/' . $this_kat) }}" class="f1-s-6 cl8 hov-cl10 trans-03">
+                                {{ $dta->kategori }}
+                            </a>
 
-                        <span class="f1-s-3 m-rl-3">
-                            -
+                            <span class="f1-s-3 m-rl-3">
+                                -
+                            </span>
+
+                            <span class="f1-s-3">
+                                {{ date('d M', strtotime($dta->created_at)) }}
+                            </span>
                         </span>
-
-                        <span class="f1-s-3">
-                            Feb 18
-                        </span>
-                    </span>
-                </div>
-            </li>
-
-            <li class="flex-wr-sb-s p-b-30">
-                <a href="#" class="size-w-10 wrap-pic-w hov1 trans-03">
-                    <img src="{{ asset('assets/images/popular-post-05.jpg') }}" alt="IMG">
-                </a>
-
-                <div class="size-w-11">
-                    <h6 class="p-b-4">
-                        <a href="blog-detail-02.html" class="f1-s-5 cl3 hov-cl10 trans-03">
-                            Donec metus orci, malesuada et lectus vitae
-                        </a>
-                    </h6>
-
-                    <span class="cl8 txt-center p-b-24">
-                        <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-                            Game
-                        </a>
-
-                        <span class="f1-s-3 m-rl-3">
-                            -
-                        </span>
-
-                        <span class="f1-s-3">
-                            Feb 16
-                        </span>
-                    </span>
-                </div>
-            </li>
-
-            <li class="flex-wr-sb-s p-b-30">
-                <a href="#" class="size-w-10 wrap-pic-w hov1 trans-03">
-                    <img src="{{ asset('assets/images/popular-post-06.jpg') }}" alt="IMG">
-                </a>
-
-                <div class="size-w-11">
-                    <h6 class="p-b-4">
-                        <a href="blog-detail-02.html" class="f1-s-5 cl3 hov-cl10 trans-03">
-                            Donec metus orci, malesuada et lectus vitae
-                        </a>
-                    </h6>
-
-                    <span class="cl8 txt-center p-b-24">
-                        <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-                            Celebrity
-                        </a>
-
-                        <span class="f1-s-3 m-rl-3">
-                            -
-                        </span>
-
-                        <span class="f1-s-3">
-                            Feb 12
-                        </span>
-                    </span>
-                </div>
-            </li>
-
-            <li class="flex-wr-sb-s p-b-30">
-                <a href="#" class="size-w-10 wrap-pic-w hov1 trans-03">
-                    <img src="{{ asset('assets/images/popular-post-05.jpg') }}" alt="IMG">
-                </a>
-
-                <div class="size-w-11">
-                    <h6 class="p-b-4">
-                        <a href="blog-detail-02.html" class="f1-s-5 cl3 hov-cl10 trans-03">
-                            Donec metus orci, malesuada et lectus vitae
-                        </a>
-                    </h6>
-
-                    <span class="cl8 txt-center p-b-24">
-                        <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-                            Game
-                        </a>
-
-                        <span class="f1-s-3 m-rl-3">
-                            -
-                        </span>
-
-                        <span class="f1-s-3">
-                            Feb 16
-                        </span>
-                    </span>
-                </div>
-            </li>
+                    </div>
+                </li>
+            @endforeach
         </ul>
     </div>
 
