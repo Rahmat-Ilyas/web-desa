@@ -96,9 +96,10 @@
                 <div class="logo-mobile">
                     <a href="{{ url('/') }}"><img src="{{ asset('assets/images/icons/logo.png') }}"
                             style="min-height: 50px;" alt="IMG-LOGO"></a>
-                    <h5 class="text-dark ml-5 mt-1" style="font-size: 18px; margin-bottom: -10px;">&nbsp;DESA RANTE ANGIN</h5>
+                    <h5 class="text-dark ml-5 mt-1 cl2 how-txt2" style="font-size: 18px; margin-bottom: -5px;">&nbsp;DESA RANTE ANGIN
+                    </h5>
                     <div>
-                        <small class="text-muted ml-5">&nbsp;&nbsp;Kecamatan Towuti, Kabupaten Luwu Timur</small>
+                        <small class="ml-5 f1-s-3 cl2 how-txt2">&nbsp;&nbsp;Kecamatan Towuti, Kabupaten Luwu Timur</small>
                     </div>
                 </div>
 
@@ -187,9 +188,9 @@
                     <li>
                         <a href="javascript:;">LEMBAGA</a>
                         <ul class="sub-menu-m">
-                            <li><a href="#">BPD</a></li>
-                            <li><a href="#">Karang Taaruna</a></li>
-                            <li><a href="#">BUMDES</a></li>
+                            <li><a href="{{ url('profil/bpd') }}">BPD</a></li>
+                            <li><a href="{{ url('profil/karang-taruna') }}">Karang Taaruna</a></li>
+                            <li><a href="{{ url('profil/bumdes') }}">BUMDES</a></li>
                         </ul>
 
                         <span class="arrow-main-menu-m">
@@ -198,19 +199,24 @@
                     </li>
 
                     <li>
-                        <a href="{{ url('/') }}">APARATUR</a>
+                        <a href="{{ url('aparatur') }}">APARATUR</a>
                     </li>
 
                     <li>
-                        <a href="{{ url('/') }}">ANGGARAN DESA</a>
+                        <a href="{{ url('anggaran') }}">ANGGARAN DESA</a>
                     </li>
 
                     <li>
                         <a href="javascript:;">DATA PENDUDUK</a>
                         <ul class="sub-menu-m">
-                            <li><a href="#">BPD</a></li>
-                            <li><a href="#">Karang Taaruna</a></li>
-                            <li><a href="#">BUMDES</a></li>
+                            <li><a href="#">Statistik Penduduk</a></li>
+                            <li><a href="#">Penduduk Berdasarkan Umur</a></li>
+                            <li><a href="#">Pemilih Tetap</a></li>
+                            <li><a href="#">Statistik Agama</a></li>
+                            <li><a href="#">Statistik Jenis Kelamin</a></li>
+                            <li><a href="#">Statistik Pendidikan</a></li>
+                            <li><a href="#">Depeandency Rasio Menurut Usia</a></li>
+                            <li><a href="#">Statistik Penduduk Duda atau Janda</a></li>
                         </ul>
 
                         <span class="arrow-main-menu-m">
@@ -219,26 +225,28 @@
                     </li>
 
                     <li>
-                        <a href="{{ url('/') }}">GALERI</a>
+                        <a href="{{ url('galeri') }}">GALERI</a>
                     </li>
 
                     <li>
-                        <a href="{{ url('/') }}">AGENDA</a>
+                        <a href="{{ url('agenda') }}">AGENDA</a>
                     </li>
 
                     <li>
-                        <a href="{{ url('/') }}">DOWNLOAD</a>
+                        <a href="{{ url('file-download') }}">DOWNLOAD</a>
                     </li>
 
                     <li>
                         <a href="javascript:;">INFORMASI</a>
                         <ul class="sub-menu-m">
-                            <li><a href="#">Potensi Desa</a></li>
-                            <li><a href="#">Program Desa</a></li>
-                            <li><a href="#">Bumdes</a></li>
-                            <li><a href="#">Berita Desa</a></li>
-                            <li><a href="#">Lembaga Desa</a></li>
-                            <li><a href="#">Semua Post</a></li>
+                            <li><a href="{{ url('postingan/berita-desa') }}">Berita Desa</a></li>
+                            <li><a href="{{ url('postingan/artikel') }}">Artikel</a></li>
+                            <li><a href="{{ url('postingan/potensi-desa') }}">Potensi Desa</a></li>
+                            <li><a href="{{ url('postingan/program-desa') }}">Program Desa</a></li>
+                            <li><a href="{{ url('postingan/bumdes') }}">Bumdes</a></li>
+                            <li><a href="{{ url('postingan/produk-hukum') }}">Produk Hukum</a></li>
+                            <li><a href="{{ url('postingan/lembaga-desa') }}">Lembaga Desa</a></li>
+                            <li><a href="{{ url('postingan/semua-post') }}">Semua Post</a></li>
                         </ul>
 
                         <span class="arrow-main-menu-m">
