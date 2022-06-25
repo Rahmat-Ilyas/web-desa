@@ -661,7 +661,7 @@
                             <p>Silahkan menghubungi kami melalui private message pada form dibawah ini. Sampaikan informasi,
                                 konsultasi, laporan anda kepada kami untuk menigkatkan layanan.</p>
                             <div class="row mt-4">
-                                <div class="col-sm-5">
+                                <div class="col-sm-5 mb-5">
                                     <div class="d-flex align-items-center mb-3">
                                         <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-dark"
                                             style="width: 50px; height: 50px;">
