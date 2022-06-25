@@ -349,9 +349,9 @@ class AdminController extends Controller
             return redirect('admin-access/postingan/postingan')->with('success', 'Postingan berhasil dihapus');
         } else if ($target == 'foto_informasi') {
             $data = FotoInformasi::where('jenis', $id)->first();
+            File::delete(public_path("/images/foto_informasi/" . $data->foto));
             $data->foto = '';
             $data->save();
-            File::delete(public_path("/images/foto_informasi/" . $data->foto));
 
             return back()->with('success', 'Desain ' . $id . ' berhasil dihapus');
         }

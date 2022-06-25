@@ -29,6 +29,7 @@ Route::get('/file-download', [LandingController::class, 'file']);
 Route::get('/file-download/{file}', [LandingController::class, 'file_download']);
 Route::get('/postingan/{kategori}', [LandingController::class, 'postingan']);
 Route::get('/post/{slug}', [LandingController::class, 'postingan_detail']);
+Route::get('/postingan/tag/{tag}', [LandingController::class, 'get_tag']);
 Route::get('/kontak', [LandingController::class, 'kontak']);
 Route::post('/kontak', [LandingController::class, 'kontak_store']);
 

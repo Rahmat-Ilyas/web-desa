@@ -161,7 +161,7 @@
                 </div>
 
                 <div class="p-l-10 p-rl-0-sr991 p-b-20">
-                    <!-- Video -->
+                    <!-- Sosial Media -->
                     <div class="p-b-55">
                         <div class="how2 how2-cl4 flex-s-c m-b-20">
                             <h3 class="f1-m-2 cl3 tab01-title">

@@ -122,6 +122,8 @@ class LandingController extends Controller
 
     public function postingan($kategori)
     {
+        if ($kategori == 'tags') return view('landing/postingan/tags');
+
         $kat_permission = ['berita-desa', 'artikel', 'potensi-desa', 'program-desa', 'bumdes', 'produk-hukum', 'lembaga-desa', 'semua-post'];
         if (!in_array($kategori, $kat_permission)) abort('404');
 
@@ -139,6 +141,13 @@ class LandingController extends Controller
             return view('landing/postingan/detail-postingan', compact('post'));
         }
         abort('404');
+    }
+
+    public function get_tag($tag)
+    {
+        $tag = str_replace('-', ' ', $tag);
+        $title = ucwords($tag);
+        return view('landing/postingan/tags-post', compact('title', 'tag'));
     }
 
     public function kontak()

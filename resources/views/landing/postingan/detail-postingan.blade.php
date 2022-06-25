@@ -92,7 +92,7 @@
 
                             <div class="flex-wr-s-s m-rl--5">
                                 @foreach ($tags as $tag)
-                                    <a href="#"
+                                    <a href="{{ url('postingan/tag/' . str_replace(' ', '-', $tag)) }}"
                                         class="flex-c-c size-s-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
                                         {{ $tag }}
                                     </a>
