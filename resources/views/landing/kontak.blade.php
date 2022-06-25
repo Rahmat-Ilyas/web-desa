@@ -238,7 +238,7 @@
 
 @section('javascript')
     <script>
-        $('#nav-homes').addClass('main-menu-active');
+        $('#nav-home').addClass('main-menu-active');
         $(document).find('title').text('Kontak - Desa Rante Angin')
     </script>
 @endsection

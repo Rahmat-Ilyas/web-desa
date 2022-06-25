@@ -822,7 +822,7 @@
 @section('javascript')
     <script>
         $(document).ready(function () {
-            $('#nav-homes').addClass('main-menu-active');
+            $('#nav-home').addClass('main-menu-active');
         });
     </script>
 @endsection

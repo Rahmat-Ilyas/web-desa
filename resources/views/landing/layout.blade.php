@@ -163,11 +163,11 @@
                 </ul>
 
                 <ul class="main-menu-m">
-                    <li id="nav-home">
+                    <li>
                         <a href="{{ url('/') }}">HOME</a>
                     </li>
 
-                    <li id="nav-profil">
+                    <li>
                         <a href="#">PROFIL</a>
                         <ul class="sub-menu-m">
                             <li><a href="{{ url('profil/sambutan-kepala-desa') }}">Sambutan Kepala Desa</a>
@@ -277,7 +277,7 @@
                     <!-- Menu desktop -->
                     <nav class="menu-desktop">
                         <ul class="main-menu">
-                            <li id="nav-homes">
+                            <li id="nav-home">
                                 <a href="{{ url('/') }}">HOME</a>
                             </li>
 
