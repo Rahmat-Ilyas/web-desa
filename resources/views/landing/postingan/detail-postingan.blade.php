@@ -12,43 +12,6 @@
     $tags = explode(',', $post->tags);
     @endphp
     <!-- Breadcrumb -->
-    <style>
-        .content-post h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            line-height: 1.2;
-            color: #333;
-        }
-
-        .content-post h1 {
-            font-size: 2.25rem;
-        }
-
-        .content-post h2 {
-            font-size: 1.875rem;
-        }
-
-        .content-post h3 {
-            font-size: 1.5rem;
-        }
-
-        .content-post h4 {
-            font-size: 1.125rem;
-        }
-
-        .content-post h5 {
-            font-size: 1rem;
-        }
-
-        .content-post h6 {
-            font-size: 0.875rem;
-        }
-    </style>
     <div class="container">
         <div class="headline bg0 flex-wr-sb-c p-tb-8">
             <div class="f2-s-1 p-r-30 m-tb-6">

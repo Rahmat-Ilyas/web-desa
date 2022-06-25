@@ -24,7 +24,7 @@
             </div>
 
             @include('landing.search')
-            
+
         </div>
     </div>
 
@@ -63,11 +63,14 @@
 
                         <div>
                             @if ($data->konten)
-                                {!! $data->konten !!}
+                                <div class="content-post">
+                                    {!! $data->konten !!}
+                                </div>
                             @else
                                 <div class="row">
                                     <div class="col-sm-1 pr-0 pt-2 pl-4">
-                                        <h2 class="f1-l-2 text-center"><i class="fa fa-info-circle fa-lg text-info"></i></h2>
+                                        <h2 class="f1-l-2 text-center"><i class="fa fa-info-circle fa-lg text-info"></i>
+                                        </h2>
                                     </div>
                                     <div class="col-sm-11">
                                         <h2 class="f1-l-2"><b>Maaf, Belum ada artikel yang ditulis di halaman ini.</b></h2>
@@ -138,6 +141,8 @@
 @section('javascript')
     <script>
         $(document).find('.note-float-left').addClass('mr-2');
+        $('.content-post').find('p, span').addClass('f1-s-11 cl6 p-b-25').removeAttr('style');
+        $('.content-post').find('h1, h2, h3, h4, h5, h6').removeAttr('style');
         @if ($lembaga)
             $('#nav-lembaga').addClass('main-menu-active');
         @else

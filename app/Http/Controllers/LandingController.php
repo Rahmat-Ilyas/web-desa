@@ -11,6 +11,7 @@ use App\Models\Galeri;
 use App\Models\KontenGaleri;
 use App\Models\Files;
 use App\Models\Postingan;
+use App\Models\Pesan;
 
 class LandingController extends Controller
 {
@@ -119,11 +120,6 @@ class LandingController extends Controller
         return response()->download($myFile);
     }
 
-    public function kontak()
-    {
-        return view('landing/kontak');
-    }
-
     public function postingan($kategori)
     {
         $kat_permission = ['berita-desa', 'artikel', 'potensi-desa', 'program-desa', 'bumdes', 'produk-hukum', 'lembaga-desa', 'semua-post'];
@@ -143,5 +139,18 @@ class LandingController extends Controller
             return view('landing/postingan/detail-postingan', compact('post'));
         }
         abort('404');
+    }
+
+    public function kontak()
+    {
+        return view('landing/kontak');
+    }
+
+    public function kontak_store(Request $request)
+    {
+        $data = $request->all();
+        $data['status'] = 'new';
+        Pesan::create($data);
+        return back()->with('success', 'Pesan anda berhasil di kirim');
     }
 }

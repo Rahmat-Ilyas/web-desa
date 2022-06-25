@@ -28,6 +28,10 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/main.css') }}">
     <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/costume.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="{{ asset('assets_/vendor/toastr/css/toastr.min.css') }}">
+    <!--===============================================================================================-->
 </head>
 
 <body class="animsition">
@@ -273,7 +277,7 @@
                     <!-- Menu desktop -->
                     <nav class="menu-desktop">
                         <ul class="main-menu">
-                            <li id="nav-home">
+                            <li id="nav-homes">
                                 <a href="{{ url('/') }}">HOME</a>
                             </li>
 
@@ -546,9 +550,22 @@
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <!--===============================================================================================-->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('assets_/vendor/toastr/js/toastr.min.js') }}"></script>
 
     @yield('javascript')
     @yield('javascript-side')
+
+    <script>
+        @if (session('success'))
+            toastr.success('{{ session('success') }}.', "Berhasil");
+        @endif
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                toastr.error('{{ $error }}.', "Gagal");
+            @endforeach
+        @endif
+    </script>
 
 </body>
 

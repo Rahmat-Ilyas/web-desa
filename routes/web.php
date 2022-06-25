@@ -29,6 +29,8 @@ Route::get('/file-download', [LandingController::class, 'file']);
 Route::get('/file-download/{file}', [LandingController::class, 'file_download']);
 Route::get('/postingan/{kategori}', [LandingController::class, 'postingan']);
 Route::get('/post/{slug}', [LandingController::class, 'postingan_detail']);
+Route::get('/kontak', [LandingController::class, 'kontak']);
+Route::post('/kontak', [LandingController::class, 'kontak_store']);
 
 Route::get('admin-access/', [AdminController::class, 'home']);
 Route::group(['prefix' => 'admin-access'], function () {
