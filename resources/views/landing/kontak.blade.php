@@ -36,7 +36,7 @@
                             Hubungi Kami
                         </h3>
                         <hr>
-                        <div class="row p-t-20">
+                        <div class="row p-t-20 m-b-50 p-b-50">
                             <div class="col-md-12">
                                 <p>Silahkan menghubungi kami melalui private message pada form dibawah ini. Sampaikan
                                     informasi,
@@ -82,13 +82,13 @@
                                             <form method="post" action="{{ url('kontak') }}">
                                                 @csrf
                                                 <input class="bo-1-rad-3 bocl13 size-a-19 f1-s-13 cl5 plh6 p-rl-18 m-b-15"
-                                                    type="text" name="nama" placeholder="Nama*" required="">
+                                                    type="text" name="nama" placeholder="Nama" required="">
 
                                                 <input class="bo-1-rad-3 bocl13 size-a-19 f1-s-13 cl5 plh6 p-rl-18 m-b-15"
-                                                    type="email" name="email" placeholder="Email*" required="">
+                                                    type="email" name="email" placeholder="Email" required="">
 
                                                 <input class="bo-1-rad-3 bocl13 size-a-19 f1-s-13 cl5 plh6 p-rl-18 m-b-15"
-                                                    type="text" name="subjek" placeholder="Subjek">
+                                                    type="text" name="subjek" placeholder="Subjek" required="">
 
                                                 <textarea class="bo-1-rad-3 bocl13 size-a-15 f1-s-13 cl5 plh6 p-rl-18 p-tb-14 m-b-10" name="pesan"
                                                     placeholder="Masukkan pesan anda" required=""></textarea>
