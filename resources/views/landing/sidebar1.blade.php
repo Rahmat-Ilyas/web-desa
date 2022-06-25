@@ -153,6 +153,12 @@ $berita_terkini = $postingan
 
         <div class="p-t-20">
             <div id="container-cal" class="calendar-container"></div>
+            <div class="text-right">
+            <a href="{{ url('agenda') }}" class="f1-s-1 cl9 hov-cl10 trans-03">
+                Lihat Agenda
+                <i class="m-l-2 fa fa-long-arrow-alt-right"></i>
+            </a>
+        </div>
         </div>
     </div>
 </div>
