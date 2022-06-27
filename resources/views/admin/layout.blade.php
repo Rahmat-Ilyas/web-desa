@@ -58,7 +58,7 @@ $pesan = $data->where('status', 'new')->get();
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="{{ url('/') }}" class="brand-logo">
+            <a href="{{ url('/admin-access') }}" class="brand-logo">
                 <img class="logo-abbr" height="60" style="min-width: 50px;"
                     src="{{ asset('assets/images/icons/logo.png') }}" alt="">
                 <span class="brand-title" style="min-width: 100%;">DESA<br>RANTE ANGIN</span>
