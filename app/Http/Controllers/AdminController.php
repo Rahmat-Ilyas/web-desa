@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Agenda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
@@ -16,6 +15,9 @@ use App\Models\KontenGaleri;
 use App\Models\Files;
 use App\Models\FotoInformasi;
 use App\Models\Postingan;
+use App\Models\Agenda;
+use App\Models\Admin;
+use App\Models\Pesan;
 
 class AdminController extends Controller
 {
@@ -151,6 +153,20 @@ class AdminController extends Controller
 
             Postingan::create($data);
             return redirect('admin-access/postingan/postingan')->with('success', 'Postingan baru berhasil ditambahkan');
+        } else if ($target == 'akun') {
+            $this->validate($request, [
+                'username' => 'unique:admin',
+            ]);
+            $data = $request->all();
+            $data['role'] = 'admin';
+            $data['password'] = bcrypt($request->username);
+            Admin::create($data);
+
+            return back()->with('success', 'Akun Akses baru berhasil ditambahkan');
+        } else if ($target == 'pesan') {
+            // Kirim Pesan Disini
+
+            return back()->with('success', 'Berhasil membalas pesan ke ' . $request->email);
         }
     }
 
@@ -304,6 +320,25 @@ class AdminController extends Controller
             } else {
                 return back()->with('error', 'Terjadi kesalahan');
             }
+        } else if ($target == 'akun') {
+            $akun = Admin::where('id', $request->id)->first();
+
+            $cek_uname = Admin::where('username', $request->username)->where('id', '!=', $request->id)->first();
+            if ($cek_uname) {
+                return redirect()->back()->withErrors(['error' => ['Username yang anda masukkan telah terdaftar']]);
+            }
+
+            if ($request->password == '') $except = ['_token', 'id', 'password'];
+            else {
+                $except = ['_token', 'id'];
+                $request['password'] = bcrypt($request->password);
+            }
+            foreach ($request->except($except) as $key => $data) {
+                $akun->$key = $data;
+            }
+            $akun->save();
+
+            return back()->with('success', 'Data akun berhasil diupdate');
         }
     }
 
@@ -354,6 +389,16 @@ class AdminController extends Controller
             $data->save();
 
             return back()->with('success', 'Desain ' . $id . ' berhasil dihapus');
+        } else if ($target == 'akun') {
+            $data = Admin::where('id', $id)->first();
+            $data->delete();
+
+            return back()->with('success', 'Data akun berhasil dihapus');
+        } else if ($target == 'pesan') {
+            $data = Pesan::where('id', $id)->first();
+            $data->delete();
+
+            return back()->with('success', 'Pesan berhasil dihapus');
         }
     }
 
