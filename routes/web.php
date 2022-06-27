@@ -25,6 +25,7 @@ Route::get('/anggaran', [LandingController::class, 'anggaran']);
 Route::get('/galeri', [LandingController::class, 'galeri']);
 Route::get('/galeri/{uid}', [LandingController::class, 'galeri_detail']);
 Route::get('/agenda', [LandingController::class, 'agenda']);
+Route::get('/data-penduduk/{kategori}', [LandingController::class, 'data_penduduk']);
 Route::get('/file-download', [LandingController::class, 'file']);
 Route::get('/file-download/{file}', [LandingController::class, 'file_download']);
 Route::get('/postingan/{kategori}', [LandingController::class, 'postingan']);
@@ -32,6 +33,7 @@ Route::get('/post/{slug}', [LandingController::class, 'postingan_detail']);
 Route::get('/postingan/tag/{tag}', [LandingController::class, 'get_tag']);
 Route::get('/kontak', [LandingController::class, 'kontak']);
 Route::post('/kontak', [LandingController::class, 'kontak_store']);
+Route::get('/search', [LandingController::class, 'search']);
 
 Route::get('admin-access/', [AdminController::class, 'home']);
 Route::group(['prefix' => 'admin-access'], function () {

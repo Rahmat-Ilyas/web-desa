@@ -106,6 +106,11 @@ class LandingController extends Controller
         return view('landing/agenda');
     }
 
+    public function data_penduduk($kategori)
+    {
+        return view('landing/data-penduduk');
+    }
+
     public function file()
     {
         return view('landing/file');
@@ -161,5 +166,10 @@ class LandingController extends Controller
         $data['status'] = 'new';
         Pesan::create($data);
         return back()->with('success', 'Pesan anda berhasil di kirim');
+    }
+
+    public function search()
+    {
+        return view('landing/search-result');
     }
 }

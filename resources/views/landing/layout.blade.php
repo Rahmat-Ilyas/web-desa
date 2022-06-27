@@ -1,3 +1,14 @@
+@php
+// Postingan
+$postingan = new App\Models\Postingan();
+
+// Galeri
+$get_galeri = new App\Models\Galeri();
+$galeri = $get_galeri
+    ->orderBy('id', 'desc')
+    ->limit(4)
+    ->get();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -96,10 +107,12 @@
                 <div class="logo-mobile">
                     <a href="{{ url('/') }}"><img src="{{ asset('assets/images/icons/logo.png') }}"
                             style="min-height: 50px;" alt="IMG-LOGO"></a>
-                    <h5 class="text-dark ml-5 mt-1 cl2 how-txt2" style="font-size: 18px; margin-bottom: -5px;">&nbsp;DESA RANTE ANGIN
+                    <h5 class="text-dark ml-5 mt-1 cl2 how-txt2" style="font-size: 18px; margin-bottom: -5px;">
+                        &nbsp;DESA RANTE ANGIN
                     </h5>
                     <div>
-                        <small class="ml-5 f1-s-3 cl2 how-txt2">&nbsp;&nbsp;Kecamatan Towuti, Kabupaten Luwu Timur</small>
+                        <small class="ml-5 f1-s-3 cl2 how-txt2">&nbsp;&nbsp;Kecamatan Towuti, Kabupaten Luwu
+                            Timur</small>
                     </div>
                 </div>
 
@@ -209,14 +222,14 @@
                     <li>
                         <a href="javascript:;">DATA PENDUDUK</a>
                         <ul class="sub-menu-m">
-                            <li><a href="#">Statistik Penduduk</a></li>
-                            <li><a href="#">Penduduk Berdasarkan Umur</a></li>
-                            <li><a href="#">Pemilih Tetap</a></li>
-                            <li><a href="#">Statistik Agama</a></li>
-                            <li><a href="#">Statistik Jenis Kelamin</a></li>
-                            <li><a href="#">Statistik Pendidikan</a></li>
-                            <li><a href="#">Depeandency Rasio Menurut Usia</a></li>
-                            <li><a href="#">Statistik Penduduk Duda atau Janda</a></li>
+                            <li><a href="{{ url('data-penduduk/statistik-penduduk') }}">Statistik Penduduk</a></li>
+                            <li><a href="{{ url('data-penduduk/berdasarkan-umur') }}">Penduduk Berdasarkan Umur</a></li>
+                            <li><a href="{{ url('data-penduduk/pemilih-tetap') }}">Pemilih Tetap</a></li>
+                            <li><a href="{{ url('data-penduduk/agama') }}">Statistik Agama</a></li>
+                            <li><a href="{{ url('data-penduduk/jenis-kelamin') }}">Statistik Jenis Kelamin</a></li>
+                            <li><a href="{{ url('data-penduduk/pendidikan') }}">Statistik Pendidikan</a></li>
+                            <li><a href="{{ url('data-penduduk/umur') }}">Depeandency Rasio Menurut Usia</a></li>
+                            <li><a href="{{ url('data-penduduk/status') }}">Statistik Penduduk Duda atau Janda</a></li>
                         </ul>
 
                         <span class="arrow-main-menu-m">
@@ -260,10 +273,10 @@
             <div class="wrap-logo container p-0">
                 <!-- Logo desktop -->
                 <div class="logo">
-                    <a href="#"><img src="{{ asset('assets/images/icons/logo.png') }}" alt="LOGO"
-                            height="100" width="95"></a>
+                    <a href="#"><img src="{{ asset('assets/images/icons/logo.png') }}"
+                            alt="LOGO DESA RANTE ANGIN" height="100" width="95"></a>
                     {{-- <h2 class="text-dark ml-2 mt-0"><b>SELAMAT DATANG</b></h2> --}}
-                    <div class="ml-2">
+                    <div class="ml-4">
                         <h5 class="text-dark" style="font-size: 18px"><b>DESA RANTE ANGIN</b></h5>
                         <div class="mt-2">
                             <span class="text-dark"><a href="#">https://www.desa-ranteangin.com</a></span><br>
@@ -275,7 +288,7 @@
 
                 <!-- Banner -->
                 <div class="banner-header">
-                    {{-- <a href="#"><img src="{{ asset('assets/images/banner-01.jpg') }}" alt="IMG"></a> --}}
+                    {{-- <a href="#"><img src="{{ asset('assets/images/banner-01.jpg') }}" alt="Logo Desa Rante Angin"></a> --}}
                 </div>
             </div>
 
@@ -322,14 +335,14 @@
                             <li class="drop-menu">
                                 <a href="#">DATA PENDUDUK</a>
                                 <ul class="sub-menu">
-                                    <li><a href="#">Statistik Penduduk</a></li>
-                                    <li><a href="#">Penduduk Berdasarkan Umur</a></li>
-                                    <li><a href="#">Pemilih Tetap</a></li>
-                                    <li><a href="#">Statistik Agama</a></li>
-                                    <li><a href="#">Statistik Jenis Kelamin</a></li>
-                                    <li><a href="#">Statistik Pendidikan</a></li>
-                                    <li><a href="#">Depeandency Rasio Menurut Usia</a></li>
-                                    <li><a href="#">Statistik Penduduk Duda atau Janda</a></li>
+                                    <li><a href="{{ url('data-penduduk/statistik-penduduk') }}">Statistik Penduduk</a></li>
+                                    <li><a href="{{ url('data-penduduk/berdasarkan-umur') }}">Penduduk Berdasarkan Umur</a></li>
+                                    <li><a href="{{ url('data-penduduk/pemilih-tetap') }}">Pemilih Tetap</a></li>
+                                    <li><a href="{{ url('data-penduduk/agama') }}">Statistik Agama</a></li>
+                                    <li><a href="{{ url('data-penduduk/jenis-kelamin') }}">Statistik Jenis Kelamin</a></li>
+                                    <li><a href="{{ url('data-penduduk/pendidikan') }}">Statistik Pendidikan</a></li>
+                                    <li><a href="{{ url('data-penduduk/umur') }}">Depeandency Rasio Menurut Usia</a></li>
+                                    <li><a href="{{ url('data-penduduk/status') }}">Statistik Penduduk Duda atau Janda</a></li>
                                 </ul>
                             </li>
 
@@ -375,21 +388,28 @@
                 <div class="row">
                     <div class="col-lg-4 p-b-20">
                         <div class="size-h-3 flex-s-c">
-                            <a href="index.html">
-                                <img class="max-s-full" src="{{ asset('assets/images/icons/logo-02.png') }}"
-                                    alt="LOGO">
+                            <a href="{{ url('/') }}">
+                                <img class="max-s-full" src="{{ asset('assets/images/icons/logo.png') }}"
+                                    alt="LOGO DESA RANTE ANGIN">
                             </a>
+                            <span class="f1-l-2 text-white ml-3">
+                                <b>
+                                    <span class="text-danger">DESA RANTE ANGIN</span> <br>
+                                </b>
+                                <span>LUWU TIMUR</span>
+                            </span>
                         </div>
 
                         <div>
-                            <p class="f1-s-1 cl11 p-b-16">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tempor magna eget
-                                elit efficitur, at accumsan sem placerat. Nulla tellus libero, mattis nec molestie at,
-                                facilisis ut turpis. Vestibulum dolor metus, tincidunt eget odio
+                            <p class="mt-2 f1-s-1 cl11 p-b-16">
+                                Desa Rante Angin adalah desa yang terletak di Kecamatan Towuti, Kabupaten Luwu Timur,
+                                Sulawesi Selatan, Indonesia, Pos 92983.
                             </p>
 
                             <p class="f1-s-1 cl11 p-b-16">
-                                Any questions? Call us on (+1) 96 716 6879
+                                Silahkan hubungi kami di:<br>
+                                <i class="fa fa-phone"></i>&nbsp; +6285-3333-41194<br>
+                                <i class="fa fa-envelope-open"></i>&nbsp; kontak@desa-ranteangin.com<br>
                             </p>
 
                             <div class="p-t-15">
@@ -402,11 +422,7 @@
                                 </a>
 
                                 <a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
-                                    <span class="fab fa-pinterest-p"></span>
-                                </a>
-
-                                <a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
-                                    <span class="fab fa-vimeo-v"></span>
+                                    <span class="fab fa-instagram"></span>
                                 </a>
 
                                 <a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
@@ -419,102 +435,132 @@
                     <div class="col-sm-6 col-lg-4 p-b-20">
                         <div class="size-h-3 flex-s-c">
                             <h5 class="f1-m-7 cl0">
-                                Popular Posts
+                                Galeri Desa
                             </h5>
                         </div>
 
                         <ul>
-                            <li class="flex-wr-sb-s p-b-20">
-                                <a href="#" class="size-w-4 wrap-pic-w hov1 trans-03">
-                                    <img src="{{ asset('assets/images/popular-post-01.jpg') }}" alt="IMG">
-                                </a>
+                            @foreach ($galeri as $i => $dta)
+                                <li class="flex-wr-sb-s p-tb-10 how-bor1">
+                                    <a href="{{ url('galeri/' . strtolower(str_replace(' ', '-', $dta->judul) . '-uid0' . $dta->id)) }}"
+                                        class="size-w-4 wrap-pic-w hov1 trans-03 w-full-sr575 m-b-25">
+                                        <div class="bg-img1 how1 pos-relative"
+                                            style="background-image: url({{ asset('images/galeri/' . $dta->konten_galeri[0]->foto) }}); height: 50px;">
+                                        </div>
+                                    </a>
 
-                                <div class="size-w-5">
-                                    <h6 class="p-b-5">
-                                        <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03">
-                                            Donec metus orci, malesuada et lectus vitae
-                                        </a>
-                                    </h6>
+                                    <div class="size-w-5">
+                                        <h6 class="p-b-5">
+                                            <a href="{{ url('galeri/' . strtolower(str_replace(' ', '-', $dta->judul) . '-uid0' . $dta->id)) }}" class="f1-s-5 cl11 hov-cl10 trans-03">
+                                                {{ $dta->judul }}
+                                            </a>
+                                        </h6>
 
-                                    <span class="f1-s-3 cl6">
-                                        Feb 17
-                                    </span>
-                                </div>
-                            </li>
-
-                            <li class="flex-wr-sb-s p-b-20">
-                                <a href="#" class="size-w-4 wrap-pic-w hov1 trans-03">
-                                    <img src="{{ asset('assets/images/popular-post-02.jpg') }}" alt="IMG">
-                                </a>
-
-                                <div class="size-w-5">
-                                    <h6 class="p-b-5">
-                                        <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03">
-                                            Lorem ipsum dolor sit amet, consectetur
-                                        </a>
-                                    </h6>
-
-                                    <span class="f1-s-3 cl6">
-                                        Feb 16
-                                    </span>
-                                </div>
-                            </li>
-
-                            <li class="flex-wr-sb-s p-b-20">
-                                <a href="#" class="size-w-4 wrap-pic-w hov1 trans-03">
-                                    <img src="{{ asset('assets/images/popular-post-03.jpg') }}" alt="IMG">
-                                </a>
-
-                                <div class="size-w-5">
-                                    <h6 class="p-b-5">
-                                        <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03">
-                                            Suspendisse dictum enim quis imperdiet auctor
-                                        </a>
-                                    </h6>
-
-                                    <span class="f1-s-3 cl6">
-                                        Feb 15
-                                    </span>
-                                </div>
-                            </li>
+                                        <span class="f1-s-3 cl6">
+                                            {{ count($dta->konten_galeri) }} Gambar
+                                        </span>
+                                    </div>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
 
                     <div class="col-sm-6 col-lg-4 p-b-20">
                         <div class="size-h-3 flex-s-c">
                             <h5 class="f1-m-7 cl0">
-                                Category
+                                Kategori
                             </h5>
                         </div>
 
                         <ul class="m-t--12">
                             <li class="how-bor1 p-rl-5 p-tb-10">
-                                <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
-                                    Fashion (22)
+                                <a href="{{ url('postingan/berita-desa') }}"
+                                    class="flex-wr-sb-c f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+                                    <span>
+                                        Berita Desa
+                                    </span>
+
+                                    <span>
+                                        ({{ count($postingan->where('kategori', 'Berita')->get()) }})
+                                    </span>
                                 </a>
                             </li>
 
                             <li class="how-bor1 p-rl-5 p-tb-10">
-                                <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
-                                    Technology (29)
+                                <a href="{{ url('postingan/artikel') }}"
+                                    class="flex-wr-sb-c f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+                                    <span>
+                                        Artikel
+                                    </span>
+
+                                    <span>
+                                        ({{ count($postingan->where('kategori', 'Artikel')->get()) }})
+                                    </span>
                                 </a>
                             </li>
 
                             <li class="how-bor1 p-rl-5 p-tb-10">
-                                <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
-                                    Street Style (15)
+                                <a href="{{ url('postingan/potensi-desa') }}"
+                                    class="flex-wr-sb-c f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+                                    <span>
+                                        Potensi Desa
+                                    </span>
+
+                                    <span>
+                                        ({{ count($postingan->where('kategori', 'Potensi Desa')->get()) }})
+                                    </span>
                                 </a>
                             </li>
 
                             <li class="how-bor1 p-rl-5 p-tb-10">
-                                <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
-                                    Life Style (28)
+                                <a href="{{ url('postingan/program-desa') }}"
+                                    class="flex-wr-sb-c f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+                                    <span>
+                                        Program Desa
+                                    </span>
+
+                                    <span>
+                                        ({{ count($postingan->where('kategori', 'Program Desa')->get()) }})
+                                    </span>
                                 </a>
                             </li>
 
                             <li class="how-bor1 p-rl-5 p-tb-10">
-                                <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
-                                    DIY & Crafts (16)
+                                <a href="{{ url('postingan/bumdes') }}"
+                                    class="flex-wr-sb-c f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+                                    <span>
+                                        Bumdes
+                                    </span>
+
+                                    <span>
+                                        ({{ count($postingan->where('kategori', 'Bumdes')->get()) }})
+                                    </span>
+                                </a>
+                            </li>
+
+                            <li class="how-bor1 p-rl-5 p-tb-10">
+                                <a href="{{ url('postingan/produk-hukum') }}"
+                                    class="flex-wr-sb-c f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+                                    <span>
+                                        Produk Hukum
+                                    </span>
+
+                                    <span>
+                                        ({{ count($postingan->where('kategori', 'Produk Hukum')->get()) }})
+                                    </span>
+                                </a>
+                            </li>
+
+                            <li class="how-bor1 p-rl-5 p-tb-10">
+                                <a href="{{ url('postingan/lembaga-desa') }}"
+                                    class="flex-wr-sb-c f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+                                    <span>
+                                        Lembaga Desa
+                                    </span>
+
+                                    <span>
+                                        ({{ count($postingan->where('kategori', 'Lembaga Desa')->get()) }})
+                                    </span>
                                 </a>
                             </li>
                         </ul>
@@ -526,17 +572,8 @@
         <div class="bg11">
             <div class="container size-h-4 flex-c-c p-tb-15">
                 <span class="f1-s-1 cl0 txt-center">
-                    Copyright © 2018
-
-                    <a href="#" class="f1-s-1 cl10 hov-link1">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;
-                        <script>
-                            document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i
-                            class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                            target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright © {{ date('Y') }} Desa Rante Angin, All Right Reserved. Develop by <a
+                        href="#">Doreka Studio</a>
                 </span>
             </div>
         </div>

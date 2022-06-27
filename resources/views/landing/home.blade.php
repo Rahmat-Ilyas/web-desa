@@ -36,6 +36,8 @@
         ->limit(5)
         ->get();
     $galeri_first = $get_galeri->orderBy('id', 'desc')->first();
+
+    // Informasi 
     $foto_info = new App\Models\FotoInformasi();
     $foto_anggaran = $foto_info->where('jenis', 'anggaran')->first();
     $foto_struktur = $foto_info->where('jenis', 'struktur_pemdes')->first();
