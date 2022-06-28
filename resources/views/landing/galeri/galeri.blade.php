@@ -1,7 +1,7 @@
 @extends('landing.layout')
 @section('content')
     @php
-    $galeri = new App\Models\galeri();
+    $galeri = new App\Models\Galeri();
     $data = $galeri->orderBy('id', 'desc')->get();
     @endphp
     <!-- Breadcrumb -->
