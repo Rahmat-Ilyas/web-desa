@@ -16,6 +16,7 @@ use App\Models\Files;
 use App\Models\FotoInformasi;
 use App\Models\Postingan;
 use App\Models\Agenda;
+use App\Models\Penduduk;
 use App\Models\Admin;
 use App\Models\Pesan;
 
@@ -153,6 +154,15 @@ class AdminController extends Controller
 
             Postingan::create($data);
             return redirect('admin-access/postingan/postingan')->with('success', 'Postingan baru berhasil ditambahkan');
+        } else if ($target == 'penduduk') {
+            $request->validate([
+                'nik' => 'unique:data_penduduk',
+            ]);
+
+            $data = $request->all();
+            Penduduk::create($data);
+
+            return back()->with('success', 'Data Penduduk baru berhasil ditambahkan');
         } else if ($target == 'akun') {
             $this->validate($request, [
                 'username' => 'unique:admin',
@@ -320,6 +330,21 @@ class AdminController extends Controller
             } else {
                 return back()->with('error', 'Terjadi kesalahan');
             }
+        } else if ($target == 'penduduk') {
+            $cek_nik = Penduduk::where('nik', $request->nik)->where('id', '!=', $request->id)->first();
+            if ($cek_nik) {
+                return redirect()->back()->withErrors(['error' => ['NIK yang anda masukkan telah terdaftar']]);
+            }
+
+            $penduduk = Penduduk::where('id', $request->id)->first();
+            $except = ['_token', 'id'];
+
+            foreach ($request->except($except) as $key => $data) {
+                $penduduk->$key = $data;
+            }
+            $penduduk->save();
+
+            return back()->with('success', 'Data Penduduk berhasil diupdate');
         } else if ($target == 'akun') {
             $akun = Admin::where('id', $request->id)->first();
 

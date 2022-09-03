@@ -276,7 +276,7 @@ $pesan = $data->where('status', 'new')->get();
                                 <div class="col-sm-9">
                                     <input type="text" name="password" class="form-control"
                                         placeholder="Password.." autocomplete="off">
-                                    <span class="text-info">Note: Biarkan losong jika tidak diganti</span>
+                                    <span class="text-info">Note: Biarkan kosong jika tidak diganti</span>
                                 </div>
                             </div>
                             <div class="form-group row">
