@@ -44,6 +44,7 @@ Route::group(['prefix' => 'admin-access'], function () {
 
     Route::post('/config', [AdminController::class, 'config']);
     Route::get('/config/datatable', [AdminController::class, 'datatable']);
+    Route::post('/import/{target}', [AdminController::class, 'import_file']);
     Route::post('/store/{target}', [AdminController::class, 'store']);
     Route::post('/update/{target}', [AdminController::class, 'update']);
     Route::get('/delete/{target}/{id}', [AdminController::class, 'delete']);

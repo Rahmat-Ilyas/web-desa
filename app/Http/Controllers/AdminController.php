@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\File;
 
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\HeadingRowImport;
+use App\Imports\PendudukImport;
+
 use App\Models\Informasi;
 use App\Models\Aparatur;
 use App\Models\Apbdes;
@@ -156,7 +160,7 @@ class AdminController extends Controller
             return redirect('admin-access/postingan/postingan')->with('success', 'Postingan baru berhasil ditambahkan');
         } else if ($target == 'penduduk') {
             $request->validate([
-                'nik' => 'unique:data_penduduk',
+                'nik' => 'unique:data_penduduk|min:16|max:16',
             ]);
 
             $data = $request->all();
@@ -331,9 +335,12 @@ class AdminController extends Controller
                 return back()->with('error', 'Terjadi kesalahan');
             }
         } else if ($target == 'penduduk') {
+            $request->validate([
+                'nik' => 'min:16|max:16',
+            ]);
             $cek_nik = Penduduk::where('nik', $request->nik)->where('id', '!=', $request->id)->first();
             if ($cek_nik) {
-                return redirect()->back()->withErrors(['error' => ['NIK yang anda masukkan telah terdaftar']]);
+                return redirect()->back()->withErrors(['error' => ['NIK yang anda masukkan telah terdaftar']])->withInput();
             }
 
             $penduduk = Penduduk::where('id', $request->id)->first();
@@ -414,6 +421,11 @@ class AdminController extends Controller
             $data->save();
 
             return back()->with('success', 'Desain ' . $id . ' berhasil dihapus');
+        } else if ($target == 'penduduk') {
+            $data = Penduduk::where('id', $id)->first();
+            $data->delete();
+
+            return back()->with('success', 'Data penduduk berhasil dihapus');
         } else if ($target == 'akun') {
             $data = Admin::where('id', $id)->first();
             $data->delete();
@@ -429,6 +441,29 @@ class AdminController extends Controller
 
     public function config(Request $request)
     {
+    }
+
+    public function import_file(Request $request, $target)
+    {
+        if ($target == 'penduduk') {
+            $this->validate($request, [
+                'data_penduduk' => 'required|mimes:xls,xlsx'
+            ]);
+
+            $validasi_file = (new HeadingRowImport)->toArray($request->file('data_penduduk'));
+
+            if ($validasi_file[0][0][0] != 'sides1402_format_import_data_penduduk_desa_rante_angin') {
+                return redirect()->back()->withErrors(['error' => ['Format file excel tidak sesuai. Pastikan anda mendownload format yang telah disediakan']]);
+            }
+
+            $import = new PendudukImport();
+            $import->import($request->file('data_penduduk'));
+            // exit();
+
+            // dd($import);
+            return back()->with('success', 'Berhasil mengimport data penduduk (' . $import->getRowCountSuccess() . ' dari ' . $import->getRowCount() . ' total data)');
+            // return redirect('p/registrasi/mahasiswa')->with('msg', 'Import Data Mahasiswa Berhasil');
+        }
     }
 
     private function getFileSize($bytes)

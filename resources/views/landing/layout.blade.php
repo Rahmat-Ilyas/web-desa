@@ -222,14 +222,18 @@ $galeri = $get_galeri
                     <li>
                         <a href="javascript:;">DATA PENDUDUK</a>
                         <ul class="sub-menu-m">
-                            <li><a href="{{ url('data-penduduk/statistik-penduduk') }}">Statistik Penduduk</a></li>
-                            <li><a href="{{ url('data-penduduk/berdasarkan-umur') }}">Penduduk Berdasarkan Umur</a></li>
+                            <li><a href="{{ url('data-penduduk/statistik-penduduk') }}">Statistik Semua Penduduk</a>
+                            </li>
+                            <li><a href="{{ url('data-penduduk/berdasarkan-umur') }}">Penduduk Berdasarkan Umur</a>
+                            </li>
                             <li><a href="{{ url('data-penduduk/pemilih-tetap') }}">Pemilih Tetap</a></li>
                             <li><a href="{{ url('data-penduduk/agama') }}">Statistik Agama</a></li>
-                            <li><a href="{{ url('data-penduduk/jenis-kelamin') }}">Statistik Jenis Kelamin</a></li>
+                            {{-- <li><a href="{{ url('data-penduduk/jenis-kelamin') }}">Statistik Jenis Kelamin</a></li> --}}
                             <li><a href="{{ url('data-penduduk/pendidikan') }}">Statistik Pendidikan</a></li>
-                            <li><a href="{{ url('data-penduduk/umur') }}">Depeandency Rasio Menurut Usia</a></li>
-                            <li><a href="{{ url('data-penduduk/status') }}">Statistik Penduduk Duda atau Janda</a></li>
+                            <li><a href="{{ url('data-penduduk/rasio-umur') }}">Depeandency Rasio Menurut Usia</a>
+                            </li>
+                            <li><a href="{{ url('data-penduduk/status') }}">Statistik Penduduk Duda atau Janda</a>
+                            </li>
                         </ul>
 
                         <span class="arrow-main-menu-m">
@@ -332,17 +336,23 @@ $galeri = $get_galeri
                                 <a href="{{ url('anggaran') }}">ANGGARAN DESA</a>
                             </li>
 
-                            <li class="drop-menu">
+                            <li class="drop-menu" id="nav-penduduk">
                                 <a href="#">DATA PENDUDUK</a>
                                 <ul class="sub-menu">
-                                    <li><a href="{{ url('data-penduduk/statistik-penduduk') }}">Statistik Penduduk</a></li>
-                                    <li><a href="{{ url('data-penduduk/berdasarkan-umur') }}">Penduduk Berdasarkan Umur</a></li>
+                                    <li><a href="{{ url('data-penduduk/statistik-penduduk') }}">Statistik Semua
+                                            Penduduk</a>
+                                    </li>
+                                    <li><a href="{{ url('data-penduduk/berdasarkan-umur') }}">Penduduk Berdasarkan
+                                            Umur</a></li>
                                     <li><a href="{{ url('data-penduduk/pemilih-tetap') }}">Pemilih Tetap</a></li>
                                     <li><a href="{{ url('data-penduduk/agama') }}">Statistik Agama</a></li>
-                                    <li><a href="{{ url('data-penduduk/jenis-kelamin') }}">Statistik Jenis Kelamin</a></li>
+                                    {{-- <li><a href="{{ url('data-penduduk/jenis-kelamin') }}">Statistik Jenis Kelamin</a></li> --}}
                                     <li><a href="{{ url('data-penduduk/pendidikan') }}">Statistik Pendidikan</a></li>
-                                    <li><a href="{{ url('data-penduduk/umur') }}">Depeandency Rasio Menurut Usia</a></li>
-                                    <li><a href="{{ url('data-penduduk/status') }}">Statistik Penduduk Duda atau Janda</a></li>
+                                    <li><a href="{{ url('data-penduduk/rasio-umur') }}">Depeandency Rasio Menurut
+                                            Usia</a>
+                                    </li>
+                                    <li><a href="{{ url('data-penduduk/status') }}">Statistik Penduduk Duda atau
+                                            Janda</a></li>
                                 </ul>
                             </li>
 
@@ -451,7 +461,8 @@ $galeri = $get_galeri
 
                                     <div class="size-w-5">
                                         <h6 class="p-b-5">
-                                            <a href="{{ url('galeri/' . strtolower(str_replace(' ', '-', $dta->judul) . '-uid0' . $dta->id)) }}" class="f1-s-5 cl11 hov-cl10 trans-03">
+                                            <a href="{{ url('galeri/' . strtolower(str_replace(' ', '-', $dta->judul) . '-uid0' . $dta->id)) }}"
+                                                class="f1-s-5 cl11 hov-cl10 trans-03">
                                                 {{ $dta->judul }}
                                             </a>
                                         </h6>

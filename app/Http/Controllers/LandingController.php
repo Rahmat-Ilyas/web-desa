@@ -108,7 +108,16 @@ class LandingController extends Controller
 
     public function data_penduduk($kategori)
     {
-        return view('landing/data-penduduk');
+        if ($kategori == 'statistik-penduduk') $judul = 'Statistik Semua Penduduk';
+        else if ($kategori == 'berdasarkan-umur') $judul = 'Penduduk Berdasarkan Umur';
+        else if ($kategori == 'pemilih-tetap') $judul = 'Pemilih Tetap';
+        else if ($kategori == 'agama') $judul = 'Statistik Agama';
+        // else if ($kategori == 'jenis-kelamin') $judul = 'Statistik Jenis Kelamin';
+        else if ($kategori == 'pendidikan') $judul = 'Statistik Pendidikan';
+        else if ($kategori == 'rasio-umur') $judul = 'Depeandency Rasio Menurut Usia';
+        else if ($kategori == 'status') $judul = 'Statistik Penduduk Duda atau Janda';
+        else abort('404');
+        return view('landing/data-penduduk', compact('kategori', 'judul'));
     }
 
     public function file()

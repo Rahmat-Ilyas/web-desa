@@ -1,8 +1,8 @@
 @extends('admin.layout')
 @section('content')
     @php
-    $data = new App\Models\Penduduk();
-    $get = $data->get();
+        $data = new App\Models\Penduduk();
+        $get = $data->get();
     @endphp
     <div class="content-body">
         <div class="container-fluid">
@@ -33,8 +33,11 @@
                                         Penduduk</button>
                                     <div class="dropdown-menu" x-placement="bottom-start"
                                         style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 35px, 0px);">
-                                        <a class="dropdown-item" href="javascript:void()">Import File Excel</a>
-                                        <a class="dropdown-item" href="javascript:void()">Download Format Excel</a>
+                                        <a class="dropdown-item" href="#" data-toggle="modal"
+                                            data-target="#modal-import">Import File Excel</a>
+                                        <a class="dropdown-item"
+                                            href="{{ url('format-import-data-penduduk.xlsx') }}">Download Format
+                                            Excel</a>
                                     </div>
                                 </div>
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#modal-add"><i
@@ -68,8 +71,9 @@
                                                 <td>{{ $dta->alamat }}</td>
                                                 <td width="120" class="text-center">
                                                     <button class="btn btn-sm btn-dark text-white" data-toggle="modal"
-                                                        data-target="#modal-balas{{ $dta->id }}" data-toggle1="tooltip"
-                                                        title="Detail Data Penduduk"><i class="fa fa-list"></i></button>
+                                                        data-target="#modal-detail{{ $dta->id }}"
+                                                        data-toggle1="tooltip" title="Detail Data Penduduk"><i
+                                                            class="fa fa-list"></i></button>
                                                     <button class="btn btn-sm btn-info text-white" data-toggle="modal"
                                                         data-target="#modal-edit{{ $dta->id }}" data-toggle1="tooltip"
                                                         title="Edit Data Penduduk"><i class="fa fa-edit"></i></button>
@@ -221,7 +225,96 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modal-import" role="dialog" style="z-index: 9999" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Hapus Data Penduduk</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="{{ url('admin-access/import/penduduk') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <label class="text-dark">Upload File</label>
+                        <input type="file" class="form-control" name="data_penduduk" placeholder="Tanggal Lahir..."
+                            required="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     @foreach ($get as $dta)
+        <div class="modal fade" id="modal-detail{{ $dta->id }}" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Detail Data Penduduk</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="basic-list-group">
+                            <ul class="list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <b class="text-dark">NIK</b>
+                                    <span class="text-dark">{{ $dta->nik }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <b class="text-dark">NAMA LENGKAP</b>
+                                    <span class="text-dark">{{ $dta->nama }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <b class="text-dark">JENIS KELAMIN</b>
+                                    <span class="text-dark">{{ $dta->jenis_kelamin }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <b class="text-dark">TEMPAT LAHIR</b>
+                                    <span class="text-dark">{{ $dta->tempat_lahir }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <b class="text-dark">TANGGAL LAHIR</b>
+                                    <span class="text-dark">{{ date('d/m/Y', strtotime($dta->tanggal_lahir)) }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <b class="text-dark">ALAMAT</b>
+                                    <span class="text-dark">{{ $dta->alamat }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <b class="text-dark">AGAMA</b>
+                                    <span class="text-dark">{{ $dta->agama }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <b class="text-dark">PEMILIH TETAP</b>
+                                    <span class="text-dark">{{ $dta->pemilih_tetap == 1 ? 'Ya' : 'Tidak' }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <b class="text-dark">PENDIDIKAN</b>
+                                    <span class="text-dark">{{ $dta->pendidikan }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <b class="text-dark">STATUS</b>
+                                    <span class="text-dark">{{ $dta->status }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="modal fade" id="modal-edit{{ $dta->id }}" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
@@ -247,19 +340,21 @@
                                 <label class="col-form-label col-sm-3">Nama</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="nama" placeholder="Nama..."
-                                        required="" autocomplete="off" value="{{ (old('id') == $dta->id) ? old('nama') : $dta->nama }}">
+                                        required="" autocomplete="off"
+                                        value="{{ old('id') == $dta->id ? old('nama') : $dta->nama }}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-form-label col-sm-3">Jenis Kelamin</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="jenis_kelamin" id="eopt-jenis_kelamin{{ $dta->id }}"
-                                        required="">
+                                    <select class="form-control" name="jenis_kelamin"
+                                        id="eopt-jenis_kelamin{{ $dta->id }}" required="">
                                         <option>Laki-laki</option>
                                         <option>Perempuan</option>
                                     </select>
                                     <script>
-                                        document.getElementById('eopt-jenis_kelamin{{ $dta->id }}').value = "{{ (old('id') == $dta->id) ? old('jenis_kelamin') : $dta->jenis_kelamin }}"
+                                        document.getElementById('eopt-jenis_kelamin{{ $dta->id }}').value =
+                                            "{{ old('id') == $dta->id ? old('jenis_kelamin') : $dta->jenis_kelamin }}"
                                     </script>
                                 </div>
                             </div>
@@ -268,7 +363,7 @@
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="tempat_lahir"
                                         placeholder="Tempat Lahir..." required="" autocomplete="off"
-                                        value="{{ (old('id') == $dta->id) ? old('tempat_lahir') : $dta->tempat_lahir }}">
+                                        value="{{ old('id') == $dta->id ? old('tempat_lahir') : $dta->tempat_lahir }}">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -276,20 +371,22 @@
                                 <div class="col-sm-9">
                                     <input type="date" class="form-control" name="tanggal_lahir"
                                         placeholder="Tanggal Lahir..." required="" autocomplete="off"
-                                        value="{{ (old('id') == $dta->id) ? old('tanggal_lahir') : $dta->tanggal_lahir }}">
+                                        value="{{ old('id') == $dta->id ? old('tanggal_lahir') : $dta->tanggal_lahir }}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-form-label col-sm-3">Alamat</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="alamat" placeholder="Alamat..."
-                                        required="" autocomplete="off" value="{{ (old('id') == $dta->id) ? old('alamat') : $dta->alamat }}">
+                                        required="" autocomplete="off"
+                                        value="{{ old('id') == $dta->id ? old('alamat') : $dta->alamat }}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-form-label col-sm-3">Agama</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="agama" id="eopt-agama{{ $dta->id }}" required="">
+                                    <select class="form-control" name="agama" id="eopt-agama{{ $dta->id }}"
+                                        required="">
                                         <option>Islam</option>
                                         <option>Kristen</option>
                                         <option>Khatolik</option>
@@ -298,27 +395,30 @@
                                         <option>Konghucu</option>
                                     </select>
                                     <script>
-                                        document.getElementById('eopt-agama{{ $dta->id }}').value = "{{ (old('id') == $dta->id) ? old('agama') : $dta->agama }}"
+                                        document.getElementById('eopt-agama{{ $dta->id }}').value =
+                                            "{{ old('id') == $dta->id ? old('agama') : $dta->agama }}"
                                     </script>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-form-label col-sm-3">Pemilih Tetap</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="pemilih_tetap" id="eopt-pemilih_tetap{{ $dta->id }}"
-                                        required="">
+                                    <select class="form-control" name="pemilih_tetap"
+                                        id="eopt-pemilih_tetap{{ $dta->id }}" required="">
                                         <option value="1">Ya</option>
                                         <option value="0">Tidak</option>
                                     </select>
                                     <script>
-                                        document.getElementById('eopt-pemilih_tetap{{ $dta->id }}').value = "{{ (old('id') == $dta->id) ? old('pemilih_tetap') : $dta->pemilih_tetap }}"
+                                        document.getElementById('eopt-pemilih_tetap{{ $dta->id }}').value =
+                                            "{{ old('id') == $dta->id ? old('pemilih_tetap') : $dta->pemilih_tetap }}"
                                     </script>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-form-label col-sm-3">Pendidikan</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="pendidikan" id="eopt-pendidikan{{ $dta->id }}" required="">
+                                    <select class="form-control" name="pendidikan"
+                                        id="eopt-pendidikan{{ $dta->id }}" required="">
                                         <option>Tidak/Belum Sekolah</option>
                                         <option>Tidak Tamat SD/Sederajat</option>
                                         <option>Tamat SD/Sederajat</option>
@@ -331,20 +431,23 @@
                                         <option>Strata III</option>
                                     </select>
                                     <script>
-                                        document.getElementById('eopt-pendidikan{{ $dta->id }}').value = "{{ (old('id') == $dta->id) ? old('pendidikan') : $dta->pendidikan }}"
+                                        document.getElementById('eopt-pendidikan{{ $dta->id }}').value =
+                                            "{{ old('id') == $dta->id ? old('pendidikan') : $dta->pendidikan }}"
                                     </script>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-form-label col-sm-3">Status Perkawinan</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="status" id="eopt-status{{ $dta->id }}" required="">
+                                    <select class="form-control" name="status" id="eopt-status{{ $dta->id }}"
+                                        required="">
                                         <option>Belum Menikah</option>
                                         <option>Menikah</option>
                                         <option>Duda/Janda</option>
                                     </select>
                                     <script>
-                                        document.getElementById('eopt-status{{ $dta->id }}').value = "{{ (old('id') == $dta->id) ? old('status') : $dta->status }}"
+                                        document.getElementById('eopt-status{{ $dta->id }}').value =
+                                            "{{ old('id') == $dta->id ? old('status') : $dta->status }}"
                                     </script>
                                 </div>
                             </div>
