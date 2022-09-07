@@ -44,7 +44,7 @@ class PendudukImport implements ToModel, WithHeadingRow, WithValidation, SkipsEm
             ]);
             $this->rows_scs += 1;
         }
-        ++$this->rows;
+        $this->rows += 1;
     }
 
     public function rules(): array

@@ -112,7 +112,6 @@ class LandingController extends Controller
         else if ($kategori == 'berdasarkan-umur') $judul = 'Penduduk Berdasarkan Umur';
         else if ($kategori == 'pemilih-tetap') $judul = 'Pemilih Tetap';
         else if ($kategori == 'agama') $judul = 'Statistik Agama';
-        // else if ($kategori == 'jenis-kelamin') $judul = 'Statistik Jenis Kelamin';
         else if ($kategori == 'pendidikan') $judul = 'Statistik Pendidikan';
         else if ($kategori == 'rasio-umur') $judul = 'Depeandency Rasio Menurut Usia';
         else if ($kategori == 'status') $judul = 'Statistik Penduduk Duda atau Janda';

@@ -458,11 +458,9 @@ class AdminController extends Controller
 
             $import = new PendudukImport();
             $import->import($request->file('data_penduduk'));
-            // exit();
-
-            // dd($import);
-            return back()->with('success', 'Berhasil mengimport data penduduk (' . $import->getRowCountSuccess() . ' dari ' . $import->getRowCount() . ' total data)');
-            // return redirect('p/registrasi/mahasiswa')->with('msg', 'Import Data Mahasiswa Berhasil');
+            $res_import = '';
+            // if ($import->getRowCount() > 0) $res_import = '(' . $import->getRowCountSuccess() . ' dari ' . $import->getRowCount() . ' total data)';
+            return back()->with('success', 'Berhasil mengimport data penduduk ' . $res_import);
         }
     }
 
