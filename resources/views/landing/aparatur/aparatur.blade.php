@@ -33,7 +33,7 @@
                             Aparatur Desa
                         </a>
                         <h3 class="f1-l-3 cl2 p-t-20 respon2">
-                            Daftar Aparatur Desa Rante Angin
+                            Daftar Aparatur Kel. Ujung Sabbang
                         </h3>
 
                         <hr>
@@ -70,7 +70,7 @@
                                         <div class="tab01-head how2 how2-cl4 bocl12 flex-s-c m-r-10 m-r-0-sr991">
                                             <!-- Brand tab -->
                                             <h3 class="f1-m-2 cl3 tab01-title">
-                                                Struktur Pemerintah Desa Rante Angin
+                                                Struktur Pemerintah Kel. Ujung Sabbang
                                             </h3>
                                         </div>
                                         <!-- Tab panes -->
@@ -116,7 +116,7 @@
                             </span>
 
                             <div class="flex-wr-s-s size-w-0">
-                                <a href="https://api.whatsapp.com/send?text={{ 'Aparatur Desa - Desa Rante Angin ' . url()->current() }}"
+                                <a href="https://api.whatsapp.com/send?text={{ 'Aparatur Desa - Kel. Ujung Sabbang ' . url()->current() }}"
                                     target="_blank"
                                     class="dis-block f1-s-13 cl0 bg-success borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
                                     <i class="fab fa-whatsapp m-r-7"></i>
@@ -129,7 +129,7 @@
                                     Facebook
                                 </a>
 
-                                <a href="https://twitter.com/intent/tweet?text={{ 'Aparatur Desa - Desa Rante Angin ' . url()->current() }}"
+                                <a href="https://twitter.com/intent/tweet?text={{ 'Aparatur Desa - Kel. Ujung Sabbang ' . url()->current() }}"
                                     target="_blank"
                                     class="dis-block f1-s-13 cl0 bg-twitter borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
                                     <i class="fab fa-twitter m-r-7"></i>
@@ -147,6 +147,6 @@
 @section('javascript')
     <script>
         $('#nav-aparatur').addClass('main-menu-active');
-        $(document).find('title').text('Aparatur Desa - Desa Rante Angin')
+        $(document).find('title').text('Aparatur Desa - Kel. Ujung Sabbang')
     </script>
 @endsection

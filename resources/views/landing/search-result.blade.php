@@ -121,6 +121,6 @@
 
 @section('javascript')
     <script>
-        $(document).find('title').text('Hasil Pencarian - Desa Rante Angin')
+        $(document).find('title').text('Hasil Pencarian - Kel. Ujung Sabbang')
     </script>
 @endsection

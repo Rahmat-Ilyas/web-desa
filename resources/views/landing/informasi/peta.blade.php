@@ -30,7 +30,7 @@
                     <!-- Blog Detail -->
                     <div class="p-b-20">
                         <a href="#" class="f1-s-10 cl2 hov-cl10 trans-03 text-uppercase">
-                            Profil Desa Rante Angin
+                            Profil Kel. Ujung Sabbang
                         </a>
 
                         <h3 class="f1-l-3 cl2 p-t-20 respon2">
@@ -41,9 +41,9 @@
 
                         <div>
                             @if($target == 'peta-lokasi-desa')
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255058.33981743717!2d121.54467728809897!3d-2.731087849138105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d9a790551afcfcb%3A0xf7cd63febf44b6af!2sRante%20Angin%2C%20Kec.%20Towuti%2C%20Kabupaten%20Luwu%20Timur%2C%20Sulawesi%20Selatan!5e0!3m2!1sid!2sid!4v1655727799987!5m2!1sid!2sid" height="500" style="border:0; width: 100%" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11195.980936276908!2d119.6244016292835!3d-4.003865364347877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d95bb208f7b8ec9%3A0x1cb3b51f736846e9!2sUjung%20Sabbang%2C%20Kec.%20Ujung%2C%20Kota%20Parepare%2C%20Sulawesi%20Selatan!5e1!3m2!1sid!2sid!4v1767790653008!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             @else
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.983521141167!2d121.58201976642638!3d-2.8209419985552135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x6eb395308b8b73b3!2zMsKwNDknMTUuNCJTIDEyMcKwMzUnMDEuOSJF!5e0!3m2!1sid!2sid!4v1655729496223!5m2!1sid!2sid" height="500" style="border:0; width: 100%" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3404.824770420205!2d119.62025817420594!3d-4.006209344646841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d95bb20dd444f57%3A0xb7935a727e1e2e6c!2sKantor%20Kelurahan%20Ujung%20Sabbang!5e1!3m2!1sid!2sid!4v1767791029908!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             @endif
                         </div>
                         <hr>
@@ -72,7 +72,7 @@
                             </span>
 
                             <div class="flex-wr-s-s size-w-0">
-                                <a href="https://api.whatsapp.com/send?text={{ $title . ' - Desa Rante Angin ' . url()->current() }}"
+                                <a href="https://api.whatsapp.com/send?text={{ $title . ' - Kel. Ujung Sabbang ' . url()->current() }}"
                                     target="_blank"
                                     class="dis-block f1-s-13 cl0 bg-success borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
                                     <i class="fab fa-whatsapp m-r-7"></i>
@@ -85,7 +85,7 @@
                                     Facebook
                                 </a>
 
-                                <a href="https://twitter.com/intent/tweet?text={{ $title . ' - Desa Rante Angin ' . url()->current() }}"
+                                <a href="https://twitter.com/intent/tweet?text={{ $title . ' - Kel. Ujung Sabbang ' . url()->current() }}"
                                     target="_blank"
                                     class="dis-block f1-s-13 cl0 bg-twitter borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
                                     <i class="fab fa-twitter m-r-7"></i>
@@ -109,6 +109,6 @@
     <script>
         $(document).find('.note-float-left').addClass('mr-2');
         $('#nav-profil').addClass('main-menu-active');
-        $(document).find('title').text('{{ $title }} - Desa Rante Angin')
+        $(document).find('title').text('{{ $title }} - Kel. Ujung Sabbang')
     </script>
 @endsection

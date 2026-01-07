@@ -13,7 +13,7 @@ $galeri = $get_galeri
 <html lang="en">
 
 <head>
-    <title>Desa Rante Angin, Luwu Timur</title>
+    <title>Kel. Ujung Sabbang, Parepare</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -108,11 +108,10 @@ $galeri = $get_galeri
                     <a href="{{ url('/') }}"><img src="{{ asset('assets/images/icons/logo.png') }}"
                             style="min-height: 50px;" alt="IMG-LOGO"></a>
                     <h5 class="text-dark ml-5 mt-1 cl2 how-txt2" style="font-size: 18px; margin-bottom: -5px;">
-                        &nbsp;DESA RANTE ANGIN
+                        &nbsp;KEL. UJUNG SABBANG
                     </h5>
                     <div>
-                        <small class="ml-5 f1-s-3 cl2 how-txt2">&nbsp;&nbsp;Kecamatan Towuti, Kabupaten Luwu
-                            Timur</small>
+                        <small class="ml-5 f1-s-3 cl2 how-txt2">&nbsp;&nbsp;Kecamatan Ujung, Kota Parepare</small>
                     </div>
                 </div>
 
@@ -278,21 +277,21 @@ $galeri = $get_galeri
                 <!-- Logo desktop -->
                 <div class="logo">
                     <a href="#"><img src="{{ asset('assets/images/icons/logo.png') }}"
-                            alt="LOGO DESA RANTE ANGIN" height="100" width="95"></a>
+                            alt="LOGO KEL. UJUNG SABBANG" height="100"></a>
                     {{-- <h2 class="text-dark ml-2 mt-0"><b>SELAMAT DATANG</b></h2> --}}
                     <div class="ml-4">
-                        <h5 class="text-dark" style="font-size: 18px"><b>DESA RANTE ANGIN</b></h5>
+                        <h5 class="text-dark" style="font-size: 18px"><b>KEL. UJUNG SABBANG</b></h5>
                         <div class="mt-2">
-                            <span class="text-dark"><a href="#">https://www.desa-ranteangin.com</a></span><br>
-                            <span class="text-muted" style="font-size: 13px">Kecamatan Towuti, Kabupaten Luwu Timur,
-                                Sulawesi Selatan Pos 92983</span>
+                            <span class="text-dark"><a href="#">https://www.ujung-sabbang.com</a></span><br>
+                            <span class="text-muted" style="font-size: 13px">Kecamatan Ujung, Kota Parepare,
+                                Sulawesi Selatan</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Banner -->
                 <div class="banner-header">
-                    {{-- <a href="#"><img src="{{ asset('assets/images/banner-01.jpg') }}" alt="Logo Desa Rante Angin"></a> --}}
+                    {{-- <a href="#"><img src="{{ asset('assets/images/banner-01.jpg') }}" alt="Logo Kel. Ujung Sabbang"></a> --}}
                 </div>
             </div>
 
@@ -399,27 +398,27 @@ $galeri = $get_galeri
                     <div class="col-lg-4 p-b-20">
                         <div class="size-h-3 flex-s-c">
                             <a href="{{ url('/') }}">
-                                <img class="max-s-full" src="{{ asset('assets/images/icons/logo.png') }}"
-                                    alt="LOGO DESA RANTE ANGIN">
+                                <img src="{{ asset('assets/images/icons/logo.png') }}" style="width: 70px;"
+                                    alt="LOGO KEL. UJUNG SABBANG">
                             </a>
                             <span class="f1-l-2 text-white ml-3">
                                 <b>
-                                    <span class="text-danger">DESA RANTE ANGIN</span> <br>
+                                    <span class="text-danger">KEL. UJUNG SABBANG</span> <br>
                                 </b>
-                                <span>LUWU TIMUR</span>
+                                <span>PAREPARE</span>
                             </span>
                         </div>
 
                         <div>
                             <p class="mt-2 f1-s-1 cl11 p-b-16">
-                                Desa Rante Angin adalah desa yang terletak di Kecamatan Towuti, Kabupaten Luwu Timur,
+                                Kel. Ujung Sabbang adalah desa yang terletak di Kecamatan Ujung, Kota Parepare,
                                 Sulawesi Selatan, Indonesia, Pos 92983.
                             </p>
 
                             <p class="f1-s-1 cl11 p-b-16">
                                 Silahkan hubungi kami di:<br>
                                 <i class="fa fa-phone"></i>&nbsp; +6285-3333-41194<br>
-                                <i class="fa fa-envelope-open"></i>&nbsp; kontak@desa-ranteangin.com<br>
+                                <i class="fa fa-envelope-open"></i>&nbsp; kontak@ujung-sabbang.com<br>
                             </p>
 
                             <div class="p-t-15">
@@ -583,7 +582,7 @@ $galeri = $get_galeri
         <div class="bg11">
             <div class="container size-h-4 flex-c-c p-tb-15">
                 <span class="f1-s-1 cl0 txt-center">
-                    Copyright © {{ date('Y') }} Desa Rante Angin, All Right Reserved. Develop by <a
+                    Copyright © {{ date('Y') }} Kel. Ujung Sabbang, All Right Reserved. Develop by <a
                         href="#">Doreka Studio</a>
                 </span>
             </div>

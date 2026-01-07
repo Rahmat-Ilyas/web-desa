@@ -671,7 +671,7 @@
                                         </div>
                                         <div class="ml-3">
                                             <h5 class="text-dark f1-l-2">Kantor</h5>
-                                            <p class="">Jl. Trans Rante Angin</p>
+                                            <p class="">Jl. Trans Ujung Sabbang</p>
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center mb-3">
@@ -691,7 +691,7 @@
                                         </div>
                                         <div class="ml-3">
                                             <h5 class="text-dark f1-l-2">Email</h5>
-                                            <p class="mb-0">kontak@desa-ranteangin.com</p>
+                                            <p class="mb-0">kontak@ujung-sabbang.com</p>
                                         </div>
                                     </div>
                                 </div>
@@ -737,7 +737,7 @@
                             </div>
                             <div>
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.983521141167!2d121.58201976642638!3d-2.8209419985552135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x6eb395308b8b73b3!2zMsKwNDknMTUuNCJTIDEyMcKwMzUnMDEuOSJF!5e0!3m2!1sid!2sid!4v1655729496223!5m2!1sid!2sid"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3404.824770420205!2d119.62025817420594!3d-4.006209344646841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d95bb20dd444f57%3A0xb7935a727e1e2e6c!2sKantor%20Kelurahan%20Ujung%20Sabbang!5e1!3m2!1sid!2sid!4v1767791029908!5m2!1sid!2sid"
                                     height="500" style="border:0; width: 100%; height: 300px;" allowfullscreen=""
                                     loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>

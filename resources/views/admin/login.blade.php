@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Login Admin - Desa Rante Angin, Luwu Timur </title>
+    <title>Login Admin - Kel. Ujung Sabbang, Parepare </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/icons/logo.png') }}">
     <link href="{{ asset('assets_/css/style.css') }}" rel="stylesheet">

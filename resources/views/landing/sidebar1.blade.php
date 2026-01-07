@@ -25,9 +25,9 @@ $berita_terkini = $postingan
         </h5>
 
         <p class="f1-s-1 cl0">
-            Selamat datang di website Desa Rante Angin, Kami atas nama Pemerintah Desa Rante Angin mengucapkan
-            banyak-banyak terima kasih telah mengunjungi website Desa kami. Dan kami selalu berusaha untuk mengelola
-            website ini dengan baik demi terciptanya pelayanan yang maksimal dan Informasi yang akurat tentang Desa
+            Selamat datang di website Kel. Ujung Sabbang, Kami atas nama Pemerintah Kel. Ujung Sabbang mengucapkan
+            banyak-banyak terima kasih telah mengunjungi website Kelurahan kami. Dan kami selalu berusaha untuk mengelola
+            website ini dengan baik demi terciptanya pelayanan yang maksimal dan Informasi yang akurat tentang Kelurahan
             kami.
         </p>
     </div>

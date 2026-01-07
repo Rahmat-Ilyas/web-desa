@@ -103,7 +103,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h3 class="text-center">Selamat Datang di Dashboard Admin</h3>
-                            <h4 class="text-center">Sistem Informasi Desa Rante Angin</h4>
+                            <h4 class="text-center">Sistem Informasi Kel. Ujung Sabbang</h4>
                             <div>
                                 <img src="{{ asset('assets_/images/welcome.png') }}" style="width: 100%;" alt="">
                             </div>

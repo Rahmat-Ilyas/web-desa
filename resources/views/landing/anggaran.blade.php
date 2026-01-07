@@ -33,7 +33,7 @@
                             Transparansi Anggaran
                         </a>
                         <h3 class="f1-l-3 cl2 p-t-20 respon2">
-                            Transparansi Anggaran Desa Rante Angin Tahun {{ date('Y') }}
+                            Transparansi Anggaran Kel. Ujung Sabbang Tahun {{ date('Y') }}
                         </h3>
 
                         <div class="row m-t-20">
@@ -167,7 +167,7 @@
                             </span>
 
                             <div class="flex-wr-s-s size-w-0">
-                                <a href="https://api.whatsapp.com/send?text={{ 'Aparatur Desa - Desa Rante Angin ' . url()->current() }}"
+                                <a href="https://api.whatsapp.com/send?text={{ 'Aparatur Desa - Kel. Ujung Sabbang ' . url()->current() }}"
                                     target="_blank"
                                     class="dis-block f1-s-13 cl0 bg-success borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
                                     <i class="fab fa-whatsapp m-r-7"></i>
@@ -180,7 +180,7 @@
                                     Facebook
                                 </a>
 
-                                <a href="https://twitter.com/intent/tweet?text={{ 'Aparatur Desa - Desa Rante Angin ' . url()->current() }}"
+                                <a href="https://twitter.com/intent/tweet?text={{ 'Aparatur Desa - Kel. Ujung Sabbang ' . url()->current() }}"
                                     target="_blank"
                                     class="dis-block f1-s-13 cl0 bg-twitter borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
                                     <i class="fab fa-twitter m-r-7"></i>
@@ -218,7 +218,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
     <script>
         $('#nav-anggaran').addClass('main-menu-active');
-        $(document).find('title').text('Transparansi Anggaran Desa - Desa Rante Angin');
+        $(document).find('title').text('Transparansi Anggaran Desa - Kel. Ujung Sabbang');
 
 
         new Morris.Donut({

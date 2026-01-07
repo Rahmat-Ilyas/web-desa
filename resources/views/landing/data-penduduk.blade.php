@@ -54,7 +54,7 @@
                             </span>
 
                             <div class="flex-wr-s-s size-w-0">
-                                <a href="https://api.whatsapp.com/send?text={{ 'Statistik Data Penduduk - ' . $judul . ' Desa Rante Angin ' . url()->current() }}"
+                                <a href="https://api.whatsapp.com/send?text={{ 'Statistik Data Penduduk - ' . $judul . ' Kel. Ujung Sabbang ' . url()->current() }}"
                                     target="_blank"
                                     class="dis-block f1-s-13 cl0 bg-success borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
                                     <i class="fab fa-whatsapp m-r-7"></i>
@@ -67,7 +67,7 @@
                                     Facebook
                                 </a>
 
-                                <a href="https://twitter.com/intent/tweet?text={{ 'Statistik Data Penduduk - ' . $judul . ' Desa Rante Angin ' . url()->current() }}"
+                                <a href="https://twitter.com/intent/tweet?text={{ 'Statistik Data Penduduk - ' . $judul . ' Kel. Ujung Sabbang ' . url()->current() }}"
                                     target="_blank"
                                     class="dis-block f1-s-13 cl0 bg-twitter borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
                                     <i class="fab fa-twitter m-r-7"></i>
@@ -86,7 +86,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script>
         $('#nav-penduduk').addClass('main-menu-active');
-        $(document).find('title').text('Statistik Data Penduduk - Desa Rante Angin');
+        $(document).find('title').text('Statistik Data Penduduk - Kel. Ujung Sabbang');
         const ctx = document.getElementById('myChart');
     </script>
 
@@ -119,7 +119,7 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Statistik Semua Penduduk - Desa Rante Angin',
+                            text: 'Statistik Semua Penduduk - Kel. Ujung Sabbang',
                             font: {
                                 size: 16
                             }
@@ -297,7 +297,7 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Statistik Penduduk Berdasarkan Batasan Umur - Desa Rante Angin',
+                            text: 'Statistik Penduduk Berdasarkan Batasan Umur - Kel. Ujung Sabbang',
                             font: {
                                 size: 16
                             }
@@ -341,7 +341,7 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Statistik Penduduk Yang Memiliki Hak Pilih - Desa Rante Angin',
+                            text: 'Statistik Penduduk Yang Memiliki Hak Pilih - Kel. Ujung Sabbang',
                             font: {
                                 size: 16
                             }
@@ -465,7 +465,7 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Statistik Penduduk Berdasarkan Agama - Desa Rante Angin',
+                            text: 'Statistik Penduduk Berdasarkan Agama - Kel. Ujung Sabbang',
                             font: {
                                 size: 16
                             }
@@ -596,7 +596,7 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Statistik Penduduk Berdasarkan Pendidikan - Desa Rante Angin',
+                            text: 'Statistik Penduduk Berdasarkan Pendidikan - Kel. Ujung Sabbang',
                             font: {
                                 size: 16
                             }
@@ -697,7 +697,7 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Statistik Penduduk Berdasarkan Rasio Usia Produktif - Desa Rante Angin',
+                            text: 'Statistik Penduduk Berdasarkan Rasio Usia Produktif - Kel. Ujung Sabbang',
                             font: {
                                 size: 16
                             }
@@ -741,7 +741,7 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Statistik Penduduk Bersatus Duda atau Janda - Desa Rante Angin',
+                            text: 'Statistik Penduduk Bersatus Duda atau Janda - Kel. Ujung Sabbang',
                             font: {
                                 size: 16
                             }

@@ -10,7 +10,7 @@ $pesan = $data->where('status', 'new')->get();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Admin - Desa Rante Angin, Luwu Timur </title>
+    <title>Admin - Kel. Ujung Sabbang, Parepare </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/icons/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('assets_/vendor/owl-carousel/css/owl.carousel.min.css') }}">
@@ -61,7 +61,7 @@ $pesan = $data->where('status', 'new')->get();
             <a href="{{ url('/admin-access') }}" class="brand-logo">
                 <img class="logo-abbr" height="60" style="min-width: 50px;"
                     src="{{ asset('assets/images/icons/logo.png') }}" alt="">
-                <span class="brand-title" style="min-width: 100%;">DESA<br>RANTE ANGIN</span>
+                <span class="brand-title" style="min-width: 100%;">KEL.<br>UJUNG SABBANG</span>
                 {{-- <img class="logo-compact" src="{{ asset('assets_/images/logo-text.png') }}" alt="">
                 <img class="brand-title" src="{{ asset('assets_/images/logo-text.png') }}" alt=""> --}}
             </a>
@@ -218,7 +218,7 @@ $pesan = $data->where('status', 'new')->get();
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright © {{ date('Y') }} Desa Rante Angin, All Right Reserved</p>
+                <p>Copyright © {{ date('Y') }} Kel. Ujung Sabbang, All Right Reserved</p>
                 <p>Develop by <a href="#">Doreka Studio</a></p>
             </div>
         </div>

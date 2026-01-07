@@ -146,6 +146,6 @@
         $('.content-post').find('p, span').addClass('f1-s-11 cl6 p-b-25').removeAttr('style');
         $('.content-post').find('h1, h2, h3, h4, h5, h6').removeAttr('style');
         $('#nav-postingan').addClass('main-menu-active');
-        $(document).find('title').text('{{ $title }} - Desa Rante Angin')
+        $(document).find('title').text('{{ $title }} - Kel. Ujung Sabbang')
     </script>
 @endsection

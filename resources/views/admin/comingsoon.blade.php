@@ -33,7 +33,7 @@
         <div class="flex-w flex-sb-m p-l-80 p-r-74 p-b-100 respon5">
             <div class="wrappic1 m-r-30 m-t-10 m-b-10">
                 <a href="{{ url('/') }}"><img src="{{ asset('assets/images/icons/logo.png') }}"
-                        alt="LOGO DESA RANTE ANGIN"></a>
+                        alt="LOGO KEL. UJUNG SABBANG"></a>
             </div>
 
             <div class="flex-w m-t-10 m-b-10">
