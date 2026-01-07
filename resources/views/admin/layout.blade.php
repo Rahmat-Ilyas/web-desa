@@ -219,7 +219,7 @@ $pesan = $data->where('status', 'new')->get();
         <div class="footer">
             <div class="copyright">
                 <p>Copyright © {{ date('Y') }} Kel. Ujung Sabbang, All Right Reserved</p>
-                <p>Develop by <a href="#">Doreka Studio</a></p>
+                <p>Develop by <a href="https://mainsite.web.id" target="_blank">Mainsite Studio</a></p>
             </div>
         </div>
         <!--**********************************

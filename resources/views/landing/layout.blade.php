@@ -583,7 +583,7 @@ $galeri = $get_galeri
             <div class="container size-h-4 flex-c-c p-tb-15">
                 <span class="f1-s-1 cl0 txt-center">
                     Copyright © {{ date('Y') }} Kel. Ujung Sabbang, All Right Reserved. Develop by <a
-                        href="#">Doreka Studio</a>
+                        href="https://mainsite.web.id" target="_blank">Mainsite Studio</a>
                 </span>
             </div>
         </div>
